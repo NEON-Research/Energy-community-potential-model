@@ -2,8 +2,8 @@
 
 # -- Project information
 
-project = 'Tipping pathways'
-copyright = '2023, Naud Loomans'
+project = 'Energy community potential model'
+copyright = '2024, Naud Loomans'
 author = 'Naud Loomans'
 
 release = '0.1'
