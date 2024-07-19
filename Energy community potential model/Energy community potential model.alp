@@ -14,7 +14,7 @@
 	<OptionLists>
 		<OptionList>
 			<Id>1717513084579</Id>
-			<Name><![CDATA[WillingnessEnergyMeasures]]></Name>
+			<Name><![CDATA[Category]]></Name>
 			<Option>
 				<Id>1717513084581</Id>
 				<Name><![CDATA[LOW]]></Name>
@@ -58,6 +58,122 @@
 			<Option>
 				<Id>1717513106124</Id>
 				<Name><![CDATA[POTENTIAL_ADOPTER]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1718013548481</Id>
+			<Name><![CDATA[EducationLevel]]></Name>
+			<Option>
+				<Id>1718013548482</Id>
+				<Name><![CDATA[PRIMARY]]></Name>
+			</Option>
+			<Option>
+				<Id>1718013548483</Id>
+				<Name><![CDATA[DOCTORAL]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1718013911173</Id>
+			<Name><![CDATA[EnergyProvider]]></Name>
+			<Option>
+				<Id>1718013911174</Id>
+				<Name><![CDATA[GREY]]></Name>
+			</Option>
+			<Option>
+				<Id>1718013911175</Id>
+				<Name><![CDATA[BROWN]]></Name>
+			</Option>
+			<Option>
+				<Id>1718013911176</Id>
+				<Name><![CDATA[GREEN]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1721044305145</Id>
+			<Name><![CDATA[Action]]></Name>
+			<Option>
+				<Id>1721044305146</Id>
+				<Name><![CDATA[INVEST_MONEY]]></Name>
+			</Option>
+			<Option>
+				<Id>1721044305147</Id>
+				<Name><![CDATA[INVEST_TIME]]></Name>
+			</Option>
+			<Option>
+				<Id>1721044305148</Id>
+				<Name><![CDATA[VOTE]]></Name>
+			</Option>
+			<Option>
+				<Id>1721044305149</Id>
+				<Name><![CDATA[IDLE]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1721130426153</Id>
+			<Name><![CDATA[NetworkStructure]]></Name>
+			<Option>
+				<Id>1721130426154</Id>
+				<Name><![CDATA[RANDOM_NETWORK]]></Name>
+			</Option>
+			<Option>
+				<Id>1721130426155</Id>
+				<Name><![CDATA[SMALL_WORLD]]></Name>
+			</Option>
+			<Option>
+				<Id>1721130426156</Id>
+				<Name><![CDATA[GEOGRAPHICAL_SMALL_WORLD]]></Name>
+			</Option>
+			<Option>
+				<Id>1721130426157</Id>
+				<Name><![CDATA[GEOGRAPHICAL_NEIGHBORHOOD]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1721223677178</Id>
+			<Name><![CDATA[ProjectType]]></Name>
+			<Option>
+				<Id>1721223677179</Id>
+				<Name><![CDATA[WIND]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223677180</Id>
+				<Name><![CDATA[PV]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1721223773107</Id>
+			<Name><![CDATA[ProjectSubType]]></Name>
+			<Option>
+				<Id>1721223773108</Id>
+				<Name><![CDATA[PVROOFTOP]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223773109</Id>
+				<Name><![CDATA[PVFIELD]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223773110</Id>
+				<Name><![CDATA[WINDPARK]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223773111</Id>
+				<Name><![CDATA[WINDSMALLSCALE]]></Name>
+			</Option>
+		</OptionList>
+		<OptionList>
+			<Id>1721223883832</Id>
+			<Name><![CDATA[ProjectStatus]]></Name>
+			<Option>
+				<Id>1721223883833</Id>
+				<Name><![CDATA[PLANNED]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223883834</Id>
+				<Name><![CDATA[REALISED]]></Name>
+			</Option>
+			<Option>
+				<Id>1721223883835</Id>
+				<Name><![CDATA[STOPPED]]></Name>
 			</Option>
 		</OptionList>
 	</OptionLists>
@@ -286,6 +402,192 @@ import org.json.JSONArray;]]></Import>
 						<Type><![CDATA[int]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031424347</Id>
+					<Name><![CDATA[householdsWithInsulation]]></Name>
+					<X>50</X><Y>690</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031424349</Id>
+					<Name><![CDATA[householdsWithInstallation]]></Name>
+					<X>50</X><Y>710</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031424351</Id>
+					<Name><![CDATA[householdsWithAppliances]]></Name>
+					<X>50</X><Y>730</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292242263</Id>
+					<Name><![CDATA[v_PVRooftopText]]></Name>
+					<X>-890</X><Y>1170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["PV Rooftop"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292251684</Id>
+					<Name><![CDATA[v_PVFieldText]]></Name>
+					<X>-890</X><Y>1190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["PV Field"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292261675</Id>
+					<Name><![CDATA[v_windSmallScaleText]]></Name>
+					<X>-890</X><Y>1210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["Wind Small Scale"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292279102</Id>
+					<Name><![CDATA[v_windLargeScaleText]]></Name>
+					<X>-890</X><Y>1230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["Wind Large Scale"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292298238</Id>
+					<Name><![CDATA[v_PVRooftopColor]]></Name>
+					<X>-720</X><Y>1170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Color]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[gold]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292298240</Id>
+					<Name><![CDATA[v_PVFieldColor]]></Name>
+					<X>-720</X><Y>1190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Color]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[yellowGreen]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292298242</Id>
+					<Name><![CDATA[v_windSmallScaleColor]]></Name>
+					<X>-720</X><Y>1210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Color]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[blue]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721292298244</Id>
+					<Name><![CDATA[v_windLargeScaleColor]]></Name>
+					<X>-720</X><Y>1230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Color]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[navy]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721312276689</Id>
+					<Name><![CDATA[v_mixedText]]></Name>
+					<X>-890</X><Y>1250</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["Mixed"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1721312276691</Id>
+					<Name><![CDATA[v_mixedColor]]></Name>
+					<X>-720</X><Y>1250</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Color]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[lavender]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1717511993091</Id>
 					<Name><![CDATA[modeFullNetherlands]]></Name>
@@ -299,7 +601,7 @@ import org.json.JSONArray;]]></Import>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[true]]></Code>
+							<Code><![CDATA[false]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1717511993089</Id>
@@ -310,13 +612,199 @@ import org.json.JSONArray;]]></Import>
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721124302602</Id>
+					<Name><![CDATA[random_instance]]></Name>
+					<X>-650</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[Random]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[new Random()]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1721124302600</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721306114104</Id>
+					<Name><![CDATA[p_avgPowerPerMemberPVRooftop]]></Name>
+					<X>-650</X><Y>420</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10.68]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1721306114102</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721306125369</Id>
+					<Name><![CDATA[p_avgPowerPerMemberPVField]]></Name>
+					<X>-650</X><Y>440</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10.68]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1721306125367</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721306149222</Id>
+					<Name><![CDATA[p_avgPowerPerMemberWindSmallScale]]></Name>
+					<X>-650</X><Y>460</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10.68]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1721306149220</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721306174595</Id>
+					<Name><![CDATA[p_avgPowerPerMemberWindLargeScale]]></Name>
+					<X>-650</X><Y>480</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10.68]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1721306174593</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1721130490309</Id>
+					<Name><![CDATA[c_javaHouseholds]]></Name>
+					<X>-650</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_Household]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1721228611384</Id>
+					<Name><![CDATA[c_ECProjects]]></Name>
+					<X>-650</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_ECProject]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
+			<Events>
+				<Event>
+					<Id>1718032016853</Id>
+					<Name><![CDATA[e_adoptionProcess]]></Name>
+					<X>-390</X><Y>790</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="timeout" Mode="cyclic">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_YEAR]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1718092800000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[f_adoptionProcess();
+f_getStatistics();
+f_updateTimeStackCharts();]]></Action>
+				</Event>
+			</Events>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717511993042</Id>
 					<Name><![CDATA[f_generateObjectsFromAPI]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-390</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -397,21 +885,24 @@ for(EA_Household x : pop_EA_Households){
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[f_generateNeighborhoodsNetherlands(modeFullNetherlands);
+					<Body><![CDATA[f_generateNeighborhoods(modeFullNetherlands);
 f_setNeighborhoodData();
 
-if( modeFullNetherlands == false){
-	f_generateObjectsFromAPI();
+f_generateECs();
+//Connect ECs to neighborhoods
+for(GZ_Neighborhood x : pop_GZ_Neighborhoods){
+	x.f_findNearestEC();
 }
-
-else if (modeFullNetherlands == true){
-	f_generateJavaHouseholds();
-	//f_generateJavaHouseholdsFromAPI();
+f_generateJavaHouseholds();
+//Set households to EC
+for(EnergyCommunity EC: pop_energyCommunities){
+	EC.f_setHouseholdsToEC();
 }
 
 f_setMap();
 
 f_setMapColors();
+f_setTimeStackCharts();
 ]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -431,7 +922,7 @@ traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " second
 
 for (GZ_Neighborhood neighborhood : pop_GZ_Neighborhoods){
 	//SET WILLINGNESS TO INVEST
-	neighborhood.f_setWillingnessToInvestData();
+	//neighborhood.f_setWillingnessToInvestData();
 	
 	
 	//SET GRID CAPACITY
@@ -544,6 +1035,7 @@ else {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717511993056</Id>
 					<Name><![CDATA[f_getHouseholds]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-380</X><Y>190</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -611,7 +1103,7 @@ neighborhood.c_households.add(household);
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717511993064</Id>
-					<Name><![CDATA[f_generateNeighborhoodsNetherlands]]></Name>
+					<Name><![CDATA[f_generateNeighborhoods]]></Name>
 					<X>-390</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -623,16 +1115,46 @@ neighborhood.c_households.add(household);
 					</Parameter>
 					<Body><![CDATA[// CREATE AAGENTS FROM NEIGHBORHOOD CBS DATA
 v_timer = System.currentTimeMillis();
-List<Tuple> rows = selectFrom(neighborhoods_netherlands)
-	//.where(neighborhoods_netherlands.gm_code.eq("GM0531")) //hardinxveld-giessendam is testcase
-    .list();
 
-for (Tuple row : rows) {
+List<Tuple> neighborhoods = new ArrayList<>();
+if( fullNetherlands){
+	neighborhoods = selectFrom(neighborhoods_netherlands)
+		//.where(neighborhoods_netherlands.gm_code.eq("GM0531")) //hardinxveld-giessendam is testcase
+	   	.list();
+}
+else{
+	// Initialize the array of gm_codes
+	String[] gm_codes = {
+	    "GM0014", //all GM in Groningen	    
+	    "GM0037",
+	    "GM0047",
+	    "GM0765",
+	    "GM1895",
+	    "GM1950",
+	    "GM1952",
+	    "GM1966",
+	    "GM1969",
+	    "GM1979"
+	};
+	traceln(gm_codes);
+	// Loop through each gm_code in the array
+	for (String gm_code : gm_codes) {
+	    // Add the results of each query to the rows list
+	    List<Tuple> neighborhoodsInMunicipality = selectFrom(neighborhoods_netherlands)
+	        .where(neighborhoods_netherlands.gemeenteco.eq(gm_code))
+	        .list();
+	    neighborhoods.addAll(neighborhoodsInMunicipality);
+	}
+}
+    	
+    	
+
+for (Tuple row : neighborhoods) {
 	GZ_Neighborhood x;
 	x = add_pop_GZ_Neighborhoods();
-	x.p_neighborhoodCode = row.get( neighborhoods_netherlands.statcode);
-	x.p_neighborhood = row.get( neighborhoods_netherlands.statnaam);
-	x.p_municipalityCode = row.get( neighborhoods_netherlands.gm_code);
+	x.p_neighborhoodCode = row.get( neighborhoods_netherlands.buurtcode);
+	x.p_neighborhood = row.get( neighborhoods_netherlands.buurtnaam);
+	x.p_municipalityCode = row.get( neighborhoods_netherlands.gemeenteco);
 	x.p_geometeryCoordinates = row.get( neighborhoods_netherlands.wkt_geom);
 	
 	//Set neighborhood code
@@ -646,11 +1168,6 @@ for (Tuple row : rows) {
 			
 	//SET COORDINATES AND REGION FROM WKT_GEOM STRING
 	x.f_drawRegionFromWKTString();
-	if(fullNetherlands == false){
-		if(x.getIndex() == 9){
-			break;
-		}
-	}
 }
 
 traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " seconds to instantiate neighborhood data");]]></Body>
@@ -660,17 +1177,20 @@ traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " second
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717511993066</Id>
 					<Name><![CDATA[f_generateJavaHouseholds]]></Name>
-					<X>-390</X><Y>450</Y>
+					<X>-390</X><Y>430</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[v_timer = System.currentTimeMillis();
+int householdIndex = 0;
 for (GZ_Neighborhood neighborhood : pop_GZ_Neighborhoods){
 	//CREATE HOUSEHOLDS
 		for( int i = 0; i < neighborhood.p_households; i++ ){
-		J_Household household = new J_Household(neighborhood);
+		J_Household household = new J_Household(this, neighborhood,neighborhood.p_municipality, random_instance, householdIndex);
 		neighborhood.c_javaHouseholds.add(household);
+		c_javaHouseholds.add(household);
+		householdIndex++;
 	}
 	neighborhood.f_householdInitialization();
 }
@@ -691,6 +1211,7 @@ traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " second
 
 //Generate households based on included neighborhoods
 int countNeighborhods = 500;
+int householdIndex = 0;
 for (GZ_Neighborhood x : pop_GZ_Neighborhoods) {	
 	if( x.getIndex() == countNeighborhods){
 		traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " seconds to generate households in " + countNeighborhods + " neighborhoods with a total population of " + sum(pop_GZ_Neighborhoods, y->y.c_javaHouseholds.size()) + " households");
@@ -737,7 +1258,8 @@ for (GZ_Neighborhood x : pop_GZ_Neighborhoods) {
 				//Make households just for gebruiksdoel woonfuctie				
 				if(jsonObject.getString("gebruiksdoelen").contains("woonfunctie")){
 		   			// Create agents and set their properties based on JSON data
-					f_getJavaHouseholds(jsonObject, x);
+					f_getJavaHouseholds(jsonObject, x, householdIndex);
+					householdIndex++;
 				}
 				/*
 				//for industry
@@ -790,8 +1312,12 @@ traceln(roundToDecimal((System.currentTimeMillis() - v_timer)/1000,3) + " second
 						<Name><![CDATA[neighborhood]]></Name>
 						<Type><![CDATA[GZ_Neighborhood]]></Type>
 					</Parameter>
+					<Parameter>
+						<Name><![CDATA[index]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
 					<Body><![CDATA[// Create agents and set their properties based on JSON data
-J_Household household = new J_Household(neighborhood);
+//J_Household household = new J_Household(this, neighborhood, random_instance, index);
 /*household.set_p_numid(jsonObject.getDouble("numid"));
 household.set_p_pid(jsonObject.getString("pid"));
 household.set_p_vid(jsonObject.getDouble("vid"));
@@ -837,10 +1363,10 @@ household.set_p_p6GasConnections_2022(jsonObject.getDouble("pc6_gas_aansluitinge
 // Set other properties as needed
 //household.f_setLocation();
 
-neighborhood.c_javaHouseholds.add(household);
+//neighborhood.c_javaHouseholds.add(household);
 
 //Set default household ownership
-household.f_setHouseholdOwnership(neighborhood.p_ownerOccupiedHomes, neighborhood.p_ownedByHousingAssociation, neighborhood.p_ownedByOtherLandlords);
+//household.f_setHouseholdOwnership(neighborhood.p_ownerOccupiedHomes, neighborhood.p_ownedByHousingAssociation, neighborhood.p_ownedByOtherLandlords);
 
 
 ]]></Body>
@@ -855,37 +1381,38 @@ household.f_setHouseholdOwnership(neighborhood.p_ownerOccupiedHomes, neighborhoo
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[List<Tuple> rows_data = selectFrom(neighborhood_data)
+					<Body><![CDATA[List<Tuple> rows_data = selectFrom(neighborhood_data_selection)
     .list();
     
 for (Tuple row_data : rows_data){
 	for (GZ_Neighborhood x : pop_GZ_Neighborhoods){
-		if (x.p_neighborhoodCode.equals(row_data.get(neighborhood_data.gwb_code))){
+		if (x.p_neighborhoodCode.equals(row_data.get(neighborhood_data_selection.gwb_code))){
+			x.p_municipality = row_data.get( neighborhood_data_selection.gm_naam);
 			
-			x.p_inhabitants = row_data.get(neighborhood_data.a_inw);
-			x.p_males = row_data.get(neighborhood_data.a_man);
-			x.p_females = row_data.get(neighborhood_data.a_vrouw);
+			x.p_inhabitants = row_data.get(neighborhood_data_selection.a_inw);
+			x.p_males = row_data.get(neighborhood_data_selection.a_man);
+			x.p_females = row_data.get(neighborhood_data_selection.a_vrouw);
 			
-			x.p_households = row_data.get(neighborhood_data.a_hh);
-			x.p_singlePersonHouseholds = row_data.get(neighborhood_data.a_1p_hh);
-			x.p_householdsWithoutChildren = row_data.get(neighborhood_data.a_hh_z_k);
-			x.p_householdsWithChildren = row_data.get(neighborhood_data.a_hh_m_k);
-			x.p_averageHouseholdSize = row_data.get(neighborhood_data.g_hhgro);
-			x.p_populationDensity = row_data.get(neighborhood_data.bev_dich);
+			x.p_households = row_data.get(neighborhood_data_selection.a_hh);
+			x.p_singlePersonHouseholds = row_data.get(neighborhood_data_selection.a_1p_hh);
+			x.p_householdsWithoutChildren = row_data.get(neighborhood_data_selection.a_hh_z_k);
+			x.p_householdsWithChildren = row_data.get(neighborhood_data_selection.a_hh_m_k);
+			x.p_averageHouseholdSize = row_data.get(neighborhood_data_selection.g_hhgro);
+			x.p_populationDensity = row_data.get(neighborhood_data_selection.bev_dich);
 			
 			//Living
-			x.p_houses = row_data.get(neighborhood_data.a_woning);
-			x.p_housesAverageWOZValue = row_data.get(neighborhood_data.g_wozbag);
-			x.p_ownerOccupiedHomes = row_data.get(neighborhood_data.p_koopw);
-			x.p_rentalProperties = row_data.get(neighborhood_data.p_huurw);
-			x.p_ownedByHousingAssociation = row_data.get(neighborhood_data.p_wcorpw);
-			x.p_ownedByOtherLandlords = row_data.get(neighborhood_data.p_ov_hw);
-			x.p_ownershipUnknown = row_data.get(neighborhood_data.p_e_o_w);
-			x.p_housesBuildBefore2000 = row_data.get(neighborhood_data.p_bjj2k);
-			x.p_housesBuildAfter2000 = row_data.get(neighborhood_data.p_bjo2k);
+			x.p_houses = row_data.get(neighborhood_data_selection.a_woning);
+			x.p_housesAverageWOZValue = row_data.get(neighborhood_data_selection.g_wozbag);
+			x.p_ownerOccupiedHomes = row_data.get(neighborhood_data_selection.p_koopw);
+			x.p_rentalProperties = row_data.get(neighborhood_data_selection.p_huurw);
+			x.p_ownedByHousingAssociation = row_data.get(neighborhood_data_selection.p_wcorpw);
+			x.p_ownedByOtherLandlords = row_data.get(neighborhood_data_selection.p_ov_hw);
+			x.p_ownershipUnknown = row_data.get(neighborhood_data_selection.p_e_o_w);
+			x.p_housesBuildBefore2000 = row_data.get(neighborhood_data_selection.p_bjj2k);
+			x.p_housesBuildAfter2000 = row_data.get(neighborhood_data_selection.p_bjo2k);
 			
 			//Energie
-			x.p_averageElectricityConsumptionTotal = row_data.get(neighborhood_data.g_ele);
+			x.p_averageElectricityConsumptionTotal = row_data.get(neighborhood_data_selection.g_ele);
 			/*
 			x.p_averageElectricityConsumptionApartment = row_data.get(neighborhood_data.g_ele_ap);
 			x.p_averageElectricityConsumptionTerraced = row_data.get(neighborhood_data.g_ele_tw);
@@ -893,7 +1420,7 @@ for (Tuple row_data : rows_data){
 			x.p_averageElectricityConsumptionSemiDetached = row_data.get(neighborhood_data.g_ele_2w);
 			x.p_averageElectricityConsumptionDetached = row_data.get(neighborhood_data.g_ele_vw);
 			*/
-			x.p_averageGasConsumptionTotal = row_data.get(neighborhood_data.g_gas);
+			x.p_averageGasConsumptionTotal = row_data.get(neighborhood_data_selection.g_gas);
 			/*
 			x.p_averageGasConsumptionApartment = row_data.get(neighborhood_data.g_gas_ap);
 			x.p_averageGasConsumptionTerraced = row_data.get(neighborhood_data.g_tw);
@@ -901,33 +1428,33 @@ for (Tuple row_data : rows_data){
 			x.p_averageGasConsumptionSemiDetached = row_data.get(neighborhood_data.g_gas_2w);
 			x.p_averageGasConsumptionDetached = row_data.get(neighborhood_data.g_gas_vw);
 			*/
-			x.p_percHouseholdsWithDistrictHeating = row_data.get(neighborhood_data.p_stadsv);
-			x.p_averageIncomeHousehold = row_data.get(neighborhood_data.g_hh_sti);
+			x.p_percHouseholdsWithDistrictHeating = row_data.get(neighborhood_data_selection.p_stadsv);
+			x.p_averageIncomeHousehold = row_data.get(neighborhood_data_selection.g_hh_sti);
 			
-			x.p_companyLocations = row_data.get(neighborhood_data.a_bedv);
-			x.p_companyLocationsA = row_data.get(neighborhood_data.a_bed_a);
-			x.p_companyLocationsBF = row_data.get(neighborhood_data.a_bed_bf);
-			x.p_companyLocationsGI = row_data.get(neighborhood_data.a_bed_gi);
-			x.p_companyLocationsHJ = row_data.get(neighborhood_data.a_bed_hj);
-			x.p_companyLocationsKL = row_data.get(neighborhood_data.a_bed_kl);
-			x.p_companyLocationsMN = row_data.get(neighborhood_data.a_bed_mn);
-			x.p_companyLocationsOQ = row_data.get(neighborhood_data.a_bed_oq);
-			x.p_companyLocationsRU = row_data.get(neighborhood_data.a_bed_ru);
+			x.p_companyLocations = row_data.get(neighborhood_data_selection.a_bedv);
+			x.p_companyLocationsA = row_data.get(neighborhood_data_selection.a_bed_a);
+			x.p_companyLocationsBF = row_data.get(neighborhood_data_selection.a_bed_bf);
+			x.p_companyLocationsGI = row_data.get(neighborhood_data_selection.a_bed_gi);
+			x.p_companyLocationsHJ = row_data.get(neighborhood_data_selection.a_bed_hj);
+			x.p_companyLocationsKL = row_data.get(neighborhood_data_selection.a_bed_kl);
+			x.p_companyLocationsMN = row_data.get(neighborhood_data_selection.a_bed_mn);
+			x.p_companyLocationsOQ = row_data.get(neighborhood_data_selection.a_bed_oq);
+			x.p_companyLocationsRU = row_data.get(neighborhood_data_selection.a_bed_ru);
 			
 			//Motor vehicles
-			x.p_cars = row_data.get(neighborhood_data.a_pau);
-			x.p_carsBenzine = row_data.get(neighborhood_data.a_bst_b);
-			x.p_carsOther = row_data.get(neighborhood_data.a_bst_nb);
-			x.p_motorBikes = row_data.get(neighborhood_data.a_m2w);
+			x.p_cars = row_data.get(neighborhood_data_selection.a_pau);
+			x.p_carsBenzine = row_data.get(neighborhood_data_selection.a_bst_b);
+			x.p_carsOther = row_data.get(neighborhood_data_selection.a_bst_nb);
+			x.p_motorBikes = row_data.get(neighborhood_data_selection.a_m2w);
 			
-			x.p_surfaceArea = row_data.get(neighborhood_data.a_opp_ha);
-			x.p_surfaceAreaLand = row_data.get(neighborhood_data.a_lan_ha);
-			x.p_surfaceAreaWater = row_data.get(neighborhood_data.a_wat_ha);
+			x.p_surfaceArea = row_data.get(neighborhood_data_selection.a_opp_ha);
+			x.p_surfaceAreaLand = row_data.get(neighborhood_data_selection.a_lan_ha);
+			x.p_surfaceAreaWater = row_data.get(neighborhood_data_selection.a_wat_ha);
 			
-			x.p_postalCode = row_data.get(neighborhood_data.pst_mvp);
-			x.p_postalCodeAccuracy = row_data.get(neighborhood_data.pst_dekp);
+			x.p_postalCode = row_data.get(neighborhood_data_selection.pst_mvp);
+			x.p_postalCodeAccuracy = row_data.get(neighborhood_data_selection.pst_dekp);
 			
-			x.p_urbanity = row_data.get(neighborhood_data.ste_mvs);
+			x.p_urbanity = row_data.get(neighborhood_data_selection.ste_mvs);
 			
 			
 			//If missing data in dataset is set to -99999, set to 0
@@ -1291,7 +1818,1456 @@ f_setLegend(v_householdOwnershipMapSettings);
 traceln("Finished map coloring");
 ]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1718031424345</Id>
+					<Name><![CDATA[f_adoptionProcess]]></Name>
+					<X>50</X><Y>650</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[for( GZ_Neighborhood x : pop_GZ_Neighborhoods){
+	x.f_adoptionProcess();
+}
+
+
+f_setGraphs();
+traceln("Households have adopted");]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1718031524242</Id>
+					<Name><![CDATA[f_setGraphs]]></Name>
+					<X>50</X><Y>770</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[householdsWithInsulation = sum(pop_GZ_Neighborhoods, x->x.householdsWithInsulation);
+householdsWithInstallation = sum(pop_GZ_Neighborhoods, x->x.householdsWithInstallation);
+householdsWithAppliances = sum(pop_GZ_Neighborhoods, x->x.householdsWithAppliances);
+
+householdChart.updateData();]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1720541470137</Id>
+					<Name><![CDATA[f_generateECs]]></Name>
+					<X>-390</X><Y>410</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[List<Tuple> ECs;
+
+if(modeFullNetherlands == true){
+	ECs = selectFrom(energy_communities)
+	.where(energy_communities.status.eq("active"))
+	.list();
+}
+else{	
+	ECs = selectFrom(energy_communities)
+	.where(energy_communities.status.eq("active"))
+	.where(energy_communities.province.eq("Groningen"))
+	.list();
+}
+
+for (Tuple row : ECs) {
+	EnergyCommunity x = add_pop_energyCommunities();
+	x.p_id = row.get(energy_communities.province);
+	x.p_province = row.get(energy_communities.province);
+	x.p_resRegion = row.get(energy_communities.res_region);
+	x.p_municipality = row.get(energy_communities.municipality);
+	x.p_municipalityCode = row.get(energy_communities.gm_code);
+	x.p_place = row.get(energy_communities.place);
+	x.p_name = row.get(energy_communities.name);	
+	x.p_postalcode6 = row.get(energy_communities.postalcode6);
+	x.p_year = row.get(energy_communities.year);
+	x.p_status = row.get(energy_communities.status);
+	
+	//SET LOCATION
+	x.p_longitude = row.get( energy_communities.longitude);
+	x.p_latitude = row.get( energy_communities.latitude);	
+	x.setLatLon(x.p_latitude, x.p_longitude);
+	
+	x.f_instantiateECs();
+	
+}
+
+f_instantiateProjects();
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721224545647</Id>
+					<Name><![CDATA[f_instantiateProjects]]></Name>
+					<X>-650</X><Y>140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[List<Tuple> ECprojects = new ArrayList<>();
+if( modeFullNetherlands ){
+	ECprojects = selectFrom(ec_projects)
+	   	.where(ec_projects.status.eq("gerealiseerd"))
+	   	.list();
+}
+else{
+	ECprojects = selectFrom(ec_projects)
+	   	.where(ec_projects.status.eq("gerealiseerd"))
+	   	.where(ec_projects.provincie.eq("Groningen"))
+	   	.list();
+}
+
+int index = 0;
+//Instantiate project with type and rated power
+for( Tuple project_data : ECprojects){
+	J_ECProject project = new J_ECProject();
+	c_ECProjects.add(project);
+	
+	project.ratedPower_kW = project_data.get(ec_projects.power_k_w);
+	
+	//Set project tpye
+	if(project_data.get(ec_projects.type_asset).equals("PV")){
+		project.projectType = PV;
+		if(project_data.get(ec_projects.dak_grond).equals("dak")){
+			project.projectSubType = PVROOFTOP;
+			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberPVRooftop); 
+		}
+		else{
+			project.projectSubType = PVFIELD;
+			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberPVField);
+		}
+	}
+	else if(project_data.get(ec_projects.type_asset).equals("wind")){
+		project.projectType = WIND;
+		if(project_data.get(ec_projects.dak_grond).equals("grootschalig")){
+			project.projectSubType = WINDPARK;
+			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberWindLargeScale);
+		}
+		else{
+			project.projectSubType = WINDSMALLSCALE;
+			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberWindSmallScale);
+		}
+	}
+	
+	//Connect to community
+	EnergyCommunity EC;
+	if( count(pop_energyCommunities, x->x.c_energyProjects.size() == 0) > 0){
+		EC = randomWhere(pop_energyCommunities, x->x.c_energyProjects.size() == 0);
+	}
+	else {
+		EC = randomFrom(pop_energyCommunities);
+	}
+	EC.c_energyProjects.add(project);
+	project.energyCommunity = EC;	
+}
+
+traceln(sum(pop_energyCommunities, x->x.c_energyProjects.size()) + " projects in Ec " + c_ECProjects.size() + " size");
+
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721289832625</Id>
+					<Name><![CDATA[f_setProjectType]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-645</X><Y>180</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[nbOfECProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[percPVRooftop]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[percPVField]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[percWindLargeScale]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[percWindSmallScale]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[//All ECs get at least 1 project
+int countECProjects = 0;
+for(EnergyCommunity EC : pop_energyCommunities){
+	J_ECProject project = new J_ECProject(EC);
+	EC.c_energyProjects.add(project);
+	double rand = uniform(0,1);
+	if(rand < percPVRooftop){
+		project.projectType = PV;
+		project.projectSubType = PVROOFTOP;
+	}
+	else if(rand < percPVRooftop + percPVField){
+		project.projectType = PV;
+		project.projectSubType = PVFIELD;
+	}
+	else if(rand < percPVRooftop + percPVField + percWindLargeScale){
+		project.projectType = WIND;
+		project.projectSubType = WINDPARK;
+	}
+	else {
+		project.projectType = WIND;
+		project.projectSubType = WINDSMALLSCALE;
+	}
+	c_ECProjects.add(project);
+	countECProjects++;			
+}
+
+//Subdivide remaining projects randomly
+while(countECProjects < nbOfECProjects){
+	EnergyCommunity EC = randomFrom(pop_energyCommunities);
+	J_ECProject project = new J_ECProject(EC);
+	EC.c_energyProjects.add(project);
+	double rand = uniform(0,1);
+	if(rand < percPVRooftop){
+		project.projectType = PV;
+		project.projectSubType = PVROOFTOP;
+	}
+	else if(rand < percPVRooftop + percPVField){
+		project.projectType = PV;
+		project.projectSubType = PVFIELD;
+	}
+	else if(rand < percPVRooftop + percPVField + percWindLargeScale){
+		project.projectType = WIND;
+		project.projectSubType = WINDPARK;
+	}
+	else {
+		project.projectType = WIND;
+		project.projectSubType = WINDSMALLSCALE;
+	}
+	c_ECProjects.add(project);
+	countECProjects++;	
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721290183542</Id>
+					<Name><![CDATA[f_setProjectSize]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-645</X><Y>200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[for(J_ECProject project : c_ECProjects){
+	if( project.projectSubType == PVROOFTOP){
+		project.ratedPower_kW = cd_PVRooftopProjectSize();
+	}
+	else if( project.projectSubType == PVFIELD){
+		project.ratedPower_kW = cd_PVFieldProjectSize();
+	}
+	else if( project.projectSubType == WINDPARK){
+		project.ratedPower_kW = cd_windLargeScaleProjectSize();
+	}
+	else if( project.projectSubType == WINDSMALLSCALE){
+		project.ratedPower_kW = cd_windSmallScaleProjectSize();
+	}
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721290443735</Id>
+					<Name><![CDATA[f_getProjectInitiationStatistics]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-645</X><Y>220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[nbOfECProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ECprojects]]></Name>
+						<Type><![CDATA[List<Tuple>]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVRooftopProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVFieldProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindLargeScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindSmallScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[int PVRooftopProjects = count(c_ECProjects, x->x.projectSubType == PVROOFTOP);
+int PVFieldProjects = count(c_ECProjects, x->x.projectSubType == PVFIELD);
+int WindLargeScaleProjects = count(c_ECProjects, x->x.projectSubType == WINDPARK);
+int WindSmallScaleProjects = count(c_ECProjects, x->x.projectSubType == WINDSMALLSCALE);
+traceln("Projects in data: " + nbOfECProjects + ", projects in model: " + c_ECProjects.size());
+traceln("PV rooftop projects in data: " + nbOfPVRooftopProjects + ", projects in model: " + PVRooftopProjects);
+traceln("PV field projects in data: " + nbOfPVFieldProjects + ", projects in model: " + PVFieldProjects);
+traceln("Wind large scale projects in data: " + nbOfWindLargeScaleProjects + ", projects in model: " + WindLargeScaleProjects);
+traceln("Wind small scale projects in data: " + nbOfWindSmallScaleProjects + ", projects in model: " + WindSmallScaleProjects);
+
+f_setECProjectsPerAssetType(nbOfECProjects, nbOfPVRooftopProjects, nbOfPVFieldProjects, nbOfWindSmallScaleProjects, nbOfWindLargeScaleProjects, PVRooftopProjects, PVFieldProjects, WindSmallScaleProjects, WindLargeScaleProjects);
+f_setInstalledCapacityProjects(nbOfECProjects, ECprojects, nbOfPVRooftopProjects, nbOfPVFieldProjects, nbOfWindSmallScaleProjects, nbOfWindLargeScaleProjects, PVRooftopProjects, PVFieldProjects, WindSmallScaleProjects, WindLargeScaleProjects);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721303575463</Id>
+					<Name><![CDATA[f_setECProjectsPerAssetType]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-640</X><Y>240</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[nbOfECProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVRooftopProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVFieldProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindSmallScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindLargeScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[PVRooftopProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[PVFieldProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[WindSmallScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[WindLargeScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[DataItem d1 = new DataItem();
+d1.setValue(nbOfPVRooftopProjects);
+DataItem d2 = new DataItem();
+d2.setValue(nbOfPVFieldProjects);
+DataItem d3 = new DataItem();
+d3.setValue(nbOfWindSmallScaleProjects);
+DataItem d4 = new DataItem();
+d4.setValue(nbOfWindLargeScaleProjects);
+DataItem d5 = new DataItem();
+d5.setValue(PVRooftopProjects);
+DataItem d6 = new DataItem();
+d6.setValue(PVFieldProjects);
+DataItem d7 = new DataItem();
+d7.setValue(WindSmallScaleProjects);
+DataItem d8 = new DataItem();
+d8.setValue(WindLargeScaleProjects);
+//Stack chart data
+sc_typesOfProjectsData.addDataItem(d1, v_PVRooftopText, v_PVRooftopColor);
+sc_typesOfProjectsData.addDataItem(d2, v_PVFieldText, v_PVFieldColor);
+sc_typesOfProjectsData.addDataItem(d3, v_windSmallScaleText, v_windSmallScaleColor);
+sc_typesOfProjectsData.addDataItem(d4, v_windLargeScaleText, v_windLargeScaleColor);
+
+//Stack chart model
+sc_typesOfProjectsModel.addDataItem(d5, v_PVRooftopText, v_PVRooftopColor);
+sc_typesOfProjectsModel.addDataItem(d6, v_PVFieldText, v_PVFieldColor);
+sc_typesOfProjectsModel.addDataItem(d7, v_windSmallScaleText, v_windSmallScaleColor);
+sc_typesOfProjectsModel.addDataItem(d8, v_windLargeScaleText, v_windLargeScaleColor);
+
+double scaleMax = max(nbOfECProjects, c_ECProjects.size());
+sc_typesOfProjectsData.setFixedScale(scaleMax);
+sc_typesOfProjectsModel.setFixedScale(scaleMax);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721303751826</Id>
+					<Name><![CDATA[f_setInstalledCapacityProjects]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-640</X><Y>260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[nbOfECProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ECprojects]]></Name>
+						<Type><![CDATA[List<Tuple>]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVRooftopProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfPVFieldProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindSmallScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[nbOfWindLargeScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[PVRooftopProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[PVFieldProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[WindSmallScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[WindLargeScaleProjects]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[DataItem d1 = new DataItem();
+d1.setValue(nbOfPVRooftopProjects);
+DataItem d2 = new DataItem();
+d2.setValue(nbOfPVFieldProjects);
+DataItem d3 = new DataItem();
+d3.setValue(nbOfWindSmallScaleProjects);
+DataItem d4 = new DataItem();
+d4.setValue(nbOfWindLargeScaleProjects);
+DataItem d5 = new DataItem();
+d5.setValue(PVRooftopProjects);
+DataItem d6 = new DataItem();
+d6.setValue(PVFieldProjects);
+DataItem d7 = new DataItem();
+d7.setValue(WindSmallScaleProjects);
+DataItem d8 = new DataItem();
+d8.setValue(WindLargeScaleProjects);
+//Stack chart data
+sc_typesOfProjectsData.addDataItem(d1, v_PVRooftopText, v_PVRooftopColor);
+sc_typesOfProjectsData.addDataItem(d2, v_PVFieldText, v_PVFieldColor);
+sc_typesOfProjectsData.addDataItem(d3, v_windSmallScaleText, v_windSmallScaleColor);
+sc_typesOfProjectsData.addDataItem(d4, v_windLargeScaleText, v_windLargeScaleColor);
+
+//Stack chart model
+sc_typesOfProjectsModel.addDataItem(d5, v_PVRooftopText, v_PVRooftopColor);
+sc_typesOfProjectsModel.addDataItem(d6, v_PVFieldText, v_PVFieldColor);
+sc_typesOfProjectsModel.addDataItem(d7, v_windSmallScaleText, v_windSmallScaleColor);
+sc_typesOfProjectsModel.addDataItem(d8, v_windLargeScaleText, v_windLargeScaleColor);
+
+double scaleMax = max(nbOfECProjects, c_ECProjects.size());
+sc_typesOfProjectsData.setFixedScale(scaleMax);
+sc_typesOfProjectsModel.setFixedScale(scaleMax);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721304242284</Id>
+					<Name><![CDATA[f_generateArtificalProjectPopulation]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-650</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[ec_projects]]></Name>
+						<Type><![CDATA[List<Tuple>]]></Type>
+					</Parameter>
+					<Body><![CDATA[//Count database statistics
+int nbOfECProjects = ECprojects.size();
+int nbOfECs = pop_energyCommunities.size();
+int projectsPerEC = nbOfECProjects / nbOfECs;
+int nbOfPVRooftopProjects = 0;
+int nbOfPVFieldProjects = 0;
+int nbOfWindSmallScaleProjects = 0;
+int nbOfWindLargeScaleProjects = 0;
+for( Tuple project : ECprojects){
+	if(project.get(ec_projects.type_asset).equals("PV")){
+		if(project.get(ec_projects.dak_grond).equals("dak")){
+			nbOfPVRooftopProjects++;
+		}
+		else{
+			nbOfPVFieldProjects++;
+		}
+	}
+	else if(project.get(ec_projects.type_asset).equals("wind")){
+		if(project.get(ec_projects.dak_grond).equals("grootschalig")){
+			nbOfWindLargeScaleProjects++;
+		}
+		else{
+			nbOfWindSmallScaleProjects++;
+		}
+	}
+}
+
+int nbOfPVProjects = nbOfPVRooftopProjects + nbOfPVFieldProjects;
+int nbOfWindProjects = nbOfWindLargeScaleProjects + nbOfWindSmallScaleProjects;
+
+//Set percentages
+double percPVProjects = (double) nbOfPVProjects / nbOfECProjects;
+double percWindProjects = 1 - percPVProjects;
+double percPVRooftop = (double) nbOfPVRooftopProjects / nbOfECProjects;
+double percPVField = (double) nbOfPVFieldProjects / nbOfECProjects;
+double percWindLargeScale = (double) nbOfWindLargeScaleProjects / nbOfECProjects;
+double percWindSmallScale = (double) nbOfWindSmallScaleProjects / nbOfECProjects;
+
+//make sure all ECs have at least one project
+f_setProjectType(nbOfECProjects, percPVRooftop, percPVField, percWindLargeScale, percWindSmallScale);
+f_setProjectSize();
+
+//get project statistics
+f_getProjectStatistics(nbOfECProjects, ECprojects, nbOfPVRooftopProjects, nbOfPVFieldProjects, nbOfWindLargeScaleProjects, nbOfWindSmallScaleProjects);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721304418657</Id>
+					<Name><![CDATA[f_generateDataBasedProjectPopulation]]></Name>
+					<X>-650</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[ec_projects]]></Name>
+						<Type><![CDATA[List<Tuple>]]></Type>
+					</Parameter>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721306480945</Id>
+					<Name><![CDATA[f_setTimeStackCharts]]></Name>
+					<X>-1720</X><Y>660</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[f_setProjectsPerAssetTypeChart();
+f_setECsPerAssetTypeChart();
+f_setMembersPerAssetTypeChart();
+f_setInstalledCapPerAssetTypeChart();]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721306498706</Id>
+					<Name><![CDATA[f_setProjectsPerAssetTypeChart]]></Name>
+					<X>-1710</X><Y>680</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Stack chart data
+ch_projectsPerAssetType.addDataSet(ds_PVRooftopProjects, v_PVRooftopText, v_PVRooftopColor);
+ch_projectsPerAssetType.addDataSet(ds_PVFieldProjects, v_PVFieldText, v_PVFieldColor);
+ch_projectsPerAssetType.addDataSet(ds_windSmallScaleProjects, v_windSmallScaleText, v_windSmallScaleColor);
+ch_projectsPerAssetType.addDataSet(ds_windLargeScaleProjects, v_windLargeScaleText, v_windLargeScaleColor);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721306539298</Id>
+					<Name><![CDATA[f_setECsPerAssetTypeChart]]></Name>
+					<X>-1710</X><Y>700</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Stack chart data
+ch_ECsPerAssetType.addDataSet(ds_PVRooftopECs, v_PVRooftopText, v_PVRooftopColor);
+ch_ECsPerAssetType.addDataSet(ds_PVFieldECs, v_PVFieldText, v_PVFieldColor);
+ch_ECsPerAssetType.addDataSet(ds_windSmallScaleECs, v_windSmallScaleText, v_windSmallScaleColor);
+ch_ECsPerAssetType.addDataSet(ds_windLargeScaleECs, v_windLargeScaleText, v_windLargeScaleColor);
+ch_ECsPerAssetType.addDataSet(ds_mixedECs, v_mixedText, v_mixedColor);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721306558570</Id>
+					<Name><![CDATA[f_setMembersPerAssetTypeChart]]></Name>
+					<X>-1710</X><Y>720</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Stack chart data
+ch_membersPerAssetType.addDataSet(ds_PVRooftopProjectMembers, v_PVRooftopText, v_PVRooftopColor);
+ch_membersPerAssetType.addDataSet(ds_PVFieldProjectMembers, v_PVFieldText, v_PVFieldColor);
+ch_membersPerAssetType.addDataSet(ds_windSmallScaleProjectMembers, v_windSmallScaleText, v_windSmallScaleColor);
+ch_membersPerAssetType.addDataSet(ds_windLargeScaleProjectMembers, v_windLargeScaleText, v_windLargeScaleColor);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721306558572</Id>
+					<Name><![CDATA[f_setInstalledCapPerAssetTypeChart]]></Name>
+					<X>-1710</X><Y>740</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Stack chart data
+ch_installedCapPerAssetType.addDataSet(ds_PVRooftopInstalledCap, v_PVRooftopText, v_PVRooftopColor);
+ch_installedCapPerAssetType.addDataSet(ds_PVFieldInstalledCap, v_PVFieldText, v_PVFieldColor);
+ch_installedCapPerAssetType.addDataSet(ds_windSmallScaleInstalledCap, v_windSmallScaleText, v_windSmallScaleColor);
+ch_installedCapPerAssetType.addDataSet(ds_windLargeScaleInstalledCap, v_windLargeScaleText, v_windLargeScaleColor);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721307137964</Id>
+					<Name><![CDATA[f_getStatistics]]></Name>
+					<X>-1720</X><Y>640</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Number of projects
+int PVRooftopProjects = count(c_ECProjects, x->x.projectSubType == PVROOFTOP);
+int PVFieldProjects = count(c_ECProjects, x->x.projectSubType == PVFIELD);
+int WindLargeScaleProjects = count(c_ECProjects, x->x.projectSubType == WINDPARK);
+int WindSmallScaleProjects = count(c_ECProjects, x->x.projectSubType == WINDSMALLSCALE);
+
+ds_PVRooftopProjects.add(PVRooftopProjects);
+ds_PVFieldProjects.add(PVFieldProjects);
+ds_windSmallScaleProjects.add(WindSmallScaleProjects);
+ds_windLargeScaleProjects.add(WindLargeScaleProjects);
+
+//Installed capacities
+double PVRooftopInstalledCap = sumWhere(c_ECProjects, x->x.ratedPower_kW ,x->x.projectSubType == PVROOFTOP);
+double PVFieldInstalledCap = sumWhere(c_ECProjects, x->x.ratedPower_kW ,x->x.projectSubType == PVFIELD);
+double windSmallScaleInstalledCap = sumWhere(c_ECProjects, x->x.ratedPower_kW ,x->x.projectSubType == WINDSMALLSCALE);
+double windLargeScaleInstalledCap = sumWhere(c_ECProjects, x->x.ratedPower_kW ,x->x.projectSubType == WINDPARK);
+
+ds_PVRooftopInstalledCap.add(PVRooftopInstalledCap);
+ds_PVFieldInstalledCap.add(PVFieldInstalledCap);
+ds_windSmallScaleInstalledCap.add(windSmallScaleInstalledCap);
+ds_windLargeScaleInstalledCap.add(windLargeScaleInstalledCap);
+
+//Installed capacities
+double PVRooftopMembers = sumWhere(c_ECProjects, x->x.investors_nb ,x->x.projectSubType == PVROOFTOP);
+double PVFieldMembers = sumWhere(c_ECProjects, x->x.investors_nb ,x->x.projectSubType == PVFIELD);
+double windSmallScaleMembers = sumWhere(c_ECProjects, x->x.investors_nb ,x->x.projectSubType == WINDSMALLSCALE);
+double windLargeScaleMembers = sumWhere(c_ECProjects, x->x.investors_nb ,x->x.projectSubType == WINDPARK);
+
+ds_PVRooftopProjectMembers.add(PVRooftopMembers);
+ds_PVFieldProjectMembers.add(PVFieldMembers);
+ds_windSmallScaleProjectMembers.add(windSmallScaleMembers);
+ds_windLargeScaleProjectMembers.add(windLargeScaleMembers);
+
+//ECs to type
+int PVRooftopECs = 0;
+int PVFieldECs = 0;
+int windSmallScaleECs = 0;
+int windLargeScaleECs = 0;
+int mixedECs = 0;
+
+for(EnergyCommunity EC : pop_energyCommunities){
+	int ECPVRooftopProjects = count(EC.c_energyProjects, x->x.projectSubType == PVROOFTOP);
+	int ECPVFieldProjects = count(EC.c_energyProjects, x->x.projectSubType == PVFIELD);
+	int ECWindLargeScaleProjects = count(EC.c_energyProjects, x->x.projectSubType == WINDPARK);
+	int ECWindSmallScaleProjects = count(EC.c_energyProjects, x->x.projectSubType == WINDSMALLSCALE);
+	
+	//traceln(EC.c_energyProjects.size() + "projects " + ECPVRooftopProjects + " pvr " + ECPVFieldProjects + " pvf " + ECWindLargeScaleProjects + " wls " + ECWindSmallScaleProjects + " wss");
+	
+	if( ECPVRooftopProjects > 0 && ECPVFieldProjects == 0 && ECWindLargeScaleProjects == 0 && ECWindSmallScaleProjects == 0){
+		PVRooftopECs++;
+	}
+	else if( ECPVRooftopProjects == 0 && ECPVFieldProjects > 0 && ECWindLargeScaleProjects == 0 && ECWindSmallScaleProjects == 0){
+		PVFieldECs++;
+	}
+	else if( ECPVRooftopProjects == 0 && ECPVFieldProjects == 0 && ECWindLargeScaleProjects > 0 && ECWindSmallScaleProjects == 0){
+		windSmallScaleECs++;
+	}
+	else if( ECPVRooftopProjects == 0 && ECPVFieldProjects == 0 && ECWindLargeScaleProjects == 0 && ECWindSmallScaleProjects > 0){
+		windLargeScaleECs++;
+	}
+	else {
+		mixedECs++;
+	}
+}
+
+ds_PVRooftopECs.add(PVRooftopECs);
+ds_PVFieldECs.add(PVFieldECs);
+ds_windSmallScaleECs.add(windSmallScaleECs);
+ds_windLargeScaleECs.add(windLargeScaleECs);	
+ds_mixedECs.add(mixedECs);
+	
+	]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721307795540</Id>
+					<Name><![CDATA[f_updateTimeStackCharts]]></Name>
+					<X>-1520</X><Y>660</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//ch_projectsPerAssetType.updateData();]]></Body>
+				</Function>
 			</Functions>
+			<CustomDistributions>
+				<CustomDistribution>
+					<Id>1721289479737</Id>
+					<Name><![CDATA[cd_PVRooftopProjectSize]]></Name>
+					<X>-650</X><Y>330</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Type>DISCRETE</Type>
+					<DefinitionType>OBSERVED_SAMPLES</DefinitionType>
+					<IntegerValues>false</IntegerValues>
+					<Static>false</Static>
+					<LoadFromDatabase><![CDATA[true]]></LoadFromDatabase>
+					<RangesQuery>
+					<TableReference>
+					</TableReference>
+						<StartColumnReference>
+						</StartColumnReference>
+						<EndColumnReference>
+						</EndColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</RangesQuery>
+					<FrequencyQuery>
+					<TableReference>
+					</TableReference>
+						<ValueColumnReference>
+						</ValueColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</FrequencyQuery>
+					<SampleQuery>
+					<TableReference>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[ec_projects]]></ClassName>
+					</TableReference>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[status]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["gerealiseerd"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[type_asset]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["PV"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[dak_grond]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["dak"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+						<ValueColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[power_k_w]]></ItemName>
+						</ValueColumnReference>
+					</SampleQuery>
+					<OptionQuery>
+					<TableReference>
+					</TableReference>
+						<OptionColumnReference>
+						</OptionColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</OptionQuery>										
+					<OptionListID><![CDATA[0]]></OptionListID>
+					<OptionValues>				
+					</OptionValues>				
+				</CustomDistribution>
+				<CustomDistribution>
+					<Id>1721289504694</Id>
+					<Name><![CDATA[cd_PVFieldProjectSize]]></Name>
+					<X>-650</X><Y>350</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Type>DISCRETE</Type>
+					<DefinitionType>OBSERVED_SAMPLES</DefinitionType>
+					<IntegerValues>false</IntegerValues>
+					<Static>false</Static>
+					<LoadFromDatabase><![CDATA[true]]></LoadFromDatabase>
+					<RangesQuery>
+					<TableReference>
+					</TableReference>
+						<StartColumnReference>
+						</StartColumnReference>
+						<EndColumnReference>
+						</EndColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</RangesQuery>
+					<FrequencyQuery>
+					<TableReference>
+					</TableReference>
+						<ValueColumnReference>
+						</ValueColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</FrequencyQuery>
+					<SampleQuery>
+					<TableReference>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[ec_projects]]></ClassName>
+					</TableReference>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[status]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["gerealiseerd"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[type_asset]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["PV"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[dak_grond]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["dak"]]></Code>
+						</Value>
+						<Operator>NOT_EQUAL</Operator>
+					</Condition>
+						<ValueColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[power_k_w]]></ItemName>
+						</ValueColumnReference>
+					</SampleQuery>
+					<OptionQuery>
+					<TableReference>
+					</TableReference>
+						<OptionColumnReference>
+						</OptionColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</OptionQuery>										
+					<OptionListID><![CDATA[0]]></OptionListID>
+					<OptionValues>				
+					</OptionValues>				
+				</CustomDistribution>
+				<CustomDistribution>
+					<Id>1721289515223</Id>
+					<Name><![CDATA[cd_windLargeScaleProjectSize]]></Name>
+					<X>-650</X><Y>370</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Type>DISCRETE</Type>
+					<DefinitionType>OBSERVED_SAMPLES</DefinitionType>
+					<IntegerValues>false</IntegerValues>
+					<Static>false</Static>
+					<LoadFromDatabase><![CDATA[true]]></LoadFromDatabase>
+					<RangesQuery>
+					<TableReference>
+					</TableReference>
+						<StartColumnReference>
+						</StartColumnReference>
+						<EndColumnReference>
+						</EndColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</RangesQuery>
+					<FrequencyQuery>
+					<TableReference>
+					</TableReference>
+						<ValueColumnReference>
+						</ValueColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</FrequencyQuery>
+					<SampleQuery>
+					<TableReference>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[ec_projects]]></ClassName>
+					</TableReference>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[status]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["gerealiseerd"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[type_asset]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["wind"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[dak_grond]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["grootschalig"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+						<ValueColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[power_k_w]]></ItemName>
+						</ValueColumnReference>
+					</SampleQuery>
+					<OptionQuery>
+					<TableReference>
+					</TableReference>
+						<OptionColumnReference>
+						</OptionColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</OptionQuery>										
+					<OptionListID><![CDATA[0]]></OptionListID>
+					<OptionValues>				
+					</OptionValues>				
+				</CustomDistribution>
+				<CustomDistribution>
+					<Id>1721289526357</Id>
+					<Name><![CDATA[cd_windSmallScaleProjectSize]]></Name>
+					<X>-650</X><Y>390</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Type>DISCRETE</Type>
+					<DefinitionType>OBSERVED_SAMPLES</DefinitionType>
+					<IntegerValues>false</IntegerValues>
+					<Static>false</Static>
+					<LoadFromDatabase><![CDATA[true]]></LoadFromDatabase>
+					<RangesQuery>
+					<TableReference>
+					</TableReference>
+						<StartColumnReference>
+						</StartColumnReference>
+						<EndColumnReference>
+						</EndColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</RangesQuery>
+					<FrequencyQuery>
+					<TableReference>
+					</TableReference>
+						<ValueColumnReference>
+						</ValueColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</FrequencyQuery>
+					<SampleQuery>
+					<TableReference>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[ec_projects]]></ClassName>
+					</TableReference>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[status]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["gerealiseerd"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[type_asset]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["wind"]]></Code>
+						</Value>
+						<Operator>EQUALS</Operator>
+					</Condition>
+					<Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[dak_grond]]></ItemName>
+						</ColumnReference>
+						<Value Class="CodeValue">
+							<Code><![CDATA["grootschalig"]]></Code>
+						</Value>
+						<Operator>NOT_EQUAL</Operator>
+					</Condition>
+						<ValueColumnReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[ec_projects]]></ClassName>
+							<ItemName><![CDATA[power_k_w]]></ItemName>
+						</ValueColumnReference>
+					</SampleQuery>
+					<OptionQuery>
+					<TableReference>
+					</TableReference>
+						<OptionColumnReference>
+						</OptionColumnReference>
+						<WeightColumnReference>
+						</WeightColumnReference>
+					</OptionQuery>										
+					<OptionListID><![CDATA[0]]></OptionListID>
+					<OptionValues>				
+					</OptionValues>				
+				</CustomDistribution>		
+			</CustomDistributions>
+			<AnalysisData>
+    			<DataSet>
+					<Id>1721306974014</Id>
+					<Name><![CDATA[ds_PVRooftopProjects]]></Name>
+					<X>-1710</X><Y>780</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721307078510</Id>
+					<Name><![CDATA[ds_PVFieldProjects]]></Name>
+					<X>-1710</X><Y>800</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721307091750</Id>
+					<Name><![CDATA[ds_windSmallScaleProjects]]></Name>
+					<X>-1710</X><Y>820</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721307109475</Id>
+					<Name><![CDATA[ds_windLargeScaleProjects]]></Name>
+					<X>-1710</X><Y>840</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309966485</Id>
+					<Name><![CDATA[ds_PVRooftopInstalledCap]]></Name>
+					<X>-1710</X><Y>880</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309966494</Id>
+					<Name><![CDATA[ds_PVFieldInstalledCap]]></Name>
+					<X>-1710</X><Y>900</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309966502</Id>
+					<Name><![CDATA[ds_windSmallScaleInstalledCap]]></Name>
+					<X>-1710</X><Y>920</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309966510</Id>
+					<Name><![CDATA[ds_windLargeScaleInstalledCap]]></Name>
+					<X>-1710</X><Y>940</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309999216</Id>
+					<Name><![CDATA[ds_PVRooftopProjectMembers]]></Name>
+					<X>-1710</X><Y>980</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309999232</Id>
+					<Name><![CDATA[ds_PVFieldProjectMembers]]></Name>
+					<X>-1710</X><Y>1000</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309999248</Id>
+					<Name><![CDATA[ds_windSmallScaleProjectMembers]]></Name>
+					<X>-1710</X><Y>1020</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721309999251</Id>
+					<Name><![CDATA[ds_windLargeScaleProjectMembers]]></Name>
+					<X>-1710</X><Y>1040</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721310039293</Id>
+					<Name><![CDATA[ds_PVRooftopECs]]></Name>
+					<X>-1710</X><Y>1080</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721310039314</Id>
+					<Name><![CDATA[ds_PVFieldECs]]></Name>
+					<X>-1710</X><Y>1100</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721310039317</Id>
+					<Name><![CDATA[ds_windSmallScaleECs]]></Name>
+					<X>-1710</X><Y>1120</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721310039320</Id>
+					<Name><![CDATA[ds_windLargeScaleECs]]></Name>
+					<X>-1710</X><Y>1140</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1721310067590</Id>
+					<Name><![CDATA[ds_mixedECs]]></Name>
+					<X>-1710</X><Y>1160</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>100</SamplesToKeep>
+				</DataSet>
+			</AnalysisData>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1717511797820</Id>
@@ -1528,6 +3504,12 @@ traceln("Finished map coloring");
 						<Parameter>
 							<Name><![CDATA[p_geometeryCoordinates]]></Name>
 						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_ECinMunicipality]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nearestEC]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1706,6 +3688,107 @@ traceln("Finished map coloring");
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_rankedEnergyLabel]]></Name>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>true</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>EMPTY</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1720541155538</Id>
+					<Name><![CDATA[pop_energyCommunities]]></Name>
+					<X>-390</X><Y>730</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<PresentationId>1720541898717</PresentationId>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[EnergyCommunity]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+							<ClassName><![CDATA[EnergyCommunity]]></ClassName>
+							<ItemName><![CDATA[1720541155535]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_name]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_province]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_resRegion]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_municipality]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_place]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_postalcode6]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_year]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_status]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_longitude]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_latitude]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_id]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_neighborhood]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_municipalityCode]]></Name>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
@@ -2155,6 +4238,732 @@ traceln("Finished map coloring");
 						<LinkTo>false</LinkTo>
 					</ExtendedProperties>
 				</Control>
+    			<TimeStackChart>
+					<Id>1718031544852</Id>
+					<Name><![CDATA[householdChart]]></Name>
+					<X>720</X><Y>320</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1718092800000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<DatasetExpression>
+					<Id>1718031547745</Id>
+					<Expression><![CDATA[my_dataset]]></Expression>
+					<Color>-16728065</Color>
+					<Expression2><![CDATA[householdsWithInsulation]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+							<Title><![CDATA[Households with insulation]]></Title>
+					</DatasetExpression>
+					<DatasetExpression>
+					<Id>1718031570622</Id>
+					<Expression><![CDATA[my_dataset1]]></Expression>
+					<Color>-4565549</Color>
+					<Expression2><![CDATA[householdsWithInstallation]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+							<Title><![CDATA[Households with installation]]></Title>
+					</DatasetExpression>
+					<DatasetExpression>
+					<Id>1718031591625</Id>
+					<Expression><![CDATA[my_dataset2]]></Expression>
+					<Color>-2354116</Color>
+					<Expression2><![CDATA[householdsWithAppliances]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+							<Title><![CDATA[Households with Appliances]]></Title>
+					</DatasetExpression>
+					<SamplesToKeep>50</SamplesToKeep>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<LabelFormat>yyyy</LabelFormat>
+    			</TimeStackChart>
+				<EmbeddedObjectPresentation>
+					<Id>1720541898717</Id>
+					<Name><![CDATA[pop_energyCommunities_presentation]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<DrawingMode>AGENT_CURRENT_POSITION</DrawingMode>
+					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
+					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
+					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
+					<Latitude>52.13375434563888</Latitude>
+					<Longitude>5.469273666611113</Longitude>
+				</EmbeddedObjectPresentation>
+    			<StackChart>
+					<Id>1721291824977</Id>
+					<Name><![CDATA[sc_typesOfProjectsData]]></Name>
+					<X>-950</X><Y>710</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>160</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>80</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>20</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<ScaleToExpression><![CDATA[1]]></ScaleToExpression>
+					<ScaleType>AUTO</ScaleType>
+					<Bars>
+						<Direction>UP</Direction>
+						<RelativeWidth>0.8</RelativeWidth>
+					</Bars>
+    			</StackChart>
+    			<StackChart>
+					<Id>1721292342777</Id>
+					<Name><![CDATA[sc_typesOfProjectsModel]]></Name>
+					<X>-760</X><Y>710</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>160</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>80</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>20</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor/>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<ScaleToExpression><![CDATA[1]]></ScaleToExpression>
+					<ScaleType>AUTO</ScaleType>
+					<Bars>
+						<Direction>UP</Direction>
+						<RelativeWidth>0.8</RelativeWidth>
+					</Bars>
+    			</StackChart>
+				<Text>
+					<Id>1721293445803</Id>
+					<Name><![CDATA[text3]]></Name>
+					<X>-860</X><Y>870</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Data]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721293477937</Id>
+					<Name><![CDATA[text4]]></Name>
+					<X>-670</X><Y>870</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Model instantiation]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721293531528</Id>
+					<Name><![CDATA[text5]]></Name>
+					<X>-770</X><Y>700</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[EC Projects per asset type]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>18</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721303471572</Id>
+					<Name><![CDATA[text6]]></Name>
+					<X>-770</X><Y>940</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[EC Projects per asset type]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>18</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+    			<StackChart>
+					<Id>1721303471575</Id>
+					<Name><![CDATA[sc_installedCapacityData]]></Name>
+					<X>-950</X><Y>950</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>160</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>80</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>20</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<ScaleToExpression><![CDATA[1]]></ScaleToExpression>
+					<ScaleType>AUTO</ScaleType>
+					<Bars>
+						<Direction>UP</Direction>
+						<RelativeWidth>0.8</RelativeWidth>
+					</Bars>
+    			</StackChart>
+				<Text>
+					<Id>1721303471577</Id>
+					<Name><![CDATA[text7]]></Name>
+					<X>-670</X><Y>1110</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Model instantiation]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+    			<StackChart>
+					<Id>1721303471580</Id>
+					<Name><![CDATA[sc_installedCapacityModel]]></Name>
+					<X>-760</X><Y>950</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>160</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>80</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>20</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor/>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<ScaleToExpression><![CDATA[1]]></ScaleToExpression>
+					<ScaleType>AUTO</ScaleType>
+					<Bars>
+						<Direction>UP</Direction>
+						<RelativeWidth>0.8</RelativeWidth>
+					</Bars>
+    			</StackChart>
+				<Text>
+					<Id>1721303471582</Id>
+					<Name><![CDATA[text8]]></Name>
+					<X>-860</X><Y>1110</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Data]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+    			<TimeStackChart>
+					<Id>1721306308713</Id>
+					<Name><![CDATA[ch_membersPerAssetType]]></Name>
+					<X>-1500</X><Y>200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>180</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>30</SamplesToKeep>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<LabelFormat>yyyy</LabelFormat>
+    			</TimeStackChart>
+    			<TimeStackChart>
+					<Id>1721306380683</Id>
+					<Name><![CDATA[ch_installedCapPerAssetType]]></Name>
+					<X>-1500</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>180</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>30</SamplesToKeep>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<LabelFormat>yyyy</LabelFormat>
+    			</TimeStackChart>
+    			<TimeStackChart>
+					<Id>1721306399220</Id>
+					<Name><![CDATA[ch_projectsPerAssetType]]></Name>
+					<X>-1780</X><Y>200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>180</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>30</SamplesToKeep>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<LabelFormat>yyyy</LabelFormat>
+    			</TimeStackChart>
+    			<TimeStackChart>
+					<Id>1721306449219</Id>
+					<Name><![CDATA[ch_ECsPerAssetType]]></Name>
+					<X>-1780</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721376000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>180</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<SamplesToKeep>30</SamplesToKeep>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<LabelFormat>yyyy</LabelFormat>
+    			</TimeStackChart>
+				<Text>
+					<Id>1721315205046</Id>
+					<Name><![CDATA[text9]]></Name>
+					<X>-1640</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ECs (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721315239581</Id>
+					<Name><![CDATA[text10]]></Name>
+					<X>-1360</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Installed capacity (kW)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721315281653</Id>
+					<Name><![CDATA[text11]]></Name>
+					<X>-1640</X><Y>200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Projects (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1721315309237</Id>
+					<Name><![CDATA[text12]]></Name>
+					<X>-1360</X><Y>200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Members (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
@@ -3434,6 +6243,42 @@ else if(p_energyLabelLetter.equals("G")){
 						<Type><![CDATA[double]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031260336</Id>
+					<Name><![CDATA[householdsWithInsulation]]></Name>
+					<X>-180</X><Y>430</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031281664</Id>
+					<Name><![CDATA[householdsWithInstallation]]></Name>
+					<X>-180</X><Y>450</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1718031297411</Id>
+					<Name><![CDATA[householdsWithAppliances]]></Name>
+					<X>-180</X><Y>470</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1717512765702</Id>
 					<Name><![CDATA[p_companyLocationsRU]]></Name>
@@ -4325,7 +7170,7 @@ else if(p_energyLabelLetter.equals("G")){
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[WillingnessEnergyMeasures]]></Type>
+						<Type><![CDATA[Category]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<ParameterEditor>
@@ -4472,7 +7317,7 @@ else if(p_energyLabelLetter.equals("G")){
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[WillingnessEnergyMeasures]]></Type>
+						<Type><![CDATA[Category]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<ParameterEditor>
@@ -4779,6 +7624,48 @@ else if(p_energyLabelLetter.equals("G")){
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721316897010</Id>
+					<Name><![CDATA[p_ECinMunicipality]]></Name>
+					<X>340</X><Y>530</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1721316897008</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721316920419</Id>
+					<Name><![CDATA[p_nearestEC]]></Name>
+					<X>340</X><Y>550</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[EnergyCommunity]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1721316920417</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1717512829882</Id>
 					<Name><![CDATA[c_households]]></Name>
@@ -4831,6 +7718,7 @@ else if(p_energyLabelLetter.equals("G")){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717512765695</Id>
 					<Name><![CDATA[f_setWillingnessToInvestData]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-180</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -5077,7 +7965,9 @@ if (p_geometeryCoordinates.contains(")(")){
 else {
 	GISRegion g = f_drawGISRegion(p_geometeryCoordinates);
 	c_gisRegions.add(g);
-}]]></Body>
+}
+
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -5090,9 +7980,10 @@ else {
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[for(J_Household x : c_javaHouseholds){
+	x.f_intializeHouseholdParamters();
 	//x.f_adoptionProcess(innovationCoefficient, imitationCoefficient, contactRate, utility);
-	x.f_setHouseholdOwnership((p_ownerOccupiedHomes + p_ownershipUnknown), p_ownedByHousingAssociation, p_ownedByOtherLandlords);
-    x.f_setEnvironmentalAttitude(p_willingnessEnergyMeasuresHomeOwners, p_willingnessEnergyMeasuresRenters);
+	//x.f_setHouseholdOwnership((p_ownerOccupiedHomes + p_ownershipUnknown), p_ownedByHousingAssociation, p_ownedByOtherLandlords);
+  //  x.f_setEnvironmentalAttitude(p_willingnessEnergyMeasuresHomeOwners, p_willingnessEnergyMeasuresRenters);
 
 }
 ]]></Body>
@@ -5102,14 +7993,14 @@ else {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717595630331</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToWillingness]]></Name>
-					<X>-180</X><Y>260</Y>
+					<X>-180</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Parameter>
 						<Name><![CDATA[willingness]]></Name>
-						<Type><![CDATA[WillingnessEnergyMeasures]]></Type>
+						<Type><![CDATA[Category]]></Type>
 					</Parameter>
 					<Parameter>
 						<Name><![CDATA[colorHigh]]></Name>
@@ -5153,7 +8044,7 @@ else if( willingness == UNKNOWN){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717598819892</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToDriver]]></Name>
-					<X>-180</X><Y>280</Y>
+					<X>-180</X><Y>350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5198,6 +8089,73 @@ else{
 		r.setFillColor(colorUnknown);
 	}
 }]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1718031115002</Id>
+					<Name><![CDATA[f_adoptionProcess]]></Name>
+					<X>-180</X><Y>390</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[for( J_Household x : c_javaHouseholds){
+	x.f_decideToInvestMoney();
+}
+for( J_Household x : c_javaHouseholds){
+	x.f_updateDataAfterAdoption();
+}
+for( J_Household x : c_javaHouseholds){
+	x.f_socialInteraction();
+}
+
+/*
+householdsWithInsulation = count(c_javaHouseholds, x->x.investedInInsulation);
+householdsWithInstallation = count(c_javaHouseholds, x->x.investedInInstallation);
+householdsWithAppliances = count(c_javaHouseholds, x->x.investedInAppliances);
+
+double averageUtilityInsulation = average(c_javaHouseholds, x->x.utilityInsulation);
+double averageUtilityInstallation = average(c_javaHouseholds, x->x.utilityInstallation);
+double averageUtilityAdoption = average(c_javaHouseholds, x->x.utilityAppliances);
+
+double maxUtilityInsulation = max(c_javaHouseholds, x->x.utilityInsulation);
+double maxUtilityInstallation = max(c_javaHouseholds, x->x.utilityInstallation);
+double maxUtilityAdoption = max(c_javaHouseholds, x->x.utilityAppliances);
+
+double minUtilityInsulation = min(c_javaHouseholds, x->x.utilityInsulation);
+double minUtilityInstallation = min(c_javaHouseholds, x->x.utilityInstallation);
+double minUtilityAdoption = min(c_javaHouseholds, x->x.utilityAppliances);
+
+traceln("At neighborhood " + this.getIndex() + ", min, average and max utility insulation are " + minUtilityInsulation + ", " + averageUtilityInsulation + ", " + maxUtilityInsulation );
+*/]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721316947508</Id>
+					<Name><![CDATA[f_findNearestEC]]></Name>
+					<X>-180</X><Y>240</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[for(EnergyCommunity EC: main.pop_energyCommunities){	
+	//traceln(EC.p_municipalityCode + " " + p_municipalityCode);
+	if(EC.p_municipalityCode.equals(p_municipalityCode)){
+		p_ECinMunicipality = true;
+		EC.c_neighborhoods.add(this);
+		EC.c_householdsInRange.addAll(c_javaHouseholds);
+		traceln("Households are added to EC " + EC.getIndex());
+	}
+	else{
+		//traceln("ERROR -- no municipality to EC " + EC.getIndex());
+	}
+}
+
+if( p_ECinMunicipality == true ){
+	p_nearestEC = getNearestAgent(main.pop_energyCommunities);
+} ]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -5385,6 +8343,606 @@ else{
 			</Presentation>
 
 		</ActiveObjectClass>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1720541155529</Id>
+			<Name><![CDATA[EnergyCommunity]]></Name>
+			<Generic>false</Generic>
+			<GenericParameter>
+				<Id>1720541155535</Id>
+				<Name><![CDATA[1720541155535]]></Name>
+				<GenericParameterValue Class="CodeValue">
+					<Code><![CDATA[T extends Agent]]></Code>
+				</GenericParameterValue>
+				<GenericParameterLabel><![CDATA[Generic parameter:]]></GenericParameterLabel>
+			</GenericParameter>
+			<FlowChartsUsage>ENTITY</FlowChartsUsage>
+			<SamplesToKeep>100</SamplesToKeep>
+			<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
+			<ElementsLimitValue>100</ElementsLimitValue>
+			<MakeDefaultViewArea>true</MakeDefaultViewArea>
+			<SceneGridColor/>
+			<SceneBackgroundColor/>
+			<SceneSkybox>null</SceneSkybox>
+			<AgentProperties>
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+				<RotateAnimationTowardsMovement>true</RotateAnimationTowardsMovement>
+				<RotateAnimationVertically>false</RotateAnimationVertically>
+				<VelocityCode Class="CodeUnitValue">
+					<Code><![CDATA[10]]></Code>
+					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
+				</VelocityCode>
+				<PhysicalLength Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalLength>
+				<PhysicalWidth Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalWidth>
+				<PhysicalHeight Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalHeight>
+			</AgentProperties>
+			<EnvironmentProperties>
+					<EnableSteps>false</EnableSteps>
+					<StepDurationCode Class="CodeUnitValue">
+						<Code><![CDATA[1.0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</StepDurationCode>
+					<SpaceType>CONTINUOUS</SpaceType>
+					<WidthCode><![CDATA[500]]></WidthCode>
+					<HeightCode><![CDATA[500]]></HeightCode>
+					<ZHeightCode><![CDATA[0]]></ZHeightCode>
+					<ColumnsCountCode><![CDATA[100]]></ColumnsCountCode>
+					<RowsCountCode><![CDATA[100]]></RowsCountCode>
+					<NeigborhoodType>MOORE</NeigborhoodType>
+					<LayoutType>USER_DEF</LayoutType>
+					<LayoutTypeApplyOnStartup>true</LayoutTypeApplyOnStartup>
+					<NetworkType>USER_DEF</NetworkType>
+					<NetworkTypeApplyOnStartup>true</NetworkTypeApplyOnStartup>
+					<ConnectionsPerAgentCode><![CDATA[2]]></ConnectionsPerAgentCode>
+					<ConnectionsRangeCode><![CDATA[50]]></ConnectionsRangeCode>
+					<NeighborLinkFractionCode><![CDATA[0.95]]></NeighborLinkFractionCode>
+					<MCode><![CDATA[10]]></MCode>
+			</EnvironmentProperties>
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1720598400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+			</DatasetsCreationProperties>
+			<ScaleRuler>
+				<Id>1720541155532</Id>
+				<Name><![CDATA[scale]]></Name>
+				<X>0</X><Y>-150</Y>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>false</PresentationFlag>
+				<ShowLabel>false</ShowLabel>
+				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+				<Length>100</Length>
+				<Rotation>0</Rotation>
+				<ScaleType>BASED_ON_LENGTH</ScaleType>
+				<ModelLength>10</ModelLength>
+				<LengthUnits>METER</LengthUnits>
+				<Scale>10</Scale>
+				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
+			</ScaleRuler>
+			<CurrentLevel>1720541155536</CurrentLevel>
+			<ConnectionsId>1720541155530</ConnectionsId>
+			<Variables>
+				<Variable Class="Parameter">
+					<Id>1720541183134</Id>
+					<Name><![CDATA[p_name]]></Name>
+					<X>50</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541183132</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541188413</Id>
+					<Name><![CDATA[p_province]]></Name>
+					<X>50</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541188411</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541353968</Id>
+					<Name><![CDATA[p_resRegion]]></Name>
+					<X>50</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541353966</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541364971</Id>
+					<Name><![CDATA[p_municipality]]></Name>
+					<X>50</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541364969</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541378774</Id>
+					<Name><![CDATA[p_place]]></Name>
+					<X>50</X><Y>150</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541378772</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541386295</Id>
+					<Name><![CDATA[p_postalcode6]]></Name>
+					<X>50</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541386293</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541405542</Id>
+					<Name><![CDATA[p_year]]></Name>
+					<X>50</X><Y>190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541405540</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541411946</Id>
+					<Name><![CDATA[p_status]]></Name>
+					<X>50</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541411944</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541419831</Id>
+					<Name><![CDATA[p_longitude]]></Name>
+					<X>50</X><Y>240</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541419829</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541425926</Id>
+					<Name><![CDATA[p_latitude]]></Name>
+					<X>50</X><Y>260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541425924</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1720541980141</Id>
+					<Name><![CDATA[p_id]]></Name>
+					<X>50</X><Y>30</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1720541980139</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721136154515</Id>
+					<Name><![CDATA[p_neighborhood]]></Name>
+					<X>50</X><Y>290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[GZ_Neighborhood]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1721136154513</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1721323706527</Id>
+					<Name><![CDATA[p_municipalityCode]]></Name>
+					<X>50</X><Y>130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1721323706525</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1720542060156</Id>
+					<Name><![CDATA[c_energyProjects]]></Name>
+					<X>250</X><Y>30</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_ECProject]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1720542079736</Id>
+					<Name><![CDATA[c_members]]></Name>
+					<X>250</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_Household]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1720542088902</Id>
+					<Name><![CDATA[c_boardMembers]]></Name>
+					<X>250</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_Household]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1721318639667</Id>
+					<Name><![CDATA[c_neighborhoods]]></Name>
+					<X>250</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[GZ_Neighborhood]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1721318727092</Id>
+					<Name><![CDATA[c_householdsInRange]]></Name>
+					<X>250</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_Household]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+			</Variables>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1720541443439</Id>
+					<Name><![CDATA[f_instantiateECs]]></Name>
+					<X>-150</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Get neighborhood
+for(GZ_Neighborhood x : main.pop_GZ_Neighborhoods){
+	boolean breakout = false;
+	if(x.c_gisRegions.size() > 0){
+		for(GISRegion y : x.c_gisRegions){
+			if( y.contains(p_latitude, p_longitude )){
+				p_neighborhood = x;
+				breakout = true;
+				break;
+			}
+		}	
+	}
+	if( breakout == true){
+		break;
+	}
+}
+if (p_neighborhood == null && !p_province.equals("Groningen")){
+	traceln("EC " + this.getIndex() + " has no neighborhood");
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1721318677216</Id>
+					<Name><![CDATA[f_setHouseholdsToEC]]></Name>
+					<X>-150</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Set initial utility per household
+for(J_Household household : c_householdsInRange){
+	household.localEC = this;
+	household.f_getInitialUtility();
+}
+//max(c_householdsInRange, x->x.utility);
+
+//c_householdsInRange.sort(c);
+List<J_Household> householdsSorted = sortAscending(c_householdsInRange, x->x.utility);
+
+int selectedMembers = 0;
+for(J_ECProject project : c_energyProjects){
+	while(project.investors_nb > selectedMembers){
+		J_Household topHousehold = householdsSorted.get(selectedMembers);
+		project.c_members.add(topHousehold);
+		topHousehold.ECMember = true;
+		topHousehold.projects.add(project);
+		c_members.add(topHousehold);
+		
+		selectedMembers++;
+		if(selectedMembers ==householdsSorted.size()){
+			selectedMembers = 0;
+			traceln("Error - more members than households in range in EC");
+		}
+	}
+}
+
+int countMembersInEC = c_members.size();
+double countMembersInProjects = sum(c_energyProjects, x->x.c_members.size());
+int countMembersFromHouseholds = count(c_householdsInRange, x->x.ECMember == true);
+traceln(countMembersInEC + " members in collection, " + countMembersInProjects + " members in project collections, " + countMembersFromHouseholds + " households w/ status member");
+]]></Body>
+				</Function>
+			</Functions>
+			<AgentLinks>
+				<AgentLink>
+					<Id>1720541155530</Id>
+					<Name><![CDATA[connections]]></Name>
+					<X>50</X><Y>-50</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<HandleReceiveInConnections>false</HandleReceiveInConnections>
+					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
+					<AgentLinkBidirectional>true</AgentLinkBidirectional>
+					<MessageType><![CDATA[Object]]></MessageType>
+					<LineStyle>SOLID</LineStyle>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineZOrder>UNDER_AGENTS</LineZOrder>
+					<LineArrow>NONE</LineArrow>
+					<LineArrowPosition>END</LineArrowPosition>
+				</AgentLink>
+			</AgentLinks>
+
+			<ContainerLinks>
+				<ContainerLink>
+					<Id>1720541155621</Id>
+					<Name><![CDATA[main]]></Name>
+					<X>50</X><Y>-100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[Main]]></ClassName>
+					</ActiveObjectClass>
+				</ContainerLink>
+			</ContainerLinks>
+
+			<Presentation>
+				<Level>
+					<Id>1720541155536</Id>
+					<Name><![CDATA[level]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+
+			<Presentation>
+				<Oval>
+					<Id>1720541876487</Id>
+					<Name><![CDATA[oval]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>3</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-16744448</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+			</Presentation>
+
+				</Level>
+			</Presentation>
+
+		</ActiveObjectClass>
 	</ActiveObjectClasses>	
 	<DifferentialEquationsMethod>EULER</DifferentialEquationsMethod>
 	<MixedEquationsMethod>RK45_NEWTON</MixedEquationsMethod>
@@ -5424,7 +8982,7 @@ else{
 				<Password><![CDATA[]]></Password>
 			</ExternalConnection>
 			<ExternalConnection>
-				<Id>1717513348369</Id>
+				<Id>1720541203545</Id>
 				<Name><![CDATA[database]]></Name>
 				<X>0</X><Y>0</Y>
 				<Label><X>10</X><Y>0</Y></Label>
@@ -5437,7 +8995,7 @@ else{
 				<DatabaseName><![CDATA[]]></DatabaseName>
 				<ResourceReference>
 					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-					<ClassName><![CDATA[_neighborhoods_data_2021.xls]]></ClassName>
+					<ClassName><![CDATA[_energy_communities.xlsx]]></ClassName>
 				</ResourceReference>
 				<Host><![CDATA[localhost]]></Host>
 				<JdbcDriverClassName><![CDATA[net.sourceforge.jtds.jdbc.Driver]]></JdbcDriverClassName>
@@ -5465,6 +9023,27 @@ else{
 				<Login><![CDATA[]]></Login>
 				<Password><![CDATA[]]></Password>
 			</ExternalConnection>
+			<ExternalConnection>
+				<Id>1721334855468</Id>
+				<Name><![CDATA[database]]></Name>
+				<X>0</X><Y>0</Y>
+				<Label><X>10</X><Y>0</Y></Label>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>true</PresentationFlag>
+				<ShowLabel>true</ShowLabel>
+				<DatabaseType>EXCEL_ACCESS</DatabaseType>
+				<ConnectionURL><![CDATA[]]></ConnectionURL>
+				<ConnectOnStartup>true</ConnectOnStartup>
+				<DatabaseName><![CDATA[]]></DatabaseName>
+				<ResourceReference>
+					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+					<ClassName><![CDATA[_neighborhoods_data_2023.xlsx]]></ClassName>
+				</ResourceReference>
+				<Host><![CDATA[localhost]]></Host>
+				<JdbcDriverClassName><![CDATA[net.sourceforge.jtds.jdbc.Driver]]></JdbcDriverClassName>
+				<Login><![CDATA[]]></Login>
+				<Password><![CDATA[]]></Password>
+			</ExternalConnection>
 			<TableImportSettings>
 				<TableReference>
 					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
@@ -5477,10 +9056,10 @@ else{
 			<TableImportSettings>
 				<TableReference>
 					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-					<ClassName><![CDATA[neighborhood_data]]></ClassName>
+					<ClassName><![CDATA[energy_communities]]></ClassName>
 				</TableReference>
 				<ConnectionIndex>1</ConnectionIndex>
-				<ExternalTableName><![CDATA["neighborhood_data"]]></ExternalTableName>
+				<ExternalTableName><![CDATA["energy_communities"]]></ExternalTableName>
 				<AutoImport>false</AutoImport>
 			</TableImportSettings>
 			<TableImportSettings>
@@ -5490,6 +9069,24 @@ else{
 				</TableReference>
 				<ConnectionIndex>2</ConnectionIndex>
 				<ExternalTableName><![CDATA["neighborhoods_netherlands"]]></ExternalTableName>
+				<AutoImport>false</AutoImport>
+			</TableImportSettings>
+			<TableImportSettings>
+				<TableReference>
+					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+					<ClassName><![CDATA[ec_projects]]></ClassName>
+				</TableReference>
+				<ConnectionIndex>1</ConnectionIndex>
+				<ExternalTableName><![CDATA["EC_projects"]]></ExternalTableName>
+				<AutoImport>false</AutoImport>
+			</TableImportSettings>
+			<TableImportSettings>
+				<TableReference>
+					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+					<ClassName><![CDATA[neighborhood_data_selection]]></ClassName>
+				</TableReference>
+				<ConnectionIndex>3</ConnectionIndex>
+				<ExternalTableName><![CDATA["neighborhood_data_selection"]]></ExternalTableName>
 				<AutoImport>false</AutoImport>
 			</TableImportSettings>
 		</ImportSettings>
@@ -5563,6 +9160,21 @@ else{
 				<Parameter>
 					<ParameterName><![CDATA[modeFullNetherlands]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[random_instance]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_avgPowerPerMemberPVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_avgPowerPerMemberPVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_avgPowerPerMemberWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_avgPowerPerMemberWindLargeScale]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -5591,46 +9203,294 @@ else{
  * J_Household
  */	
 public class J_Household {
+	public Main environment;
 	public GZ_Neighborhood neighborhood;
+	public String municipality;
+	public Random random;						// Use main instance of random
+	public int householdIndex; 
+	public EnergyCommunity localEC;
+	public List<J_ECProject> projects;
+	public boolean ECMember;
+	public boolean ECBoardMember;
 	
     /**
      * Default constructor
      */
-    public J_Household(GZ_Neighborhood neighborhood) {
+    public J_Household(Main environment, GZ_Neighborhood neighborhood, String municipality, Random random, int householdIndex) {
+    	this.environment = environment;
     	this.neighborhood = neighborhood;
+    	this.municipality = municipality;
+    	this.random = random;
+    	this.householdIndex = householdIndex;
     }
     
-    
-    //1. INITIALIZATION
-    
-    //1.1 initial household carachteristics
-    public boolean hasAdopted = false;
-	public int v_receivedAdoptionMessage = 0;
-	public double utilityThreshold = random() * 2;
-	public double discountRate = 0.02;
+      	//SET HOUSEHOLD PARAMETERS    
+    public double discountRate = 0.02;
+	public double learningRate = 0.02;
 	
-	//Household characteristics
-	//public double electricityConsumption_kWh = 0;
-	//public double electricityProduction_kWh = 0;
-	Random random = new Random(); // Create an instance of random
-	public double annualHeatConsumption_kWh = normal(2000, 11000, random);
+	//Individual decision-making factors
+	//Knowledge and awarness - Norm-activation theory
+	public double knowledge;
+	public double CEE_Awareness;
+	public double EC_Awareness;
+	
+	//Social norms, personal norms and perceived behavioral control
+	public double pers_norms_IT;									//IT = invest time
+	public double soc_norms_IT;
+	public double pbc_IT;
+	public double pers_norms_IM;									//IM = invest money
+	public double soc_norms_IM;
+	public double pbc_IM;
+	
+	//Attitude and socio-economic parameters
+	public double environmentalAttitude;
+	public double savings;
+	
+	//Individual decision-makin framework parameters
+	public double awarenessOfConsequence;
+	public double attitude;
+	public double subjectiveNorm;
+	public double pbc;
+	public double responsibility;
+	public double personalNorm;
+	public Action intention;
+	public Action behavioralChange;
+	public double utility;
+	
+	public double AoC_to_PN_weight;
+	public double AoC_to_responsibility_weight;
+	public double responsibility_to_PN_weight;
+	public double SN_to_PN_weight;
+	public double SN_to_intention_weight;
+	public double PN_to_intention_weight;
+	public double PBC_to_intention_weight;
+	public double attitude_to_intention_weight;
+	public double PBC_to_behavior_weight;
+	
+	public double intentionThreshold;
+	public double pbcThreshold;
+	
+	public boolean investingMoney = false;
+	public boolean investedMoney = false;
+	public double investedMoney_eur = 0;
+	public boolean investingTime = false;
+	public boolean investedTime = false;
+	public double investedTime_hour = 0;
+	
+	//Social network
+	List<J_Household> householdsInNetwork = new ArrayList<>();
+	
+	//output
+	public double latitude;
+	public double longitude;
+	
+
+	//1. Initialization
+	public void f_intializeHouseholdParamters() {
+		//Attitude and socio-economic parameters
+		environmentalAttitude = uniform_discr(1,7, random);
+		savings = lognormal(9, 0.8, 1000, random);
+		
+		
+		//Knowledge and awarness - Norm-activation theory
+		knowledge = uniform_discr(1,7, random)/7;
+		CEE_Awareness = uniform_discr(1,7, random)/7;
+		EC_Awareness = uniform_discr(1,7, random)/7;
+		
+		//Social norms, personal norms and perceived behavioral control
+		pers_norms_IT = uniform_discr(1,7, random)/7;		//IT = invest time
+		soc_norms_IT = uniform_discr(1,7, random)/7;
+		pbc_IT = uniform_discr(1,7, random)/7;
+		pers_norms_IM = uniform_discr(1,7, random)/7;		//IM = invest money
+		soc_norms_IM = uniform_discr(1,7, random)/7;
+		pbc_IM = uniform_discr(1,7, random)/7;
+		
+		//Attitude and socio-economic parameters
+		environmentalAttitude = uniform_discr(1,7, random)/7;
+		savings = lognormal(9, 0.8, 1000, random);
+		
+		
+		AoC_to_PN_weight = 0.323;						//Values based on liu et al.
+		AoC_to_responsibility_weight = 0.2;
+		responsibility_to_PN_weight = 0.204;
+		SN_to_PN_weight = 0.331;
+		SN_to_intention_weight = 0.542;
+		PN_to_intention_weight = 0.116;
+		PBC_to_intention_weight = 0.228;
+		attitude_to_intention_weight = 0.303;
+		PBC_to_behavior_weight = 0.4;
+		
+		intentionThreshold = 0.5;
+		pbcThreshold = 0.5;
+		
+		//f_setECMembers();
+		f_initializeNetwork(10, RANDOM_NETWORK);
+	}
+	
+	//1.1. Initialize household's social network
+	public void f_initializeNetwork(int averageNetworkSize, NetworkStructure networkStructure ) {
+		double networkSize = Math.round(normal(0, 1, 0.5, 0.2, random) * averageNetworkSize);
+		J_Household household;
+		if(networkStructure == RANDOM_NETWORK) {
+			for(int i=0; i<networkSize; i++) {
+				household = getRandom(environment.c_javaHouseholds, random);
+				householdsInNetwork.add(household);
+			}
+		}
+		//System.out.println("Household " + householdIndex + " has " + householdsInNetwork.size() + " households in network");
+	}
+	
+	//1. Get initial utility
+	public void f_getInitialUtility() {
+		f_getAwarenessOfConsequence();			//2.1
+		f_getAttitude();						//2.2
+		f_getSubjectiveNorm();					//2.3
+		f_getPerceivedBehavioralControl();		//2.4
+		
+		f_getResponsibility();					//2.5
+		
+		f_getPersonalNorm();					//2.6
+		f_getIntention();						//2.7
+	}
+	
+	
+	//2. Individual decision making
+	public void f_decideToInvestMoney() {
+		f_getAwarenessOfConsequence();			//2.1
+		f_getAttitude();						//2.2
+		f_getSubjectiveNorm();					//2.3
+		f_getPerceivedBehavioralControl();		//2.4
+		
+		f_getResponsibility();					//2.5
+		
+		f_getPersonalNorm();					//2.6
+		f_getIntention();						//2.7
+		f_getBehavioralChange();				//2.8				
+	}
+		
+	
+	//2.1 Get Awareness of Consequences
+	public void f_getAwarenessOfConsequence() {
+		awarenessOfConsequence = (knowledge + CEE_Awareness + EC_Awareness) / 3;
+	}
+	
+	//2.2 Get attitude
+	public void f_getAttitude() {
+		attitude = environmentalAttitude;		
+	}
+	
+	//2.3 Get subjective norm
+	public void f_getSubjectiveNorm() {
+		subjectiveNorm = soc_norms_IM;
+	}
+	
+	//2.4 Get perceived behavioral control
+	public void f_getPerceivedBehavioralControl() {
+		if(savings < 3000) {
+			pbc = 1;
+		}
+		else if(savings < 5000) {
+			pbc = 3;
+		}
+		else {
+			pbc = 7;
+		}
+	}
+	
+	//2.5 Get responsibility
+	public void f_getResponsibility() {
+		responsibility = 1/2 * (awarenessOfConsequence * AoC_to_responsibility_weight + normal(0, 1, 0.5, 0.2, random) * (1-AoC_to_responsibility_weight));				//TODO: FIX RESPONSIBILITY DATA
+	}
+	
+	//2.6 Get personal norm
+	public void f_getPersonalNorm() {
+		personalNorm = 1/3 * (awarenessOfConsequence * AoC_to_PN_weight + responsibility * responsibility_to_PN_weight + subjectiveNorm * SN_to_PN_weight);	
+	}
+	
+	//2.7 Get intention
+	public void f_getIntention() {
+		utility = 1/4 * (personalNorm * PN_to_intention_weight + attitude * attitude_to_intention_weight + subjectiveNorm * SN_to_intention_weight + pbc * PBC_to_intention_weight);	
+		if(utility > intentionThreshold) {
+			intention = INVEST_MONEY;
+		}
+		else {
+			intention = IDLE;
+		}
+	}
+	
+	public void f_getBehavioralChange() {
+		if( intention == INVEST_MONEY && pbc > pbcThreshold) {
+			behavioralChange = INVEST_MONEY;
+		}
+	}
+	
+	
+	//3. Social interaction and learning
+	public void f_updateDataAfterAdoption() {
+		
+	}
+	public void f_socialInteraction() {
+		
+	}
+	
+	
+	
+	
+	
+	/*
+	 
+	public void f_getUtility() {
+		double paybackTime	= interst
+		double utility = education * educationWeight + age * ageWeight
+	}
+	
+	//OLD OBSOLETE WORK
+	 
+	
+	/*
+	public double pers_norms3 = uniform_discr(1,7, random);
+	public double soc_norms3 = uniform_discr(1,7, random);
+	public double intentionA1 = uniform_discr(1,7, random);
+	public double intentionA2 = uniform_discr(1,7, random);
+	public double intentionA3 = uniform_discr(1,7, random);
+	
+	public Category guilt1;
+	public Category motivation1;
+	public Category guilt2;
+	public Category motivation2;
+	public Category guilt3;
+	public Category motivation3;
+	public Category considerationInvestment1;
+	public Category considerationConservation1;
+	public Category considerationSwitching1;
+	
 	//public double heatProduction_kWh = 0;
-	public HouseholdOwnership householdOwnership; 
-	public double willingnessEnergyMeasuresFactor = 0;
+	public double willingnessEnergyMeasuresFactor;
 	
 	//Adoption decision
-	public double utilityGasBoiler = 0;
-	public double utilityGasBlock = 0;
-	public double utilityAllElectricHeatPump = 0;
-	public double utilityHybridHeatPump = 0;
-	public double utilityDistrictHeating = 0;
+    public double alpha;											//share of annual income spent on composite good
+    public double knowledgeFactor;									//average of climate-energy-environment knowledge (CEEK), awareness (CEEA), and energy-related decision awareness (EDA)
+    
+    //Socio-economic
+    public double income;											//income of household
+    public EducationLevel PRIMARY;
+    
+    //Dwelling
+    public String energyLabelString = "a";
+	public HouseholdOwnership householdOwnership; 
+
+	//Energy
+	public double annualNaturalGasConsumption_kWh = normal(2000, 11000, random);
+	public double annualElecConsumption_kWh = normal(1500, 2700, random);
+	public double annualHeatConsumption = annualNaturalGasConsumption_kWh;
 	
-    public double alpha = 0;										//share of annual income spent on composite good
-    public double income = 0;										//income of household
-    public double knowledgeFactor = 0;								//average of climate-energy-environment knowledge (CEEK), awareness (CEEA), and energy-related decision awareness (EDA)
-
-
-    //1.2 Set household ownership
+	public EnergyProvider energyProvider;
+	public int energySavingHabit = uniform_discr(0,3, random);
+	
+	
+	
+	
+	//1.2 Set household ownership
     public void f_setHouseholdOwnership(double privatelyOwned_perc, double housingAssociation_perc, double rented_perc) {
     	double rand = random();
     	if( rand < housingAssociation_perc) {
@@ -5645,7 +9505,7 @@ public class J_Household {
     }
     
     //1.3 Set environmental attitude
-    public void f_setEnvironmentalAttitude(WillingnessEnergyMeasures willingnessEnergyMeasuresHomeOwner, WillingnessEnergyMeasures willingnessEnergyMeasuresRenter) {
+    public void f_setEnvironmentalAttitude(Category willingnessEnergyMeasuresHomeOwner, Category willingnessEnergyMeasuresRenter) {
     	Random random = new Random(); // Create an instance of random
     	double mean = 0;
     	double sigma = 1;		    	
@@ -5692,274 +9552,270 @@ public class J_Household {
 	    else {
 	    	heatingMethod = NATURAL_GAS_BOILER; //Rounding error could leave 1% undefined, which is given natural gas boiler due to its dominance
 	    }*/	
+	/*
     }
-    
+        
 
     //2. ADOPTION PROCESS
-    
-    //2.1 Create adoption variables    
-    public double electricityCosts_eurPerKWh = 0.3;
-    public double naturalGasCosts_eurPerKWh = 11.2;
-    public double districtHeatCosts_eurPerKWh = 0;
-
-    public double utilityCompositeGoodNaturalGasBoiler_eur = 0;		//composite good in household budget
-    public double utilityCompositeGoodNaturalGasBlock_eur = 0;		//
-    public double utilityCompositeGoodAllElectricHeatPump_eur = 0;	//
-    public double utilityCompositeGoodHybridHeatPump_eur = 0;		//
-    public double utilityCompositeGoodDistrictHeating_eur = 0;		//
-    
-    public double utilityCompositeGoodNaturalGasBoiler_norm = 0;	//composite good in household budget normalised
-    public double utilityCompositeGoodNaturalGasBlock_norm = 0;		//
-    public double utilityCompositeGoodAllElectricHeatPump_norm = 0;	//
-    public double utilityCompositeGoodHybridHeatPump_norm = 0;		//
-    public double utilityCompositeGoodDistrictHeating_norm = 0;		//
-    
-    public double utilityEnergyNaturalGasBoiler_eur = 0;			//Energy in household budget
-    public double utilityEnergyNaturalGasBlock_eur = 0;				//
-    public double utilityEnergyAllElectricHeatPump_eur = 0;			//
-    public double utilityEnergyHybridHeatPump_eur = 0;				//
-    public double utilityEnergyDistrictHeating_eur = 0;				//
-    
-    public double utilityEnergyNaturalGasBoiler_norm = 0;			//Energy in household budget normalised
-    public double utilityEnergyNaturalGasBlock_norm = 0;			//
-    public double utilityEnergyAllElectricHeatPump_norm = 0;		//
-    public double utilityEnergyHybridHeatPump_norm = 0;				//
-    public double utilityEnergyDistrictHeating_norm = 0;			//
-    
-    public double considerationPowerNaturalGasBoiler = 0;			//normalized factor of consideration based on income group
-    public double considerationPowerNaturalGasBlock = 0;			//
-    public double considerationPowerAllElectricHeatPump = 0;		//
-    public double considerationPowerHybridHeatPump = 0;				//
-    public double considerationPowerDistrictHeating = 0;			//
-    
-    public double motivationFactorNaturalGasBoiler = 0;				//average of subjective norms and personal norms based on survey
-    public double motivationFactorNaturalGasBlock = 0;				//
-    public double motivationFactorAllElectricHeatPump = 0;			//
-    public double motivationFactorHybridHeatPump = 0;				//
-    public double motivationFactorDistrictHeating = 0;				//
-    
   
     
-    public double electricityDemandNaturalGasBoiler_kWh = 0;
-    public double naturalGasDemandNaturalGasBoiler_kWh = 0;
-    public double heatDemandNaturalGasBoiler = 0;
-    public double investmentCostsNaturalGasBoiler = 0;
-    public double lifetimeNaturalGasBoiler = 0;
+    public double pbcInsulation = uniform_discr(1,7, random);
+    public double pbcInstallation = uniform_discr(1,7, random);
+    public double pbcAppliances = uniform_discr(1,7, random);
+    public double pbcConservation1 = uniform_discr(1,7, random);
+    public double pbcSwitching1 = uniform_discr(1,7, random);
+    public double pbcSwitching2 = uniform_discr(1,7, random);
+    public double pbcSwitching3 = uniform_discr(1,7, random);
     
+    public int edu = uniform_discr(1,7, random);
+    public int age = uniform_discr(1,7, random);
+    public int gen = uniform_discr(1,2, random);
+    public int energyLabel = uniform_discr(1,6, random);
+    public int dwellingType = uniform_discr(1,7, random);
+    public int dwellingAge = uniform_discr(1,7, random);
+    public int dwellingSize = uniform_discr(1,7, random);
     
+    public int erI1 = uniform_discr(1,7, random);
+    public int erI2 = uniform_discr(1,7, random);
+    public int erI3 = uniform_discr(1,7, random);
+    public int ecom = uniform_discr(1,3, random);
     
-    //2.2 Calculate absolute utility per heating method
+    public double utilityInsulation;
+    public double utilityInstallation;
+    public double utilityAppliances;
     
-    //2.2.1 Utility natural gas boiler
-    public void f_calculateUtilityNaturalGasBoiler(double investmentCostsNaturalGasBoiler, double maintenanceCostsNaturalGasBoiler, double lifetimeNaturalGasBoiler, double naturalGasBoilerEfficiency) {
+    public Category considerationInvestmentInsulation;
+    public Category considerationInvestmentInstallation;
+    public Category considerationInvestmentAppliances;
     
-    	//calculate energy demands
-    	double electricityDemandAfterInvestment = 0;															//gas boiler has no electricity demand
-    	double naturalGasDemandAfterInvestment = annualHeatConsumption_kWh / naturalGasBoilerEfficiency;		//natural gas demand			
-    	double districtHeatDemandAfterInvestment = 0;															//gas boiler has no district heat demand
-    	double annualHeatGenerated_kWh = annualHeatConsumption_kWh;
+    //2.1 Adoption process
+    public void f_setAdoptionProcess() {
+    	//Set guilt
+    	guilt1 = f_setAwareness(knowledge, CEE_Awareness, ED_Awareness);
     	
-    	utilityCompositeGoodNaturalGasBoiler_eur = f_calculateUtilityCompositeGood(investmentCostsNaturalGasBoiler, maintenanceCostsNaturalGasBoiler, electricityDemandAfterInvestment, naturalGasDemandAfterInvestment, 
-    			districtHeatDemandAfterInvestment, annualHeatGenerated_kWh, discountRate, lifetimeNaturalGasBoiler, annualHeatGenerated_kWh);
-    
+    	//Set motivation
+    	motivation1 = f_setMotivation(guilt1, pers_norms1, soc_norms1);  
     	
+    	//Set consideration
+    	if( motivation1 == HIGH) {
+    		considerationInvestmentInsulation = f_setConsiderationInvestment(pbcInsulation, 1);
+    		considerationInvestmentInstallation = f_setConsiderationInvestment(pbcInstallation, 1);
+    		considerationInvestmentAppliances = f_setConsiderationInvestment(pbcAppliances, 1);
+    	}
+    	if (motivation2 == HIGH) {
+    		considerationConservation1 = f_setConsiderationConservation(pbcConservation1, 1);
+    	}
+    	if (motivation3 == HIGH) {
+    		considerationSwitching1 = f_setConsiderationSwitching(pbcSwitching1, 3.5); 			//Grey to bron
+    		//considerationSwitching2 = f_setConsiderationSwitching(pbcSwitching2, 3.5); 			//Brown to green
+    		//considerationSwitching3 = f_setConsiderationSwitching(pbcSwitching3, 3.5); 			//Grey to green
+    	}
+    	
+    	//Set utility
+    	utilityInsulation = f_getUtilityInsulation(considerationInvestmentInsulation);
+    	utilityInstallation = f_getUtilityInstallation(considerationInvestmentInstallation);
+    	utilityAppliances = f_getUtilityAppliances(considerationInvestmentAppliances);
+    	
+    	//Act based on utility
+    	f_act();
+    } 	
+    
+    public void f_updateDataAfterAdoption() {
+    	//Update investment costs
+    	f_setInvestmentCosts(1000, 1003, 2012);
+    	
+    	//Update energy consumption
+    	f_setEnergyConsumption(1000, 1003, 2012);
+    	
+    	//Learn from neighbors
+    	f_setLearning();
     }
-    	
-    //2.2.2 utility gas block heating
-    
-    //2.2.3 utility all electric heat pump
-    
-    //2.2.4 utility hybrid heat pump
-    
-    //2.2.5 district heating
-    
-    
-    //2.2-.Calculate utility composite good
-    public double f_calculateUtilityCompositeGood(double investmentCosts_eur, double maintenanceCosts_eur, double electricityDemandAfterInvestment, double naturalGasDemandAfterInvestment, 
-    		double districtHeatDemandAfterInvestment, double annualHeatGenerated_kWh, double discountRate, double systemLifetime, double heatDemandAfterInvestment) {
-    	
-    	double annualEnergyCosts_eur = electricityDemandAfterInvestment * electricityCosts_eurPerKWh + naturalGasDemandAfterInvestment * naturalGasCosts_eurPerKWh + districtHeatDemandAfterInvestment * districtHeatCosts_eurPerKWh;
-    	double LCOH = f_calculateLCOH(investmentCosts_eur, maintenanceCosts_eur, annualEnergyCosts_eur, annualHeatGenerated_kWh, discountRate, systemLifetime);
-    	
-    	//compositeGood = household_income - energy costs;   	
-       	double annualHeatCosts = LCOH * heatDemandAfterInvestment;
-       	return income - annualEnergyCosts_eur;
+   
+ 	
+     
 
-    	/*
-    	utilityEnergyNaturalGasBoiler_eur = f_utilityEnergyConsumption();
-    	alpha = f_alpha();
-    	considerationPowerNaturalGasBoiler = f_considerationPower();
-    	knowledgeFactor = f_knowledgeFactor();
-    	motivationFactorNaturalGasBoiler = f_motivationFactor();*/
+    
+    //2.2 Knowledge variable
+    public Category f_setAwareness(double know, double cee, double ed) {
+    	double aware = (know + cee + ed) / 3;
+    	if (aware < 4.6) {
+    		return LOW;	
+    	}
+    	else {
+    		return HIGH;
+    	}
     }
-        
-    //2.2-. //Calculate LCOH
-    public static double f_calculateLCOH(double investmentCosts_eur, double maintenanceCosts_eur, double annualEnergyCosts_eur, double annualHeatGenerated_kWh, double discountRate, double systemLifetime) {
-    	double LCOH = 0;
-    	double lifetimeCosts = 0;
-    	
-        double numerator = 0.0;
-        double denominator = 0.0;
-
-        //Set arrays
-    	int arrayLength = (int) systemLifetime;
-    	double[] capitalCostsArray_eur = new double [arrayLength];
-    	double[] maintenanceCostsArray_eur = new double [arrayLength];
-    	double[] energyCostsArray_eur = new double [arrayLength];
-    	double[] annualHeatGenerationArray_eur = new double [arrayLength];
-    	
-    	for( int i = 0; i < arrayLength; i++) {
-    		if( i == 0) {
-    			capitalCostsArray_eur[i] = investmentCosts_eur;
+    
+    //2.3 Motivation variable
+    public Category f_setMotivation(Category guilt, double persNorms, double socNorms) {
+    	if( guilt == HIGH) {
+    		if(persNorms < 4.7 || socNorms < 3.5) {
+    			return LOW;
     		}
-    		else {
-    			capitalCostsArray_eur[i] = 0;
+    		else {//if(persNorms >= 4.7 && socNorms >= 3.5) {
+    			return HIGH;
     		}
-    		maintenanceCostsArray_eur[i] = maintenanceCosts_eur;
-    		energyCostsArray_eur[i] = annualEnergyCosts_eur;
-    		annualHeatGenerationArray_eur[i] = annualHeatGenerated_kWh;
     	}
-        
-        //Calculate LCOE numerator and denominator        
-        for (int t = 0; t < arrayLength; t++) {
-            numerator += (capitalCostsArray_eur[t] + maintenanceCostsArray_eur[t] + energyCostsArray_eur[t]) / pow(1 + discountRate, t);
-            denominator += annualHeatGenerationArray_eur[t] / pow(1 + discountRate, t);
-        }
-    	
-        LCOH = numerator / denominator;
-    	return LCOH;
+    	else {
+    		return LOW;
+    	}
     }
     
-    //2.2.3 Calculate utility energy
-    
-    //2.2.4 Calculate consideration power
-    
-    //2.2.5 Calculate motivation factor
-    
-    //2.3 Normalize utility inputs
-    	
-    //Normalize utility composite good values
-    public void f_normalizeUtilityCompositeGood(double utilityCompositeGoodNaturalGasBoiler_max, double utilityCompositeGoodNaturalGasBlock_max, double utilityCompositeGoodAllElectricHeatPump_max,  double utilityCompositeGoodHybridHeatPump_max, double utilityCompositeGoodDistrictHeating_max) {
-      	//Work with normalized values as input for Utility calculations
-         utilityCompositeGoodNaturalGasBoiler_norm = utilityCompositeGoodNaturalGasBoiler_eur / utilityCompositeGoodNaturalGasBoiler_max;
-         utilityCompositeGoodNaturalGasBlock_norm = utilityCompositeGoodNaturalGasBlock_eur / utilityCompositeGoodNaturalGasBlock_max;
-         utilityCompositeGoodAllElectricHeatPump_norm = utilityCompositeGoodAllElectricHeatPump_eur / utilityCompositeGoodHybridHeatPump_max;
-         utilityCompositeGoodHybridHeatPump_norm = utilityCompositeGoodHybridHeatPump_eur / utilityCompositeGoodHybridHeatPump_max;
-         utilityCompositeGoodDistrictHeating_norm = utilityCompositeGoodDistrictHeating_eur / utilityCompositeGoodDistrictHeating_max;
-    }
-        
-    //Normalize utility energy values
-    public void f_normalizeUtilityEnergy(double utilityEnergyNaturalGasBoiler_max, double utilityEnergyNaturalGasBlock_max, double utilityEnergyAllElectricHeatPump_max,  double utilityEnergyHybridHeatPump_max, double utilityEnergyDistrictHeating_max) {
-    	//Work with normalized values as input for Utility calculations
-    	utilityEnergyNaturalGasBoiler_norm = utilityEnergyNaturalGasBoiler_eur / utilityEnergyNaturalGasBoiler_max;
-    	utilityEnergyNaturalGasBlock_norm = utilityEnergyNaturalGasBlock_eur / utilityEnergyNaturalGasBlock_max;
-        utilityEnergyAllElectricHeatPump_norm = utilityEnergyAllElectricHeatPump_eur / utilityEnergyHybridHeatPump_max;
-        utilityEnergyHybridHeatPump_norm = utilityEnergyHybridHeatPump_eur / utilityEnergyHybridHeatPump_max;
-        utilityEnergyDistrictHeating_norm = utilityEnergyDistrictHeating_eur / utilityEnergyDistrictHeating_max;
-    }    
-    
-    	
-
-    	
-
-            
-    //2.4 calculate final utilities
-    public void f_calculateUtilities() {
-    	utilityGasBoiler = f_utilityFunction(utilityCompositeGoodNaturalGasBoiler_norm, utilityEnergyNaturalGasBoiler_norm, alpha, considerationPowerNaturalGasBoiler, knowledgeFactor, motivationFactorNaturalGasBoiler);
-    	utilityGasBlock = f_utilityFunction(utilityCompositeGoodNaturalGasBlock_norm, utilityEnergyNaturalGasBlock_norm, alpha, considerationPowerNaturalGasBlock, knowledgeFactor, motivationFactorNaturalGasBlock);
-    	utilityAllElectricHeatPump = f_utilityFunction(utilityCompositeGoodAllElectricHeatPump_norm, utilityEnergyAllElectricHeatPump_norm, alpha, considerationPowerAllElectricHeatPump, knowledgeFactor, motivationFactorAllElectricHeatPump);
-    	utilityHybridHeatPump = f_utilityFunction(utilityCompositeGoodHybridHeatPump_norm, utilityEnergyHybridHeatPump_norm, alpha, considerationPowerHybridHeatPump, knowledgeFactor, motivationFactorHybridHeatPump);
-    	utilityDistrictHeating = f_utilityFunction(utilityCompositeGoodDistrictHeating_norm, utilityEnergyDistrictHeating_norm, alpha, considerationPowerDistrictHeating, knowledgeFactor, motivationFactorDistrictHeating);
-    	
-    }
-    
-    
-    //2.4-. Utility function
-    public double f_utilityFunction(double utilityCompositeGood, double utilityEnergyConsumption, double alpha, double considerationPower, double knowledgeFactor, double motivationFactor) {
-    	//U = Z * beta + E * alfa + K + M + C;
-    	//U = ((Z * beta + E * alfa) * 1 - considerationPower) + ((K + M) * considerationPower;
-    	return ((utilityCompositeGood * (1 - alpha)) + (utilityEnergyConsumption * alpha) * (1 - considerationPower)) + ((knowledgeFactor + motivationFactor) * considerationPower);
-    }
-
-    
-    
-
-    
-    //4. INVESTMENT DECISION
-    public void f_investmentDecision(double utilityGasBoiler, double utilityGasBlock, double utilityAllElectricHeatPump, double utilityHybridHeatPump, double utilityDistrictHeating) {
-    	double max = max(max(max(max(utilityGasBoiler, utilityGasBlock), utilityAllElectricHeatPump), utilityHybridHeatPump), utilityDistrictHeating);
-    	/*
-    	if( max == utilityGasBoiler) {
-    		heatingMethod = NATURAL_GAS_BOILER;
-    	}
-    	else if (max == utilityGasBlock) {
-    		heatingMethod = NATURAL_GAS_BLOCK;
-    	}
-    	else if (max == utilityAllElectricHeatPump) {
-    		heatingMethod = ELECTRIC_HEAT_PUMP;
-    	}
-    	else if (max == utilityHybridHeatPump) {
-    		heatingMethod = HYBRID_HEAT_PUMP;
-    	}
-    	else if (max == utilityDistrictHeating) {
-    		heatingMethod = DISTRICT_HEATING;
-    	}
-    	*/
-    }
-    
-    //4. UPDATE SOCIAL NETWORK AND LEARNING
-    
-    
-    
-    /*
-    //Set adoption process
-    public void f_adoptionProcess(double innovationCoefficient, double imitationCoefficient, double contactRate, double utility) {
-	    //Set innovatiors
-	    if( hasAdopted == false){
-	    	if( Math.random() < innovationCoefficient){
-	    		f_adoption(utility);
+    //2.4 Consideration
+    public Category f_setConsiderationInvestment(double pbc, double cutOffValue) {
+    	if( householdOwnership == PRIVATELY_OWNED) {
+	    	if(pbc < cutOffValue) {
+	    		return LOW;
 	    	}
-	    }
+	    	else {
+	    		return HIGH;
+	    	}
+    	}
+    	else {
+    		return LOW;
+    	}
+    }
+    public Category f_setConsiderationConservation(double pbc, double cutOffValue) {
+    	if(pbc < cutOffValue) {
+    		return LOW;
+    	}
+    	else {
+    		return HIGH;
+    	}
+   	}
+    public Category f_setConsiderationSwitching(double pbc, double cutOffValue) {
+    	if(pbc < cutOffValue) {
+    		return LOW;
+    	}
+    	else {
+    		return HIGH;
+    	}
+   	}
+    
+    
+
+    
+    
+    //2.5 Utility
+    public double f_getUtilityInsulation(Category consideration) {
+    	if( consideration == LOW) {
+    		return 0.0;
+    	}
+    	else {
+    		return (edu * 0.0563284 + age * 0.0008106 + energyLabel * -0.0769971 + dwellingType * 0.4265 + dwellingAge * 0.0883428 + dwellingSize * 0.0857047 + annualNaturalGasConsumption_kWh * 0.0000488 + pers_norms1 * 0.052849 ) + erI1 ;
+    	}
+    }
+    public double f_getUtilityInstallation(Category consideration) {
+    	if( consideration == LOW) {
+    		return 0.0;
+    	}
+    	else {
+    		return ((gen * 0.2792288 + edu * 0.0779388 + age * 0.001021 + dwellingType * 0.5005143 + dwellingAge * -0.0577463 + dwellingSize * 0.1287344 + annualElecConsumption_kWh * -0.0000937 + pers_norms2 * 0.082771) + erI2 );
+    	}
+    }
+    public double f_getUtilityAppliances(Category consideration) {
+    	if( consideration == LOW) {
+    		return 0.0;
+    	}
+    	else {
+    		return (ecom * 0.1059369 + annualElecConsumption_kWh * 0.0000697 + pers_norms3 * 0.095038) + erI3;
+    	}
+    }
+    
+    //2.6 Act based on utility
+	public void f_act() {
+		//Insulation
+		if (utilityInsulation <= 0 || annualNaturalGasConsumption_kWh <= 500 || investedInInsulation == true) {
+			investingInInsulation = false;
+		}
+		else if (utilityInsulation > utilityInstallation) {
+			investingInInsulation = true;
+			investedInInsulation = true;
+		}
+		//Installation
+		if ( utilityInstallation <= 0 || annualElecConsumption_kWh <= 1000 || investedInInstallation == true) {
+			investingInInstallation = false;
+		}
+		else if (utilityInstallation >= utilityInsulation) {
+			investingInInstallation = true;
+			investedInInstallation = true;
+		}
+		//Appliances
+		if ( utilityAppliances <= 0 || annualElecConsumption_kWh <= 1000 || investingInInstallation == true || investedInAppliances == true) {
+			investingInAppliances = false;
+		}
+		else{
+			investingInAppliances = true;
+			investedInAppliances = true;
+		}
+	}
+    
+    public double investedInInsulation_eur;
+    public double investedInInstallation_eur;
+    public double investedInAppliances_eur;
+    public double totalInvestments_eur;
+    
+	//2.7 Update investment costs
+	public void f_setInvestmentCosts(double investmentCostsInsulation, double investmentCostsInstallation, double investmentCostsAppliances) {
+		if( investingInInsulation == true) {
+			investedInInsulation_eur += investmentCostsInsulation;
+		}
+		if( investingInInstallation == true) {
+			investedInInstallation_eur += investmentCostsInstallation;
+		}
+		if( investingInAppliances == true) {
+			investedInAppliances_eur += investmentCostsAppliances;
+		}
+		totalInvestments_eur = investedInInsulation_eur + investedInInsulation_eur + investedInAppliances_eur;
+	}
 	
-	    //Set imitators
-	    else{
-	    	if( Math.random() < imitationCoefficient * contactRate){
-	    		Random random = new Random();
-	    		int randomIndex = random.nextInt(neighborhood.c_javaHouseholds.size()); 		
-	    		J_Household imitator = neighborhood.c_javaHouseholds.get(randomIndex);
-	    		imitator.v_receivedAdoptionMessage++;
-	    		imitator.f_adoption(utility);
-	    	}
-	    }
-    }
+	//2.8 Update energy consumption
+	public void f_setEnergyConsumption(double energySavingsInsulation_kWh, double energySavingsInstallation_kWh, double energySavingsAppliances_kWh) {
+			if( investingInInsulation == true) {
+				annualNaturalGasConsumption_kWh -= energySavingsInsulation_kWh;
+			}
+			if( investingInInstallation == true) {
+				annualElecConsumption_kWh -= energySavingsInstallation_kWh;
+			}
+			if( investingInAppliances == true) {
+				annualElecConsumption_kWh -= energySavingsAppliances_kWh;
+			}
+	}
+	
+	//2.9 Learn from neighbors
+	public void f_setLearning() {
+		int maxIndex = neighborhood.c_javaHouseholds.size() -1;
+		int randomIndex = uniform_discr(0,maxIndex, random);
+		J_Household neighbor = neighborhood.c_javaHouseholds.get(randomIndex);
+		if (knowledge < neighbor.knowledge && knowledge < 6.6) {
+			knowledge = knowledge + knowledge * learningRate;
+		}
+		if (CEE_Awareness < neighbor.CEE_Awareness && CEE_Awareness < 6.6) {
+			CEE_Awareness = CEE_Awareness + CEE_Awareness * learningRate;
+		}
+		if (ED_Awareness < neighbor.ED_Awareness && ED_Awareness < 6.6) {
+			ED_Awareness = ED_Awareness + ED_Awareness * learningRate;
+		}
+		if (pers_norms1 < neighbor.pers_norms1 && pers_norms1 < 6.6) {
+			pers_norms1 = pers_norms1 + pers_norms1 * learningRate;
+		}
+		if (soc_norms1 < neighbor.soc_norms1 && soc_norms1 < 6.6) {
+			soc_norms1 = soc_norms1 + soc_norms1 * learningRate;
+		}
+		if (intentionA1 < neighbor.intentionA1 && intentionA1 < 6.6) {
+			intentionA1 = intentionA1 + intentionA1 * learningRate;
+		}
+		if (intentionA2 < neighbor.intentionA2 && intentionA2 < 6.6) {
+			intentionA2 = intentionA2 + intentionA2 * learningRate;
+		}
+		if (intentionA3 < neighbor.intentionA3 && intentionA3 < 6.6) {
+			intentionA3 = intentionA3 + intentionA3 * learningRate;
+		}
+		
+	}
+*/
     
-    
-    //Set adoption
-    
-    public void f_adoption(double utility) {
-    	if (hasAdopted == false){
-   		
-    		if (utility > utilityThreshold){ //Adopt
-    			hasAdopted = true;
-    			heatingMethod = ELECTRIC_HEAT_PUMP;
-    			
-    			//Check if innovator or imitator
-    			if( v_receivedAdoptionMessage > 0 ){
-    				attitude = IMITATOR;
-    			}
-    			else{
-    				attitude = INNOVATOR;
-    			}
-    		
-    		}
-    		else { //Dont adopt
-    			v_receivedAdoptionMessage++; //Add adoption message for imitators
-    		}
-    		
-    	}
-
-    }
-	*/
+	
 	@Override
 	public String toString() {
 		return super.toString();
@@ -5968,6 +9824,42 @@ public class J_Household {
 }
 
 ]]></Text>
+		</JavaClass>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1721223548275</Id>
+			<Name><![CDATA[J_ECProject]]></Name>
+			<Text><![CDATA[/**
+ * J_ECProject
+ */	
+public class J_ECProject implements Serializable {
+    
+	public ProjectType projectType;
+	public ProjectSubType projectSubType;
+	public EnergyCommunity energyCommunity;
+	public ProjectStatus projectStatus;
+	public double ratedPower_kW;
+	public int investors_nb;
+	public List<J_Household> c_members;
+	
+	/**
+     * Default constructor
+     */
+    public J_ECProject() {
+    }
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	/**
+	 * This number is here for model snapshot storing purpose<br>
+	 * It needs to be changed when this class gets changed
+	 */ 
+	private static final long serialVersionUID = 1L;
+
+}]]></Text>
 		</JavaClass>
 	</JavaClasses>
 	<ModelResources>
@@ -5982,12 +9874,22 @@ public class J_Household {
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[_neighborhoods_data_2021.xls]]></Path>
+			<Path><![CDATA[json-20230618.jar]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[json-20230618.jar]]></Path>
+			<Path><![CDATA[_energy_communities.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[_neighborhoods_data_2023.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[_neighborhoods_netherlands2023.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
