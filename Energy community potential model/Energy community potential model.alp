@@ -53,11 +53,27 @@
 			<Name><![CDATA[Status]]></Name>
 			<Option>
 				<Id>1717513106122</Id>
-				<Name><![CDATA[ADOPTER]]></Name>
+				<Name><![CDATA[MEMBER]]></Name>
 			</Option>
 			<Option>
 				<Id>1717513106124</Id>
-				<Name><![CDATA[POTENTIAL_ADOPTER]]></Name>
+				<Name><![CDATA[BOARD_MEMBER]]></Name>
+			</Option>
+			<Option>
+				<Id>1722003978418</Id>
+				<Name><![CDATA[NON_MEMBER]]></Name>
+			</Option>
+			<Option>
+				<Id>1722004613463</Id>
+				<Name><![CDATA[OPEN_TO_INITIATE]]></Name>
+			</Option>
+			<Option>
+				<Id>1722005411824</Id>
+				<Name><![CDATA[WILLING_TO_INVEST]]></Name>
+			</Option>
+			<Option>
+				<Id>1722263944748</Id>
+				<Name><![CDATA[INVESTOR]]></Name>
 			</Option>
 		</OptionList>
 		<OptionList>
@@ -107,6 +123,10 @@
 				<Id>1721044305149</Id>
 				<Name><![CDATA[IDLE]]></Name>
 			</Option>
+			<Option>
+				<Id>1722004057120</Id>
+				<Name><![CDATA[PARTICIPATE]]></Name>
+			</Option>
 		</OptionList>
 		<OptionList>
 			<Id>1721130426153</Id>
@@ -126,18 +146,6 @@
 			<Option>
 				<Id>1721130426157</Id>
 				<Name><![CDATA[GEOGRAPHICAL_NEIGHBORHOOD]]></Name>
-			</Option>
-		</OptionList>
-		<OptionList>
-			<Id>1721223677178</Id>
-			<Name><![CDATA[ProjectType]]></Name>
-			<Option>
-				<Id>1721223677179</Id>
-				<Name><![CDATA[WIND]]></Name>
-			</Option>
-			<Option>
-				<Id>1721223677180</Id>
-				<Name><![CDATA[PV]]></Name>
 			</Option>
 		</OptionList>
 		<OptionList>
@@ -1126,7 +1134,7 @@ import org.json.JSONArray;]]></Import>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.53]]></Code>
+							<Code><![CDATA[0.65]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1721987881312</Id>
@@ -1140,7 +1148,7 @@ import org.json.JSONArray;]]></Import>
 				<Variable Class="Parameter">
 					<Id>1721995990410</Id>
 					<Name><![CDATA[p_initiatorsRequired]]></Name>
-					<X>370</X><Y>1750</Y>
+					<X>370</X><Y>1790</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1154,6 +1162,579 @@ import org.json.JSONArray;]]></Import>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1721995990408</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722004240925</Id>
+					<Name><![CDATA[p_timeAvailabilityThreshold]]></Name>
+					<X>370</X><Y>1740</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0.6]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1722004240923</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722005324073</Id>
+					<Name><![CDATA[p_financialAvailabilityThreshold]]></Name>
+					<X>370</X><Y>1760</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[3000]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1722005324071</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722243473006</Id>
+					<Name><![CDATA[p_investmentThresholdWindLargeScale]]></Name>
+					<X>380</X><Y>2250</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722243473004</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722243519194</Id>
+					<Name><![CDATA[p_investmentCostsWindLargeScale]]></Name>
+					<X>380</X><Y>2270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722243519192</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722243586122</Id>
+					<Name><![CDATA[p_operationalCostsWindLargeScale]]></Name>
+					<X>380</X><Y>2290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722243586120</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722243617146</Id>
+					<Name><![CDATA[p_annualRevenueWindLargeScale]]></Name>
+					<X>380</X><Y>2310</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722243617144</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722243646496</Id>
+					<Name><![CDATA[p_lifetimeWindLargeScale]]></Name>
+					<X>380</X><Y>2330</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722243646494</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244116949</Id>
+					<Name><![CDATA[p_investmentThresholdWindSmallScale]]></Name>
+					<X>380</X><Y>2370</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244116947</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244116956</Id>
+					<Name><![CDATA[p_investmentCostsWindSmallScale]]></Name>
+					<X>380</X><Y>2390</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244116954</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244116960</Id>
+					<Name><![CDATA[p_operationalCostsWindSmallScale]]></Name>
+					<X>380</X><Y>2410</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244116958</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244116963</Id>
+					<Name><![CDATA[p_annualRevenueWindSmallScale]]></Name>
+					<X>380</X><Y>2430</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244116961</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244116966</Id>
+					<Name><![CDATA[p_lifetimeWindSmallScale]]></Name>
+					<X>380</X><Y>2450</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244116964</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244121078</Id>
+					<Name><![CDATA[p_investmentThresholdPVRooftop]]></Name>
+					<X>380</X><Y>2490</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244121076</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244121082</Id>
+					<Name><![CDATA[p_investmentCostsPVRooftop]]></Name>
+					<X>380</X><Y>2510</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244121080</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244121085</Id>
+					<Name><![CDATA[p_operationalCostsPVRooftop]]></Name>
+					<X>380</X><Y>2530</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244121083</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244121088</Id>
+					<Name><![CDATA[p_annualRevenuePVRooftop]]></Name>
+					<X>380</X><Y>2550</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244121086</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244121091</Id>
+					<Name><![CDATA[p_lifetimePVRooftop]]></Name>
+					<X>380</X><Y>2570</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244121089</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244125678</Id>
+					<Name><![CDATA[p_investmentThresholdPVField]]></Name>
+					<X>380</X><Y>2610</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244125676</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244125681</Id>
+					<Name><![CDATA[p_investmentCostsPVField]]></Name>
+					<X>380</X><Y>2630</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244125679</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244125684</Id>
+					<Name><![CDATA[p_operationalCostsPVField]]></Name>
+					<X>380</X><Y>2650</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244125682</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244125687</Id>
+					<Name><![CDATA[p_annualRevenuePVField]]></Name>
+					<X>380</X><Y>2670</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244125685</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244125690</Id>
+					<Name><![CDATA[p_lifetimePVField]]></Name>
+					<X>380</X><Y>2690</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244125688</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244242362</Id>
+					<Name><![CDATA[p_discountRate]]></Name>
+					<X>380</X><Y>2220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244242360</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244283348</Id>
+					<Name><![CDATA[p_capacityThresholdWindLargeScale]]></Name>
+					<X>650</X><Y>2210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244283346</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244296067</Id>
+					<Name><![CDATA[p_capacityThresholdWindSmallScale]]></Name>
+					<X>650</X><Y>2230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244296065</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244306355</Id>
+					<Name><![CDATA[p_capacityThresholdPVRooftop]]></Name>
+					<X>650</X><Y>2250</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244306353</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722244318535</Id>
+					<Name><![CDATA[p_capacityThresholdPVField]]></Name>
+					<X>650</X><Y>2270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722244318533</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -1222,15 +1803,14 @@ import org.json.JSONArray;]]></Import>
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[f_adoptionProcess();
+					<Action><![CDATA[f_individualDecisionMaking();
+f_collectiveDecsionMaking();
 f_getStatistics();
 f_setView(ECMEMBERSHIP);
 
 traceln(pop_energyCommunities.size() + " ECs");
 traceln("Adoption process at year " + getYear() + " is finished");
-if(time() == 1){
-	pauseSimulation();
-}]]></Action>
+]]></Action>
 				</Event>
 			</Events>
 			<Functions>
@@ -2135,6 +2715,7 @@ map.setMapScale(mapScale);]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717596027053</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToWillingness]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>1050</X><Y>1560</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2193,6 +2774,7 @@ else if (ownership == RENTED){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717598163141</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToSubWillingness]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>1050</X><Y>1580</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2249,6 +2831,7 @@ else if( ownership == RENTED){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717599389581</Id>
 					<Name><![CDATA[f_setMapColorsOwnership]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>1060</X><Y>1620</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2288,7 +2871,7 @@ traceln("Finished map coloring");
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1718031424345</Id>
-					<Name><![CDATA[f_adoptionProcess]]></Name>
+					<Name><![CDATA[f_individualDecisionMaking]]></Name>
 					<X>370</X><Y>1400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2298,10 +2881,7 @@ traceln("Finished map coloring");
 for( GZ_Neighborhood x : pop_GZ_Neighborhoods){
 	x.f_adoptionProcess();
 }
-//Initiate new EC projects
-for( GZ_Neighborhood n : pop_GZ_Neighborhoods){
-	n.f_instantiateEC(p_initiatorsRequired);
-}
+
 /*
 for( J_Household hh : c_households){
 	hh.f_initiateEC();
@@ -2394,7 +2974,7 @@ for( Tuple project_data : ECprojects){
 	
 	//Set project tpye
 	if(project_data.get(ec_projects.type_asset).equals("PV")){
-		project.projectType = PV;
+		//project.projectType = PV;
 		if(project_data.get(ec_projects.dak_grond).equals("dak")){
 			project.projectSubType = PVROOFTOP;
 			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberPVRooftop); 
@@ -2405,7 +2985,7 @@ for( Tuple project_data : ECprojects){
 		}
 	}
 	else if(project_data.get(ec_projects.type_asset).equals("wind")){
-		project.projectType = WIND;
+		//project.projectType = WIND;
 		if(project_data.get(ec_projects.dak_grond).equals("grootschalig")){
 			project.projectSubType = WINDPARK;
 			project.investors_nb = (int) Math.round(project.ratedPower_kW / p_avgPowerPerMemberWindLargeScale);
@@ -2926,7 +3506,7 @@ ch_installedCapPerAssetType.addDataSet(ds_windLargeScaleInstalledCap, v_windLarg
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721307137964</Id>
 					<Name><![CDATA[f_getStatistics]]></Name>
-					<X>370</X><Y>1430</Y>
+					<X>370</X><Y>1480</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3116,6 +3696,9 @@ for(GZ_Neighborhood x : pop_GZ_Neighborhoods){
 			break;
 		}
 	}
+}
+for(GZ_Municipality y : pop_GZ_Municipalities){
+	y.p_inhabitants = y.c_households.size();
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -3259,10 +3842,10 @@ text_legend6.setText("No households");]]></Body>
 					</Parameter>
 					<Body><![CDATA[switch(view){
 	case OWNERSHIP:
-		f_setMapColorsOwnership();
+		//f_setMapColorsOwnership();
 		break;
 	case ECMEMBERSHIP:
-		f_setMapColorsResults();
+		//f_setMapColorsResults();
 		break;
 }]]></Body>
 				</Function>
@@ -3346,7 +3929,7 @@ awareness_weight = (double) selectFrom(regression_analysis_weights)
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721989219796</Id>
 					<Name><![CDATA[f_initiateEC]]></Name>
-					<X>370</X><Y>1470</Y>
+					<X>380</X><Y>1440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3355,14 +3938,39 @@ awareness_weight = (double) selectFrom(regression_analysis_weights)
 						<Name><![CDATA[initiatorHouseholds]]></Name>
 						<Type><![CDATA[List<J_Household>]]></Type>
 					</Parameter>
+					<Parameter>
+						<Name><![CDATA[neighborhood]]></Name>
+						<Type><![CDATA[GZ_Neighborhood]]></Type>
+					</Parameter>
 					<Body><![CDATA[//New EC is initiated, triggered from household
 EnergyCommunity EC = add_pop_energyCommunities();
 EC.c_members.addAll(initiatorHouseholds);
 EC.c_boardMembers.addAll(initiatorHouseholds);
-EC.p_municipality = initiatorHouseholds.get(0).municipality;
+initiatorHouseholds.forEach(x->x.status = BOARD_MEMBER);
+initiatorHouseholds.forEach(x->x.ECMember = true);
+initiatorHouseholds.forEach(x->x.ECBoardMember = true);
+EC.p_municipality = neighborhood.p_municipality;
 EC.p_municipality.c_ECs.add(EC);
-EC.p_neighborhood = initiatorHouseholds.get(0).neighborhood;
-EC.p_neighborhood.c_nearestECs.add(EC);
+EC.p_neighborhood = neighborhood;
+EC.p_neighborhood.p_nearestEC = EC;
+EC.v_foundingYear = getYear();
+EC.c_neighborhoods.add(neighborhood);
+
+//Connect to other neighborhoods
+for(GZ_Neighborhood n : EC.p_municipality.c_neighborhoods){
+	if(n.p_nearestEC == null && neighborhood.distanceTo(n) < 4000){ //TODO:Why 4km, maybe use districts instead
+		n.p_nearestEC = EC;
+		EC.c_neighborhoods.add(n);
+	}
+}
+
+Color newColor = randomColor();
+for(GZ_Neighborhood n : EC.c_neighborhoods){
+	EC.c_householdsInRange.addAll(n.c_households);
+	for(GISRegion r : n.c_gisRegions){
+		r.setFillColor(newColor);
+	}
+}	
 
 //Set location
 int nbOfGISRegions = EC.p_neighborhood.c_gisRegions.size();
@@ -3371,7 +3979,38 @@ GISRegion reg = EC.p_neighborhood.c_gisRegions.get(gisRegionIndex);
 Point p = reg.randomPointInside();
 EC.setLocation(p);
 
-//Start project
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722006202858</Id>
+					<Name><![CDATA[f_collectiveDecsionMaking]]></Name>
+					<X>370</X><Y>1420</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Initiate new EC projects
+for( GZ_Neighborhood n : pop_GZ_Neighborhoods){
+	n.f_instantiateEC(p_initiatorsRequired);
+}
+for( EnergyCommunity EC : pop_energyCommunities){
+	EC.f_selectProjectType();
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722244332633</Id>
+					<Name><![CDATA[f_setFinancialAssumptions]]></Name>
+					<X>380</X><Y>2190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[p_discountRate = 0.02;
+
 ]]></Body>
 				</Function>
 			</Functions>
@@ -4813,6 +5452,9 @@ EC.setLocation(p);
 						<Parameter>
 							<Name><![CDATA[p_hasEC]]></Name>
 						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_inhabitants]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -5104,7 +5746,7 @@ EC.setLocation(p);
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_setMapColorsOwnership();
+						<ActionCode><![CDATA[//f_setMapColorsOwnership();
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -7658,7 +8300,7 @@ EC.setLocation(p);
 				<Variable Class="PlainVariable">
 					<Id>1718031260336</Id>
 					<Name><![CDATA[v_ECMembers]]></Name>
-					<X>-180</X><Y>530</Y>
+					<X>-220</X><Y>470</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7670,7 +8312,7 @@ EC.setLocation(p);
 				<Variable Class="PlainVariable">
 					<Id>1718031281664</Id>
 					<Name><![CDATA[v_ECBoardMembers]]></Name>
-					<X>-180</X><Y>550</Y>
+					<X>-220</X><Y>490</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7682,7 +8324,7 @@ EC.setLocation(p);
 				<Variable Class="PlainVariable">
 					<Id>1718031297411</Id>
 					<Name><![CDATA[v_percECMembers]]></Name>
-					<X>-180</X><Y>570</Y>
+					<X>-220</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -8996,7 +9638,7 @@ EC.setLocation(p);
 				<Variable Class="Parameter">
 					<Id>1717512985849</Id>
 					<Name><![CDATA[p_geometeryCoordinates]]></Name>
-					<X>-180</X><Y>47</Y>
+					<X>-180</X><Y>-43</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9038,7 +9680,6 @@ EC.setLocation(p);
 				<Variable Class="Parameter">
 					<Id>1721316920419</Id>
 					<Name><![CDATA[p_nearestEC]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>340</X><Y>550</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -9096,7 +9737,7 @@ EC.setLocation(p);
 				<Variable Class="CollectionVariable">
 					<Id>1717512985839</Id>
 					<Name><![CDATA[c_gisRegions]]></Name>
-					<X>-180</X><Y>67</Y>
+					<X>-180</X><Y>-23</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9111,6 +9752,7 @@ EC.setLocation(p);
 				<Variable Class="CollectionVariable">
 					<Id>1721636859282</Id>
 					<Name><![CDATA[c_nearestECs]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>340</X><Y>570</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -9131,7 +9773,7 @@ EC.setLocation(p);
 					<Id>1717512765695</Id>
 					<Name><![CDATA[f_setWillingnessToInvestData]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>-180</X><Y>200</Y>
+					<X>-450</X><Y>90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9305,7 +9947,7 @@ else if ( p_environmentAsADriverRenters.equals(".")){
 					<ReturnType><![CDATA[GISRegion]]></ReturnType>
 					<Id>1717512985841</Id>
 					<Name><![CDATA[f_drawGISRegion]]></Name>
-					<X>-180</X><Y>167</Y>
+					<X>-220</X><Y>87</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9347,7 +9989,7 @@ return gisregion;
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717512985843</Id>
 					<Name><![CDATA[f_drawRegionFromWKTString]]></Name>
-					<X>-180</X><Y>147</Y>
+					<X>-220</X><Y>67</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9386,7 +10028,7 @@ else {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717513034753</Id>
 					<Name><![CDATA[f_householdInitialization]]></Name>
-					<X>-180</X><Y>220</Y>
+					<X>-220</X><Y>120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9406,8 +10048,11 @@ double sd_pbc = 0.2;
 double mean_environmentalAttitude = 0.2;
 double sd_environmentalAttitude = 0.2;
 
+double mean_timeAvailability = 0.2;
+double sd_timeAvailability = 0.2;
+
 for(J_Household x : c_households){
-	x.f_intializeHouseholdParamters(mean_knowledge, sd_knowledge, mean_awarenessClimate, sd_awarenessClimate, mean_awarenessEC, sd_awarenessEC, mean_persNorms, sd_persNorms, mean_socNorms, sd_socNorms, mean_pbc, sd_pbc, mean_environmentalAttitude, sd_environmentalAttitude);
+	x.f_initializeHouseholdParamters(mean_knowledge, sd_knowledge, mean_awarenessClimate, sd_awarenessClimate, mean_awarenessEC, sd_awarenessEC, mean_persNorms, sd_persNorms, mean_socNorms, sd_socNorms, mean_pbc, sd_pbc, mean_environmentalAttitude, sd_environmentalAttitude, mean_timeAvailability, sd_timeAvailability);
 	//x.f_adoptionProcess(innovationCoefficient, imitationCoefficient, contactRate, utility);
 	//x.f_setHouseholdOwnership((p_ownerOccupiedHomes + p_ownershipUnknown), p_ownedByHousingAssociation, p_ownedByOtherLandlords);
   //  x.f_setEnvironmentalAttitude(p_willingnessEnergyMeasuresHomeOwners, p_willingnessEnergyMeasuresRenters);
@@ -9420,7 +10065,8 @@ for(J_Household x : c_households){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717595630331</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToWillingness]]></Name>
-					<X>-180</X><Y>330</Y>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-450</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9471,7 +10117,8 @@ else if( willingness == UNKNOWN){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1717598819892</Id>
 					<Name><![CDATA[f_colorNeighborhoodsToDriver]]></Name>
-					<X>-180</X><Y>350</Y>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-450</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9522,7 +10169,7 @@ else{
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1718031115002</Id>
 					<Name><![CDATA[f_adoptionProcess]]></Name>
-					<X>-180</X><Y>390</Y>
+					<X>-220</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9577,7 +10224,7 @@ traceln("At neighborhood " + this.getIndex() + ", min, average and max utility i
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721316947508</Id>
 					<Name><![CDATA[f_findNearestEC]]></Name>
-					<X>-180</X><Y>240</Y>
+					<X>-220</X><Y>160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9606,7 +10253,9 @@ if( p_ECinMunicipality == true ){
 			}
 		}
 	}
+	traceln("ERROR: THIS CODE DOES NOT WORK WITHOUT FIXING IT");
 	//Subdivide all households from neighborhood over ECs in neighborhood
+	/*
 	if( ECsInNeighborhood.size() > 1){
 		for(EnergyCommunity EC : ECsInNeighborhood){
 			EC.c_neighborhoods.add(this);
@@ -9624,6 +10273,7 @@ if( p_ECinMunicipality == true ){
 		nearestEC.c_neighborhoods.add(this);
 		nearestEC.c_householdsInRange.addAll(c_households);
 	}
+	*/
 } ]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -9631,7 +10281,7 @@ if( p_ECinMunicipality == true ){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721721448517</Id>
 					<Name><![CDATA[f_colorGISRegions]]></Name>
-					<X>-180</X><Y>500</Y>
+					<X>-220</X><Y>430</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9674,7 +10324,7 @@ for(GISRegion gr : c_gisRegions){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721723728988</Id>
 					<Name><![CDATA[f_getResults]]></Name>
-					<X>-180</X><Y>410</Y>
+					<X>-220</X><Y>410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9692,7 +10342,7 @@ if(p_households > 0){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1721995610738</Id>
 					<Name><![CDATA[f_instantiateEC]]></Name>
-					<X>-180</X><Y>620</Y>
+					<X>-220</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9701,12 +10351,14 @@ if(p_households > 0){
 						<Name><![CDATA[initiatorsRequired]]></Name>
 						<Type><![CDATA[double]]></Type>
 					</Parameter>
-					<Body><![CDATA[int initiatingHouseholds = count(c_households, x->x.willingnessToInitiate);
-
-if( initiatingHouseholds > initiatorsRequired){ //initiate EC
-	List<J_Household> initiatorHouseholds = new ArrayList<>();
-	initiatorHouseholds = findAll(c_households, x->x.willingnessToInitiate);
-	main.f_initiateEC(initiatorHouseholds);
+					<Body><![CDATA[if( p_nearestEC == null && p_households > 0){
+	int initiatingHouseholds = count(c_households, x->x.willingnessToInitiate);
+	
+	if( initiatingHouseholds > initiatorsRequired){ //initiate EC
+		List<J_Household> initiatorHouseholds = new ArrayList<>();
+		initiatorHouseholds = findAll(c_households, x->x.willingnessToInitiate);
+		main.f_initiateEC(initiatorHouseholds, this);
+	}
 }
 
 ]]></Body>
@@ -9873,7 +10525,7 @@ if( initiatingHouseholds > initiatorsRequired){ //initiate EC
 				<Text>
 					<Id>1717512985837</Id>
 					<Name><![CDATA[Btext3]]></Name>
-					<X>-190</X><Y>10</Y>
+					<X>-190</X><Y>-80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9891,6 +10543,112 @@ if( initiatingHouseholds > initiatorsRequired){ //initiate EC
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Rectangle>
+					<Id>1722242756763</Id>
+					<Name><![CDATA[rectangle]]></Name>
+					<X>-240</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>240</Width>
+					<Height>550</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4139</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1722242823165</Id>
+					<Name><![CDATA[Btext2]]></Name>
+					<X>-230</X><Y>10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Initialization]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>18</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1722242860173</Id>
+					<Name><![CDATA[Btext5]]></Name>
+					<X>-230</X><Y>130</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Initialization w/ existing data]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1722242925239</Id>
+					<Name><![CDATA[Btext6]]></Name>
+					<X>-230</X><Y>210</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Adoption process]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1722242981898</Id>
+					<Name><![CDATA[Btext7]]></Name>
+					<X>-230</X><Y>370</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Results and visualisation]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
@@ -9901,6 +10659,8 @@ if( initiatingHouseholds > initiatorsRequired){ //initiate EC
 		<ActiveObjectClass>
 			<Id>1720541155529</Id>
 			<Name><![CDATA[EnergyCommunity]]></Name>
+			<Import><![CDATA[//import org.bouncycastle.i18n.filter.Filter;]]></Import>
+			<StartupCode><![CDATA[f_instantiateProjectTypes();]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1720541155535</Id>
@@ -9993,6 +10753,18 @@ if( initiatingHouseholds > initiatorsRequired){ //initiate EC
 			<CurrentLevel>1720541155536</CurrentLevel>
 			<ConnectionsId>1720541155530</ConnectionsId>
 			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1722266594115</Id>
+					<Name><![CDATA[v_foundingYear]]></Name>
+					<X>50</X><Y>350</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1720541183134</Id>
 					<Name><![CDATA[p_name]]></Name>
@@ -10362,6 +11134,21 @@ if( initiatingHouseholds > initiatorsRequired){ //initiate EC
 					</Properties>
 
 				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1722246716811</Id>
+					<Name><![CDATA[c_projectTypes]]></Name>
+					<X>-160</X><Y>330</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[J_ProjectType]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -10438,6 +11225,313 @@ double countMembersInProjects = sum(c_energyProjects, x->x.c_members.size());
 int countMembersFromHouseholds = count(c_householdsInRange, x->x.ECMember == true);
 traceln("At EC " + this.getIndex() + " " + sum(c_energyProjects, x->x.investors_nb) + " required members, " + countMembersInEC + " members in collection, " + countMembersInProjects + " members in project collections, " + countMembersFromHouseholds + " households w/ status member");
 ]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722006357734</Id>
+					<Name><![CDATA[f_selectProjectType]]></Name>
+					<X>-150</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double investmentPotentialMembers = sumWhere(c_householdsInRange, x->x.willingnessToInvest_eur, x->x.willingToInvestFinancially);
+double investmentPotentialTotal = sum(c_householdsInRange, x->x.willingnessToInvest_eur);
+double boardCapacity = sum(c_boardMembers, x->x.capacity);
+
+f_siteAvailability();
+f_hasBoardCapacity();
+f_hasInvestmentCapacity();
+
+traceln("At EC " + this.getIndex() + " investment potential is " + investmentPotentialMembers + " and total: " + investmentPotentialTotal + " and board capacity is " + boardCapacity);
+
+if(count(c_projectTypes, x->x.hasAvailableSite && x.hasRequiredBoardCapacity && x.hasRequiredInvestmentCapacity) > 0){
+	traceln("At least one project type possible");
+	f_financialComparison();
+	
+	J_ProjectType projectType = randomWhere(c_projectTypes, x->x.NPV > 0 && x.hasAvailableSite && x.hasRequiredBoardCapacity && x.hasRequiredInvestmentCapacity);
+	
+	if(projectType != null){
+		
+		//Set project
+		f_startProject(projectType);
+	}
+
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722010399959</Id>
+					<Name><![CDATA[f_getNPV]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-130</X><Y>220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[investmentCosts]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[operationalCosts]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[annualRevenue]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[lifetime]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[discountRate]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[
+double NPV = 0;
+for(int t=0; t<lifetime; t++){
+	double annualCashFlow = 0.0;
+	
+	if( i=0 ){
+		double annualCashFlow = annualRevenue - investmentCosts + operationalCosts;
+	}
+	else{
+	annualCashFlow = annualRevenue - operationalCosts;
+	}
+	double annualDiscountedCashFlow = annualCashFlow / pow(1 + discountRate, t);
+	NPV += annualDiscountedCashFlow;
+}
+return NPV;
+	]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[List<J_ProjectType>]]></ReturnType>
+					<Id>1722243910800</Id>
+					<Name><![CDATA[f_financialComparison]]></Name>
+					<X>-140</X><Y>200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double NPVWindLargeScale = normal(0.0, 1.0, 0.7, 0.1, main.random_instance);
+double NPVWindSmallScale = normal(0, 1, 0.5, 0.1, main.random_instance);
+double NPVPVRooftop = normal(0, 1, 0.3, 0.1, main.random_instance);
+double NPVPVField = normal(0, 1, 0.5, 0.1, main.random_instance);
+/*
+double NPVWindLargeScale = f_getNPV(main.p_investmentCostsWindLargeScale, main.p_operationalCostsWindLargeScale, main.p_annualRevenueWindLargeScale, main.p_lifetimeWindLargeScale, main.p_discountRate);
+double NPVWindSmallScale = f_getNPV(main.p_investmentCostsWindSmallScale, main.p_operationalCostsWindSmallScale, main.p_annualRevenueWindSmallScale, main.p_lifetimeWindSmallScale, main.p_discountRate);
+double NPVPVRooftop = f_getNPV(main.p_investmentCostsPVRooftop, main.p_operationalCostsPVRooftop, main.p_annualRevenuePVRooftop, main.p_lifetimePVRooftop, main.p_discountRate);
+double NPVPVField = f_getNPV(main.p_investmentCostsPVField, main.p_operationalCostsPVField, main.p_annualRevenuePVField, main.p_lifetimePVField, main.p_discountRate);
+*/
+
+for(J_ProjectType x : c_projectTypes){
+	if(x.hasAvailableSite && x.hasRequiredBoardCapacity && x.hasRequiredInvestmentCapacity){
+		if(x.type == WINDPARK){
+			x.NPV = NPVWindLargeScale;
+		}
+		else if(x.type == WINDSMALLSCALE){
+			x.NPV = NPVWindSmallScale;
+		}
+		else if(x.type == PVFIELD){
+			x.NPV = NPVPVField;
+		}
+		else if(x.type == PVROOFTOP){
+			x.NPV = NPVPVRooftop;
+		}
+	}
+	else{
+		x.NPV = 0;
+	}
+}
+
+
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722246114049</Id>
+					<Name><![CDATA[f_hasInvestmentCapacity]]></Name>
+					<X>-140</X><Y>180</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double investmentPotentialMembers = sumWhere(c_householdsInRange, x->x.willingnessToInvest_eur, x->x.willingToInvestFinancially);
+
+for(J_ProjectType x : c_projectTypes){
+	double capacityThreshold = 0;
+	if(x.type == WINDPARK){
+		capacityThreshold = main.p_investmentThresholdWindLargeScale;
+	}
+	else if(x.type == WINDSMALLSCALE){
+		capacityThreshold = main.p_investmentThresholdWindSmallScale;
+	}
+	else if(x.type == PVFIELD){
+		capacityThreshold = main.p_investmentThresholdPVField;
+	}
+	else if(x.type == PVROOFTOP){
+		capacityThreshold = main.p_investmentThresholdPVRooftop;
+	}
+	
+	if( investmentPotentialMembers > capacityThreshold){
+		x.hasRequiredInvestmentCapacity = true;
+	}
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722246129209</Id>
+					<Name><![CDATA[f_siteAvailability]]></Name>
+					<X>-140</X><Y>140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//TODO: Site availabiltiy still random
+for(J_ProjectType x : c_projectTypes){
+	double rand = uniform(0,1);
+	if(x.type == WINDPARK){
+		if(rand < 0.05){
+			x.hasAvailableSite = true;
+		}
+	}
+	else if(x.type == WINDSMALLSCALE){
+		if(rand < 0.1){
+			x.hasAvailableSite = true;
+		}
+	}
+	else if(x.type == PVFIELD){
+		if(rand < 0.4){
+			x.hasAvailableSite = true;
+		}
+	}
+	else if(x.type == PVROOFTOP){
+		if(rand < 1){
+			x.hasAvailableSite = true;
+		}
+	}
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722254026601</Id>
+					<Name><![CDATA[f_instantiateProjectTypes]]></Name>
+					<X>-160</X><Y>310</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[c_projectTypes.add(new J_ProjectType (WINDPARK));
+c_projectTypes.add(new J_ProjectType (WINDSMALLSCALE));
+c_projectTypes.add(new J_ProjectType (PVROOFTOP));
+c_projectTypes.add(new J_ProjectType (PVFIELD));]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722255581458</Id>
+					<Name><![CDATA[f_hasBoardCapacity]]></Name>
+					<X>-140</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double boardMembersCapacity = sum(c_boardMembers, x->x.capacity);
+
+for(J_ProjectType x : c_projectTypes){
+	double capacityThreshold = 0;
+	if(x.type == WINDPARK){
+		capacityThreshold = main.p_capacityThresholdWindLargeScale;
+	}
+	else if(x.type == WINDSMALLSCALE){
+		capacityThreshold = main.p_capacityThresholdWindSmallScale;
+	}
+	else if(x.type == PVFIELD){
+		capacityThreshold = main.p_capacityThresholdPVField;
+	}
+	else if(x.type == PVROOFTOP){
+		capacityThreshold = main.p_capacityThresholdPVRooftop;
+	}
+	
+	if( boardMembersCapacity > capacityThreshold){
+		x.hasRequiredBoardCapacity = true;
+	}
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722257128342</Id>
+					<Name><![CDATA[f_startProject]]></Name>
+					<X>-150</X><Y>250</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[projectType]]></Name>
+						<Type><![CDATA[J_ProjectType]]></Type>
+					</Parameter>
+					<Body><![CDATA[J_ECProject project = new J_ECProject();
+
+//Set connections to members and EC
+project.projectSubType = projectType.type;
+project.c_members = findAll(c_householdsInRange, x->x.willingToInvestFinancially); //TODO: Now all intersted households always join
+project.energyCommunity = this;
+project.constructionYear = getYear();
+
+//Link to members
+c_energyProjects.add(project);
+c_members.addAll(project.c_members);
+for(J_Household hh : c_members){
+	hh.f_makeFinancialInvestment(project);
+}
+
+
+project.investors_nb = project.c_members.size();
+project.ratedPower_kW = f_getProjectRatedPower(project.investors_nb, project.projectSubType);
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1722262763212</Id>
+					<Name><![CDATA[f_getProjectRatedPower]]></Name>
+					<X>-140</X><Y>270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[nbOfInvestors]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[type]]></Name>
+						<Type><![CDATA[ProjectSubType]]></Type>
+					</Parameter>
+					<Body><![CDATA[if(type == WINDPARK){
+	return main.p_avgPowerPerMemberWindLargeScale * nbOfInvestors;
+}
+else if(type == WINDSMALLSCALE){
+	return main.p_avgPowerPerMemberWindSmallScale * nbOfInvestors;
+}
+else if(type == PVFIELD){
+	return main.p_avgPowerPerMemberPVField * nbOfInvestors;
+}
+else{
+	return main.p_avgPowerPerMemberPVRooftop * nbOfInvestors;
+}]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -10674,6 +11768,27 @@ traceln("At EC " + this.getIndex() + " " + sum(c_energyProjects, x->x.investors_
 						<ParameterEditor>
 							<Id>1721651772019</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1722267485916</Id>
+					<Name><![CDATA[p_inhabitants]]></Name>
+					<X>60</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1722267485914</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -11113,6 +12228,87 @@ traceln("At EC " + this.getIndex() + " " + sum(c_energyProjects, x->x.investors_
 				<Parameter>
 					<ParameterName><![CDATA[p_initiatorsRequired]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_timeAvailabilityThreshold]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_financialAvailabilityThreshold]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentThresholdWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentCostsWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_operationalCostsWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_annualRevenueWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_lifetimeWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentThresholdWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentCostsWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_operationalCostsWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_annualRevenueWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_lifetimeWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentThresholdPVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentCostsPVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_operationalCostsPVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_annualRevenuePVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_lifetimePVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentThresholdPVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_investmentCostsPVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_operationalCostsPVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_annualRevenuePVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_lifetimePVField]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_discountRate]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_capacityThresholdWindLargeScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_capacityThresholdWindSmallScale]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_capacityThresholdPVRooftop]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_capacityThresholdPVField]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -11163,8 +12359,6 @@ public class J_Household {
     }
     
      //SET HOUSEHOLD PARAMETERS    
-    
-    public double discountRate = 0.02;
 	public double learningRate = 0.002;
 	
 	//Individual decision-making factors
@@ -11181,6 +12375,8 @@ public class J_Household {
 	//Attitude and socio-economic parameters
 	public double environmentalAttitude;
 	public double savings;
+	public double timeAvailability;
+	public double financialAvailability;
 	
 	//Individual decision-makin framework parameters
 	public double awarenessOfConsequence;
@@ -11191,7 +12387,12 @@ public class J_Household {
 	public double personalNorm;
 	public Action intention;
 	public Action behavioralChange;
+	public Status status;
 	public double utility;
+	
+	//Collective decision making
+	public double capacity;
+	public double willingnessToInvest_eur;
 	
 	public double AoC_to_PN_weight;
 	public double AoC_to_responsibility_weight;
@@ -11206,6 +12407,7 @@ public class J_Household {
 	public double intentionThreshold;
 	public double pbcThreshold;
 	public boolean willingnessToInitiate;
+	public boolean willingToInvestFinancially;
 	
 	public boolean investingMoney = false;
 	public boolean investedMoney = false;
@@ -11223,7 +12425,7 @@ public class J_Household {
 	
 
 	//1. Initialization
-	public void f_intializeHouseholdParamters(double mean_knowledge, double sd_knowledge, double mean_awarenessClimate, double sd_awarenessClimate, double mean_awarenessEC, double sd_awarenessEC, double mean_persNorms, double sd_persNorms, double mean_socNorms, double sd_socNorms, double mean_pbc, double sd_pbc, double mean_environmentalAttitude, double sd_environmentalAttitude) {
+	public void f_initializeHouseholdParamters(double mean_knowledge, double sd_knowledge, double mean_awarenessClimate, double sd_awarenessClimate, double mean_awarenessEC, double sd_awarenessEC, double mean_persNorms, double sd_persNorms, double mean_socNorms, double sd_socNorms, double mean_pbc, double sd_pbc, double mean_environmentalAttitude, double sd_environmentalAttitude, double mean_timeAvailable, double sd_timeAvailable) {
 		//Knowledge and awarness - Norm-activation theory
 		knowledge = normal(0, 1, mean_knowledge, sd_knowledge, random);
 		awarenessCEE = normal(0, 1, mean_awarenessClimate, sd_awarenessClimate, random);
@@ -11235,9 +12437,11 @@ public class J_Household {
 		//pbc = normal(0, 1, mean_pbc, sd_pbc, random);
 		
 		//Attitude and socio-economic parameters
-		environmentalAttitude = normal(0, 1, mean_environmentalAttitude, sd_environmentalAttitude, random);
-		savings = lognormal(9, 0.8, 1000, random);
-				
+		environmentalAttitude = normal(0, 1, mean_environmentalAttitude, sd_environmentalAttitude, random);	
+		savings = lognormal(9, 0.8, 1000, random);		//TODO set this value
+		timeAvailability = normal(0, 1, mean_timeAvailable, sd_timeAvailable, random);
+		financialAvailability = savings * 0.2; //TODO: update these values
+		
 		AoC_to_PN_weight = 0.323;						//Values based on liu et al.
 		AoC_to_responsibility_weight = 0.2;
 		responsibility_to_PN_weight = 0.204;
@@ -11250,6 +12454,10 @@ public class J_Household {
 		
 		intentionThreshold = environment.p_intentionThreshold;
 		pbcThreshold = environment.p_PBCThreshold;
+		
+		//collective param
+		capacity = normal(0, 1, 0.5, 0.1, random);			//TODO: update these values
+		willingnessToInvest_eur = financialAvailability * 0.5; //TODO: update these values
 		
 		//f_setECMembers();
 		f_initializeNetwork(10, RANDOM_NETWORK);
@@ -11303,8 +12511,9 @@ public class J_Household {
 		
 		f_getPersonalNorm();					//2.6
 		f_getIntention();						//2.7
-		f_getBehavioralChange();				//2.8	
-		f_setWillingnessToInitiate();			//2.9
+		
+		f_setAction();		//2.8	
+
 	} 
 		
 	
@@ -11369,7 +12578,7 @@ public class J_Household {
 		double totalWeight = PN_to_intention_weight + attitude_to_intention_weight + SN_to_intention_weight + PBC_to_intention_weight;
 		utility = 1.0/totalWeight * (personalNorm * PN_to_intention_weight + attitude * attitude_to_intention_weight + subjectiveNorm * SN_to_intention_weight + pbc * PBC_to_intention_weight);	
 		if(utility > intentionThreshold) {
-			intention = INVEST_MONEY;
+			intention = PARTICIPATE;
 			//traceln("Household " + householdIndex + " has intention with pbc " + pbc + " and pbc threshold" + pbcThreshold);
 		}
 		else {
@@ -11377,22 +12586,50 @@ public class J_Household {
 		}
 	}
 	
-	public void f_getBehavioralChange() {
-		if( intention == INVEST_MONEY && pbc > pbcThreshold) {
-			behavioralChange = INVEST_MONEY;
-			ECMember = true;
-			//traceln("Household " + householdIndex + " is ECMember");
+	public void f_setAction() {
+		if( localEC == null ) {
+			if( utility >= environment.p_willingnessToInitiateThreshold) {
+				willingnessToInitiate = true;
+				status = NON_MEMBER;
+			}
+			else {
+				status = NON_MEMBER;
+			}
+		}
+		else {
+			if( intention == PARTICIPATE && pbc > pbcThreshold ) {
+				ECMember = true;
+				if( timeAvailability > environment.p_timeAvailabilityThreshold) {
+					ECBoardMember = true;
+					status = BOARD_MEMBER;
+				}
+				if( financialAvailability > environment.p_financialAvailabilityThreshold)	{
+					willingToInvestFinancially = true;
+					status = WILLING_TO_INVEST;
+				}
+				if(status == NON_MEMBER) {
+					status = MEMBER;
+				}
+			}
+			else {
+				status = NON_MEMBER;
+			}
 		}
 	}
 	
-	public void f_setWillingnessToInitiate() {
-		if( utility >= environment.p_willingnessToInitiateThreshold) {
-			willingnessToInitiate = true;
-		}
-	}
-	
-	public void f_initiateEC() {
+	public void f_makeFinancialInvestment(J_ECProject project ) {
+		status = INVESTOR;
+		project.membersInvestment_eur += willingnessToInvest_eur;
+		financialAvailability -= willingnessToInvest_eur;
+		projects.add(project);
+		//Reset values
+		willingnessToInvest_eur = 0;
+		willingToInvestFinancially = false;
 		
+	}
+	
+	/*
+	public void f_initiateEC() {
 		if( localEC == null) {
 			if( count(householdsInNetwork, x->x.willingnessToInitiate) > 5) {
 				List<J_Household> initiatorHouseholds = new ArrayList<>();
@@ -11407,7 +12644,7 @@ public class J_Household {
 			}
 		}
 	}
-	
+	*/
 	//2.8 Adoption based on Koirala et al. regression analysis
 	/*
 	public voidf_setVariablesRegress();
@@ -11859,13 +13096,15 @@ public class J_Household {
  */	
 public class J_ECProject implements Serializable {
     
-	public ProjectType projectType;
+	//public ProjectType projectType;
 	public ProjectSubType projectSubType;
 	public EnergyCommunity energyCommunity;
 	public ProjectStatus projectStatus;
 	public double ratedPower_kW;
 	public int investors_nb;
+	public double membersInvestment_eur;
 	public List<J_Household> c_members = new ArrayList<>();
+	public double constructionYear;
 	
 	/**
      * Default constructor
@@ -11873,6 +13112,39 @@ public class J_ECProject implements Serializable {
     public J_ECProject() {
     }
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	/**
+	 * This number is here for model snapshot storing purpose<br>
+	 * It needs to be changed when this class gets changed
+	 */ 
+	private static final long serialVersionUID = 1L;
+
+}]]></Text>
+		</JavaClass>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1722252557146</Id>
+			<Name><![CDATA[J_ProjectType]]></Name>
+			<Text><![CDATA[/**
+ * J_ProjectType
+ */	
+public class J_ProjectType implements Serializable {
+	public ProjectSubType type;
+	public double NPV;
+	public boolean hasAvailableSite;
+	public boolean hasRequiredBoardCapacity;
+	public boolean hasRequiredInvestmentCapacity;
+    /**
+     * Default constructor
+     */
+    public J_ProjectType(ProjectSubType type) {
+    this.type = type;
+    }
+   
 	@Override
 	public String toString() {
 		return super.toString();
