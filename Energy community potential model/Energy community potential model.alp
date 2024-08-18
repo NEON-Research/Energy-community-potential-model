@@ -216,7 +216,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import org.json.JSONObject; // for JSON parsing
-import org.json.JSONArray;]]></Import>
+import org.json.JSONArray;
+import java.util.stream.Collectors;]]></Import>
 			<StartupCode><![CDATA[f_initalizeSettings();]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
@@ -1268,6 +1269,90 @@ import org.json.JSONArray;]]></Import>
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[0.05]]></Code>
 						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723990419265</Id>
+					<Name><![CDATA[indexPercentile]]></Name>
+					<X>-250</X><Y>1820</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995961349</Id>
+					<Name><![CDATA[cat1]]></Name>
+					<X>-250</X><Y>2050</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995972488</Id>
+					<Name><![CDATA[cat2]]></Name>
+					<X>-250</X><Y>2070</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995976335</Id>
+					<Name><![CDATA[cat3]]></Name>
+					<X>-250</X><Y>2090</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995980920</Id>
+					<Name><![CDATA[cat4]]></Name>
+					<X>-250</X><Y>2110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995980923</Id>
+					<Name><![CDATA[cat5]]></Name>
+					<X>-250</X><Y>2130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1723995980925</Id>
+					<Name><![CDATA[cat6]]></Name>
+					<X>-250</X><Y>2150</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -5060,9 +5145,11 @@ for(GZ_District n : pop_GZ_Districts){
 		x.f_setAwarenessOfConsequence(mean_environmentalConcern, sd_environmentalConcern, mean_awarenessEC, sd_awarenessEC);
 		x.f_setAttitude(mean_financialAttitude, sd_financialAttitude, mean_renewablesAttitude, sd_renewablesAttitude);
 		x.f_setPBC(mean_timeAvailability, sd_timeAvailability);
-		x.f_initializeNetwork(p_networkSizeMean, p_networkSizeSD, p_shareLocalContactsInNetwork, p_shareSimilarcontactsInNetwork, RANDOM_NETWORK);
 	}
 }
+//traceln("going to initialize param incl netw.");
+f_setNetwork3();
+
 for(J_Household x : c_households){
 	x.f_setSubjectiveNorm(); // happens after network initialization as it is dependend on network
 	x.f_getPersonalNorm();
@@ -5288,6 +5375,471 @@ for(GZ_Neighborhood nbh : pop_GZ_Neighborhoods){
 	}
 }
 */]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1723986203176</Id>
+					<Name><![CDATA[f_setNetwork]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-250</X><Y>1800</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[traceln("In network setting");
+
+//List national
+int nbOfCategories = 6;
+List<J_Household> orderedAoCTotal = sortDescending(c_households, x->x.awarenessOfConsequence);
+double[] percentileValuesTotalLB = new double[nbOfCategories];
+double[] percentileValuesTotalUB = new double[nbOfCategories];
+for(int i=0; i<nbOfCategories; i++){
+	double percentileLB = (i+1.0)/ (double) nbOfCategories;
+	double percentileUB = (double) i / (double) nbOfCategories;
+	
+	int indexOfPercentileLB = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
+	int indexOfPercentileUB = (int) Math.floor(percentileUB * orderedAoCTotal.size());
+	
+	if( i == 0){
+		//indexOfPercentileUB[i] = 0;
+		//indexOfPercentileLB[i] = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
+	
+		percentileValuesTotalUB[i] = 1;
+		percentileValuesTotalLB[i] = orderedAoCTotal.get(indexOfPercentileLB).awarenessOfConsequence; //LB = Lower bound
+	}
+	else if( i == 5){
+		//indexOfPercentileUB[i] = indexOfPercentileLB[i-1];
+		//indexOfPercentileLB[i] = orderedAoCTotal.size() - 1;		
+		percentileValuesTotalUB[i] = percentileValuesTotalLB[i-1];
+		percentileValuesTotalLB[i] = 0;
+	}
+	else {
+		//indexOfPercentileUB[i] = indexOfPercentileLB[i-1];
+		//indexOfPercentileLB[i] = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
+		percentileValuesTotalUB[i] = percentileValuesTotalLB[i-1];
+		percentileValuesTotalLB[i] = orderedAoCTotal.get(indexOfPercentileLB).awarenessOfConsequence; //LB = Lower bound
+	}
+	traceln("perc UB "+ percentileUB + " perc LB " + percentileLB);
+	traceln("Percentile value LB " + percentileValuesTotalLB[i] + " perc value ub " + percentileValuesTotalUB[i]);
+}
+
+traceln("Percentile value LB " + percentileValuesTotalLB[0] + " perc value ub " + percentileValuesTotalUB[0]);
+//List district
+//int indexPercentile = 0;
+for(GZ_District d : pop_GZ_Districts){
+	if(d.p_households > 0){
+		/*
+		List<J_Household> orderedAoCDistrict = sortDescending(c_households, x->x.awarenessOfConsequence);
+		double[] percentileValuesDistrict = new double[5];
+		for(int i=0; i<5; i++){
+			int indexOfPercentile = (int) Math.round((i+1)/5);
+			percentileValuesDistrict[i] = orderedAoCDistrict.get(indexOfPercentile).awarenessOfConsequence;
+		}
+		*/
+		for(J_Household x : d.c_households){
+			int ipCopy = 0;
+			while(x.awarenessOfConsequence <= percentileValuesTotalLB[ipCopy]){
+				ipCopy++;
+			} 
+			indexPercentile = ipCopy;
+			if(x.householdIndex < 5){
+				traceln("Household " + x.householdIndex + " is in index percentile " + indexPercentile);
+			}
+			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
+			for(int i=0; i<networkSize; i++) {
+				J_Household connection;
+			
+				connection = randomFrom(d.c_households);
+				/*
+				double rand = uniform(0,1);
+				double rand2 =  uniform(0,1);
+				if(rand < p_shareLocalContactsInNetwork) {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						connection = randomWhere(d.c_households, y->y.awarenessOfConsequence <= percentileValuesTotalUB[indexPercentile] && y.awarenessOfConsequence >= percentileValuesTotalLB[indexPercentile]);
+					}
+					else {
+						connection = randomFrom(d.c_households);
+					}
+				}
+				else {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						connection = randomWhere(c_households, y->y.awarenessOfConsequence <= percentileValuesTotalUB[indexPercentile] && y.awarenessOfConsequence >= percentileValuesTotalLB[indexPercentile]);
+					}
+					else {
+						connection = randomFrom(c_households);
+					}
+				}
+				*/
+				x.householdsInNetwork.add(connection);
+				connection.householdsInNetwork.add(x);
+			}
+			if(x.householdsInNetwork.size() == 0) {
+				traceln("Error: hh " + x.householdIndex + " has no households in network");
+			}		
+			if(x.householdIndex % 1000 == 0) {
+				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
+			}
+		}
+	}
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1723993996698</Id>
+					<Name><![CDATA[f_setNetwork2]]></Name>
+					<X>-250</X><Y>2000</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[traceln("In network setting");
+//TODO: OTHER WAY AROUND: THIS RESULTS IN FIXED SIZE LISTS IPV BASED ON AWARENESS VALUE
+//List national
+int nbOfCategories = 6;
+List<J_Household> orderedAoCTotal = sortDescending(c_households, x->x.awarenessOfConsequence);
+int[] indexOfPercentile = new int[nbOfCategories + 1];
+double[] percentileValues = new double[nbOfCategories + 1];
+for(int i=0; i<nbOfCategories; i++){
+	double percentile = (double) i / (double) nbOfCategories;
+	indexOfPercentile[i] = (int) Math.floor(percentile * orderedAoCTotal.size());
+	percentileValues[i] = orderedAoCTotal.get(indexOfPercentile[i]).awarenessOfConsequence; //LB = Lower bound
+	
+	if( i == nbOfCategories - 1){
+		indexOfPercentile[i + 1] = orderedAoCTotal.size() - 1;		
+	}
+	/*
+	if( i < nbOfCategories){
+		traceln("index LB " + indexOfPercentile[i] + " index ub " + indexOfPercentile[i+1]);
+	}*/
+}
+for(int i=0; i<indexOfPercentile.length; i++){
+	traceln("index of percentile at index " + i + " is " + indexOfPercentile[i]);
+}
+
+
+List<J_Household> householdsTotal1 = c_households.subList(indexOfPercentile[0], indexOfPercentile[1]);
+List<J_Household> householdsTotal2 = c_households.subList(indexOfPercentile[1] + 1, indexOfPercentile[2]);
+List<J_Household> householdsTotal3 = c_households.subList(indexOfPercentile[2] + 1, indexOfPercentile[3]);
+List<J_Household> householdsTotal4 = c_households.subList(indexOfPercentile[3] + 1, indexOfPercentile[4]);
+List<J_Household> householdsTotal5 = c_households.subList(indexOfPercentile[4] + 1, indexOfPercentile[5]);
+List<J_Household> householdsTotal6 = c_households.subList(indexOfPercentile[5] + 1, indexOfPercentile[6]);
+
+//int indexPercentile = 0;
+for(GZ_District d : pop_GZ_Districts){
+	if(d.p_households > 0){
+
+		//SET DISTRICT LISTS
+		List<J_Household> orderedAoCDistrict = sortDescending(d.c_households, x->x.awarenessOfConsequence);
+		int[] indexOfPercentileDistrict = new int[nbOfCategories + 1];
+		
+		for(int i=0; i<nbOfCategories; i++){
+			double percentile2 = (double) i / (double) nbOfCategories;
+			indexOfPercentileDistrict[i] = (int) Math.floor(percentile2 * orderedAoCDistrict.size());
+			if( i == nbOfCategories - 1){
+				indexOfPercentileDistrict[i + 1] = orderedAoCDistrict.size() - 1;		
+			}
+			/*
+			if( i < nbOfCategories){
+				traceln("index LB " + indexOfPercentileDistrict[i] + " index ub " + indexOfPercentileDistrict[i+1]);
+			}*/
+		}
+		
+		List<J_Household> householdsDistrict1 = c_households.subList(indexOfPercentileDistrict[0], indexOfPercentileDistrict[1]);
+		List<J_Household> householdsDistrict2 = c_households.subList(indexOfPercentileDistrict[1] + 1, indexOfPercentileDistrict[2]);
+		List<J_Household> householdsDistrict3 = c_households.subList(indexOfPercentileDistrict[2] + 1, indexOfPercentileDistrict[3]);
+		List<J_Household> householdsDistrict4 = c_households.subList(indexOfPercentileDistrict[3] + 1, indexOfPercentileDistrict[4]);
+		List<J_Household> householdsDistrict5 = c_households.subList(indexOfPercentileDistrict[4] + 1, indexOfPercentileDistrict[5]);
+		List<J_Household> householdsDistrict6 = c_households.subList(indexOfPercentileDistrict[5] + 1, indexOfPercentileDistrict[6]);
+
+		//SET HH NETWORKS
+		for(J_Household x : d.c_households){
+			int ipCopy = 0;
+			while(x.awarenessOfConsequence <= percentileValues[ipCopy]){
+				ipCopy++;
+			} 
+			indexPercentile = ipCopy;
+			int category = ipCopy;
+			if(x.householdIndex < 5){
+				traceln("Household " + x.householdIndex + " is in category " + category);
+			}
+			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
+			for(int i=0; i<networkSize; i++) {
+				J_Household connection;				
+				double rand = uniform(0,1);
+				double rand2 =  uniform(0,1);
+				if(rand < p_shareLocalContactsInNetwork) {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						if(category == 1){
+							connection = randomFrom(householdsDistrict1);
+							cat1++;
+						}
+						else if(category == 2){
+							connection = randomFrom(householdsDistrict2);
+							cat2++;
+						}
+						else if(category == 3){
+							connection = randomFrom(householdsDistrict3);
+							cat3++;
+						}
+						else if(category == 4){
+							connection = randomFrom(householdsDistrict4);
+							cat4++;
+						}
+						else if(category == 5){
+							connection = randomFrom(householdsDistrict5);
+							cat5++;
+						}
+						else{
+							connection = randomFrom(householdsDistrict6);
+							cat6++;
+						}
+					}
+					else {
+						connection = randomFrom(d.c_households);
+					}
+				}
+				else {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						if(category == 1){
+							connection = randomFrom(householdsTotal1);
+							cat1++;
+						}
+						else if(category == 2){
+							connection = randomFrom(householdsTotal2);
+							cat2++;
+						}
+						else if(category == 3){
+							connection = randomFrom(householdsTotal3);
+							cat3++;
+						}
+						else if(category == 4){
+							connection = randomFrom(householdsTotal4);
+							cat4++;
+						}
+						else if(category == 5){
+							connection = randomFrom(householdsTotal5);
+							cat5++;
+						}
+						else{
+							connection = randomFrom(householdsTotal6);
+							cat6++;
+						}
+					}
+					else {
+						connection = randomFrom(c_households);	
+					}
+				}
+				
+				x.householdsInNetwork.add(connection);
+				connection.householdsInNetwork.add(x);
+			}
+			if(x.householdsInNetwork.size() == 0) {
+				traceln("Error: hh " + x.householdIndex + " has no households in network");
+			}		
+			if(x.householdIndex % 1000 == 0) {
+				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
+			}
+		}
+	}
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1723997447068</Id>
+					<Name><![CDATA[f_setNetwork3]]></Name>
+					<X>-250</X><Y>2020</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//List national
+int nbOfCategories = 6;
+double[] percentileValues = new double[nbOfCategories + 1];
+double maxAoC = max(c_households, x->x.awarenessOfConsequence);
+double minAoC = min(c_households, x->x.awarenessOfConsequence);
+double meanAoC = average(c_households, x->x.awarenessOfConsequence);
+double stepAoC = (maxAoC - minAoC) / nbOfCategories;
+
+double variance = c_households.stream()
+    .mapToDouble(h -> Math.pow(h.awarenessOfConsequence - meanAoC, 2))
+    .average()
+    .orElse(0.0);
+
+// Step 3: Calculate the standard deviation
+double standardDeviation = Math.sqrt(variance);
+
+
+int sdMultiplier = 3;
+for(int i=0; i<nbOfCategories; i++){
+	if(i == 0){
+		percentileValues[i] = 1;
+	}
+	else if( i == nbOfCategories - 1){
+		percentileValues[i + 1] = 0;
+		percentileValues[i] = meanAoC + standardDeviation * sdMultiplier;
+	}
+	else {
+		percentileValues[i] = meanAoC + standardDeviation * sdMultiplier;
+	}
+	sdMultiplier--;
+}
+for(int i=0; i<percentileValues.length; i++){
+	traceln("Perct. value is " + percentileValues[i] + " at sd " + sdMultiplier);
+}
+/*
+List<J_Household> households11 = new ArrayList<J_Household>();
+for(J_Household hh : c_households){
+	if( hh.awarenessOfConsequence >= percentileValues[1] && hh.awarenessOfConsequence <= percentileValues[0]){
+		int category1 = 1;
+		households11.add(hh);
+	}
+}
+*/
+
+List<J_Household> households1 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[1] && h.awarenessOfConsequence <= percentileValues[0])
+    .collect(Collectors.toList());
+List<J_Household> households2 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[2] && h.awarenessOfConsequence <= percentileValues[1])
+    .collect(Collectors.toList());
+List<J_Household> households3 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[3] && h.awarenessOfConsequence <= percentileValues[2])
+    .collect(Collectors.toList());
+List<J_Household> households4 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[4] && h.awarenessOfConsequence <= percentileValues[3])
+    .collect(Collectors.toList());
+List<J_Household> households5 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[5] && h.awarenessOfConsequence <= percentileValues[4])
+    .collect(Collectors.toList());
+List<J_Household> households6 = c_households.stream()
+    .filter(h -> h.awarenessOfConsequence >= percentileValues[6] && h.awarenessOfConsequence <= percentileValues[5])
+    .collect(Collectors.toList());
+
+traceln("list 1 = " + households1.size() + " list 2 = " + households2.size() +" list 3 = " + households3.size() + " list 4 = " + households4.size() +" list 5 = " + households5.size() +" list 6 = " + households6.size());
+
+//int indexPercentile = 0;
+for(GZ_District d : pop_GZ_Districts){
+	if(d.p_households > 0){
+
+		//SET DISTRICT LISTS
+		List<J_Household> householdsDistrict1 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[1] && h.awarenessOfConsequence <= percentileValues[0])
+		    .collect(Collectors.toList());
+		List<J_Household> householdsDistrict2 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[2] && h.awarenessOfConsequence <= percentileValues[1])
+		    .collect(Collectors.toList());
+		List<J_Household> householdsDistrict3 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[3] && h.awarenessOfConsequence <= percentileValues[2])
+		    .collect(Collectors.toList());
+		List<J_Household> householdsDistrict4 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[4] && h.awarenessOfConsequence <= percentileValues[3])
+		    .collect(Collectors.toList());
+		List<J_Household> householdsDistrict5 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[5] && h.awarenessOfConsequence <= percentileValues[4])
+		    .collect(Collectors.toList());
+		List<J_Household> householdsDistrict6 = d.c_households.stream()
+		    .filter(h -> h.awarenessOfConsequence >= percentileValues[6] && h.awarenessOfConsequence <= percentileValues[5])
+		    .collect(Collectors.toList());
+    	
+    	traceln("dist. list 1 = " + householdsDistrict1.size() + " dist. list 2 = " + householdsDistrict2.size() +" dist. list 3 = " + householdsDistrict3.size() + " dist. list 4 = " + householdsDistrict4.size() +" dist. list 5 = " + householdsDistrict5.size() +" dist. list 6 = " + householdsDistrict6.size());
+    	
+		//SET HH NETWORKS
+		for(J_Household x : d.c_households){
+			int ipCopy = 0;
+			while(x.awarenessOfConsequence <= percentileValues[ipCopy]){
+				ipCopy++;
+			} 
+			indexPercentile = ipCopy;
+			int category = ipCopy;
+			if(x.householdIndex < 5){
+				traceln("Household " + x.householdIndex + " is in category " + category + " with awareness " + x.awarenessOfConsequence );
+			}
+			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
+			for(int i=0; i<networkSize; i++) {
+				J_Household connection;				
+				double rand = uniform(0,1);
+				double rand2 =  uniform(0,1);
+				if(rand < p_shareLocalContactsInNetwork) {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						if(category == 1){
+							connection = randomFrom(householdsDistrict1);
+							cat1++;
+						}
+						else if(category == 2){
+							connection = randomFrom(householdsDistrict2);
+							cat2++;
+						}
+						else if(category == 3){
+							connection = randomFrom(householdsDistrict3);
+							cat3++;
+						}
+						else if(category == 4){
+							connection = randomFrom(householdsDistrict4);
+							cat4++;
+						}
+						else if(category == 5){
+							connection = randomFrom(householdsDistrict5);
+							cat5++;
+						}
+						else{
+							connection = randomFrom(householdsDistrict6);
+							cat6++;
+						}
+					}
+					else {
+						connection = randomFrom(d.c_households);
+					}
+				}
+				else {
+					if( rand < p_shareSimilarcontactsInNetwork) {
+						if(category == 1){
+							connection = randomFrom(households1);
+							cat1++;
+						}
+						else if(category == 2){
+							connection = randomFrom(households2);
+							cat2++;
+						}
+						else if(category == 3){
+							connection = randomFrom(households3);
+							cat3++;
+						}
+						else if(category == 4){
+							connection = randomFrom(households4);
+							cat4++;
+						}
+						else if(category == 5){
+							connection = randomFrom(households5);
+							cat5++;
+						}
+						else{
+							connection = randomFrom(households6);
+							cat6++;
+						}
+					}
+					else {
+						connection = randomFrom(c_households);	
+					}
+				}
+				
+				x.householdsInNetwork.add(connection);
+				connection.householdsInNetwork.add(x);
+			}
+			if(x.householdsInNetwork.size() == 0) {
+				traceln("Error: hh " + x.householdIndex + " has no households in network");
+			}/*		
+			if(x.householdIndex % 1000 == 0) {
+				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
+			}*/
+		}
+	}
+}
+]]></Body>
 				</Function>
 			</Functions>
 			<CustomDistributions>
@@ -24827,6 +25379,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 		<CompareRunsExperiment ActiveObjectClassId="1717511797819">
 			<Id>1723567706138</Id>
 			<Name><![CDATA[CompareRuns]]></Name>
+			<Import><![CDATA[import com.anylogic.libraries.processmodeling.RackSystem.DrawMode;]]></Import>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
@@ -24845,81 +25398,6 @@ f_setPlots();
 			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 			<Variables>
 				<Variable Class="PlainVariable">
-					<Id>1723567706145</Id>
-					<Name><![CDATA[p_willingnessToInvestTimeThrehsold]]></Name>
-					<X>-350</X><Y>145</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.8]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1723567706151</Id>
-					<Name><![CDATA[p_collectiveLearningRate]]></Name>
-					<X>-350</X><Y>205</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.01]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1723567706158</Id>
-					<Name><![CDATA[p_learningRate]]></Name>
-					<X>-350</X><Y>265</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.005]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1723567706164</Id>
-					<Name><![CDATA[p_willingnessToInitiateThreshold]]></Name>
-					<X>-350</X><Y>325</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.755]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1723567706171</Id>
-					<Name><![CDATA[p_willingnessToInvestThreshold]]></Name>
-					<X>-350</X><Y>385</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.735]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1723567731493</Id>
 					<Name><![CDATA[iterator]]></Name>
 					<X>1180</X><Y>1170</Y>
@@ -24929,21 +25407,6 @@ f_setPlots();
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1723568123398</Id>
-					<Name><![CDATA[detailedSimulation]]></Name>
-					<X>-350</X><Y>450</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -24991,6 +25454,93 @@ f_setPlots();
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262607</Id>
+					<Name><![CDATA[p_willingnessToInitiateThreshold]]></Name>
+					<X>-540</X><Y>240</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.74]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262613</Id>
+					<Name><![CDATA[p_willingnessToInvestThreshold]]></Name>
+					<X>-540</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.735]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262615</Id>
+					<Name><![CDATA[p_individualLearningRate]]></Name>
+					<X>-540</X><Y>320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.005]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262617</Id>
+					<Name><![CDATA[p_collectiveLearningRate]]></Name>
+					<X>-540</X><Y>340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.01]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262619</Id>
+					<Name><![CDATA[p_professionalCapacity]]></Name>
+					<X>-540</X><Y>390</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.7]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724011262621</Id>
+					<Name><![CDATA[detailedSimulation]]></Name>
+					<X>-540</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+					</Properties>
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -25023,6 +25573,42 @@ pl_projects.addDataSet(ds2, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, 
 pl_members.addDataSet(ds3, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
 pl_ECs.addDataSet(ds4, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
 pl_intalledCap.addDataSet(ds5, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
+
+// Create the oval
+//ShapeOval oval = new ShapeOval(this, SHAPE_DRAW_2D, true, 50, 50, 0, 0, 100, 50, Color.BLUE, Color.BLACK, 1.0, LINE_STYLE_SOLID);
+  //  addPresentation(oval);
+    
+double xOval = 1415;
+double yOval = 165 + iterator * 25;
+double rotationOval = 0;
+Color lineColor = color;
+Color fillColor = color;
+double radiusX = 8;
+double radiusY = 1;
+double lineWidth = 0;
+LineStyle lineStyle = LINE_STYLE_SOLID;    
+    
+ShapeOval oval = new ShapeOval(true, xOval, yOval, rotationOval, lineColor, fillColor, radiusX, radiusY, lineWidth, lineStyle);
+presentation.add(oval);
+
+ShapeDrawMode drawMode = presentation.getDrawMode();
+double xText = 1435;
+double yText = 155 + iterator * 25;
+double z = 0;
+double rotationText = 0;
+String text = run;
+Font font = new Font("SansSerif", Font.PLAIN, 11);
+TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
+
+ShapeText textShape = new ShapeText(drawMode, true, xText, yText, z, rotationText, color, text, font, alignment);
+presentation.add(textShape);
+
+
+
+
+
+
+
 
 traceln("-------Finished iteration " + iterator + "---------");
 ]]></Body>
@@ -25165,480 +25751,13 @@ traceln("-------Finished iteration " + iterator + "---------");
 			</AnalysisData>
 
 			<Presentation>
-				<Text>
-					<Id>1723567706141</Id>
-					<Name><![CDATA[text1]]></Name>
-					<X>50</X><Y>160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[Number of Runs:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706142</Id>
-					<Name><![CDATA[text2]]></Name>
-					<X>240</X><Y>160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( getEngine().getRunCount() )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706143</Id>
-					<Name><![CDATA[text3]]></Name>
-					<X>50</X><Y>190</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12566464</Color>
-					<Text><![CDATA[Parameters]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Line>
-					<Id>1723567706144</Id>
-					<Name><![CDATA[line]]></Name>
-					<X>40</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>2</LineWidth>
-					<LineColor>-12566464</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>210</Dx>
-					<Dy>0</Dy>
-					<Dz>0</Dz>
-				</Line>
-				<Text>
-					<Id>1723567706147</Id>
-					<Name><![CDATA[text4]]></Name>
-					<X>50</X><Y>220</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_willingnessToInvestTimeThrehsold]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706148</Id>
-					<Name><![CDATA[text5]]></Name>
-					<X>240</X><Y>220</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInvestTimeThrehsold )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723567706149</Id>
-					<Name><![CDATA[edit_p_willingnessToInvestTimeThrehsold]]></Name>
-					<X>50</X><Y>240</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="190" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor>-12042869</TextColor>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_willingnessToInvestTimeThrehsold = Double.parseDouble( value );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInvestTimeThrehsold )]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
-				<Rectangle>
-					<Id>1723567706153</Id>
-					<Name><![CDATA[rectangle]]></Name>
-					<X>40</X><Y>270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>210</Width>
-					<Height>60</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1723567706154</Id>
-					<Name><![CDATA[text6]]></Name>
-					<X>50</X><Y>280</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_collectiveLearningRate]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706155</Id>
-					<Name><![CDATA[text7]]></Name>
-					<X>240</X><Y>280</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_collectiveLearningRate )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723567706156</Id>
-					<Name><![CDATA[edit_p_collectiveLearningRate]]></Name>
-					<X>50</X><Y>300</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="190" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor>-12042869</TextColor>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_collectiveLearningRate = Double.parseDouble( value );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_collectiveLearningRate )]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1723567706160</Id>
-					<Name><![CDATA[text8]]></Name>
-					<X>50</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_learningRate]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706161</Id>
-					<Name><![CDATA[text9]]></Name>
-					<X>240</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_learningRate )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723567706162</Id>
-					<Name><![CDATA[edit_p_learningRate]]></Name>
-					<X>50</X><Y>360</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="190" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor>-12042869</TextColor>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_learningRate = Double.parseDouble( value );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_learningRate )]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
-				<Rectangle>
-					<Id>1723567706166</Id>
-					<Name><![CDATA[rectangle1]]></Name>
-					<X>40</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>210</Width>
-					<Height>60</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1723567706167</Id>
-					<Name><![CDATA[text10]]></Name>
-					<X>50</X><Y>400</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_willingnessToInitiateThreshold]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706168</Id>
-					<Name><![CDATA[text11]]></Name>
-					<X>240</X><Y>400</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723567706169</Id>
-					<Name><![CDATA[edit_p_willingnessToInitiateThreshold]]></Name>
-					<X>50</X><Y>420</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="190" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor>-12042869</TextColor>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_willingnessToInitiateThreshold = Double.parseDouble( value );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInitiateThreshold )]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1723567706173</Id>
-					<Name><![CDATA[text12]]></Name>
-					<X>50</X><Y>460</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_willingnessToInvestThreshold]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723567706174</Id>
-					<Name><![CDATA[text13]]></Name>
-					<X>240</X><Y>460</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInvestThreshold )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723567706175</Id>
-					<Name><![CDATA[edit_p_willingnessToInvestThreshold]]></Name>
-					<X>50</X><Y>480</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="190" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor>-12042869</TextColor>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_willingnessToInvestThreshold = Double.parseDouble( value );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInvestThreshold )]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
 				<Oval>
 					<Id>1723567731385</Id>
 					<Name><![CDATA[oval5]]></Name>
-					<X>1535</X><Y>130</Y>
+					<X>1415</X><Y>190</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25657,7 +25776,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731389</Id>
 					<Name><![CDATA[text_legend14]]></Name>
-					<X>1260</X><Y>590</Y>
+					<X>2300</X><Y>520</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -25678,10 +25797,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731391</Id>
 					<Name><![CDATA[oval22]]></Name>
-					<X>1535</X><Y>445</Y>
+					<X>1415</X><Y>505</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25700,10 +25819,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731393</Id>
 					<Name><![CDATA[oval17]]></Name>
-					<X>1535</X><Y>320</Y>
+					<X>1415</X><Y>380</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25722,10 +25841,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731395</Id>
 					<Name><![CDATA[text_legend8]]></Name>
-					<X>1555</X><Y>120</Y>
+					<X>1435</X><Y>180</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25743,10 +25862,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731397</Id>
 					<Name><![CDATA[oval19]]></Name>
-					<X>1535</X><Y>370</Y>
+					<X>1415</X><Y>430</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25765,10 +25884,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731399</Id>
 					<Name><![CDATA[text_legend10]]></Name>
-					<X>1555</X><Y>170</Y>
+					<X>1435</X><Y>230</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25786,10 +25905,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731401</Id>
 					<Name><![CDATA[text_legend25]]></Name>
-					<X>1555</X><Y>510</Y>
+					<X>1435</X><Y>570</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25804,31 +25923,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
-				<Text>
-					<Id>1723567731403</Id>
-					<Name><![CDATA[text_legend13]]></Name>
-					<X>1260</X><Y>40</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Energy community statistics]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>18</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
     			<TimePlot>
 					<Id>1723567731406</Id>
 					<Name><![CDATA[pl_avgHouseholdIndicators]]></Name>
-					<X>1220</X><Y>630</Y>
+					<X>2260</X><Y>560</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -25885,10 +25983,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731408</Id>
 					<Name><![CDATA[text_legend9]]></Name>
-					<X>1555</X><Y>145</Y>
+					<X>1435</X><Y>205</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25906,10 +26004,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731410</Id>
 					<Name><![CDATA[oval25]]></Name>
-					<X>1535</X><Y>520</Y>
+					<X>1415</X><Y>580</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25928,10 +26026,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731412</Id>
 					<Name><![CDATA[oval6]]></Name>
-					<X>1535</X><Y>155</Y>
+					<X>1415</X><Y>215</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25950,7 +26048,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731414</Id>
 					<Name><![CDATA[text128]]></Name>
-					<X>1520</X><Y>90</Y>
+					<X>1400</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -25971,10 +26069,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731416</Id>
 					<Name><![CDATA[oval24]]></Name>
-					<X>1535</X><Y>495</Y>
+					<X>1415</X><Y>555</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -25993,10 +26091,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731418</Id>
 					<Name><![CDATA[text_legend23]]></Name>
-					<X>1555</X><Y>460</Y>
+					<X>1435</X><Y>520</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26014,10 +26112,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731420</Id>
 					<Name><![CDATA[oval20]]></Name>
-					<X>1535</X><Y>395</Y>
+					<X>1415</X><Y>455</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26036,10 +26134,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731422</Id>
 					<Name><![CDATA[oval15]]></Name>
-					<X>1535</X><Y>255</Y>
+					<X>1415</X><Y>315</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26058,10 +26156,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731424</Id>
 					<Name><![CDATA[oval9]]></Name>
-					<X>1535</X><Y>230</Y>
+					<X>1415</X><Y>290</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26080,10 +26178,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731426</Id>
 					<Name><![CDATA[text_legend22]]></Name>
-					<X>1555</X><Y>435</Y>
+					<X>1435</X><Y>495</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26101,10 +26199,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731428</Id>
 					<Name><![CDATA[oval23]]></Name>
-					<X>1535</X><Y>470</Y>
+					<X>1415</X><Y>530</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26123,7 +26221,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731430</Id>
 					<Name><![CDATA[text129]]></Name>
-					<X>1370</X><Y>90</Y>
+					<X>850</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26144,10 +26242,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731432</Id>
 					<Name><![CDATA[text_legend15]]></Name>
-					<X>1555</X><Y>245</Y>
+					<X>1435</X><Y>305</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26165,7 +26263,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731434</Id>
 					<Name><![CDATA[text130]]></Name>
-					<X>1370</X><Y>630</Y>
+					<X>2410</X><Y>560</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26186,10 +26284,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731436</Id>
 					<Name><![CDATA[text_legend21]]></Name>
-					<X>1555</X><Y>410</Y>
+					<X>1435</X><Y>470</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26207,10 +26305,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731438</Id>
 					<Name><![CDATA[text_legend11]]></Name>
-					<X>1555</X><Y>195</Y>
+					<X>1435</X><Y>255</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26228,10 +26326,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731440</Id>
 					<Name><![CDATA[oval21]]></Name>
-					<X>1535</X><Y>420</Y>
+					<X>1415</X><Y>480</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26250,10 +26348,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731442</Id>
 					<Name><![CDATA[text_legend17]]></Name>
-					<X>1555</X><Y>310</Y>
+					<X>1435</X><Y>370</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26271,10 +26369,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731444</Id>
 					<Name><![CDATA[oval7]]></Name>
-					<X>1535</X><Y>180</Y>
+					<X>1415</X><Y>240</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26293,10 +26391,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731446</Id>
 					<Name><![CDATA[oval18]]></Name>
-					<X>1535</X><Y>345</Y>
+					<X>1415</X><Y>405</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26315,7 +26413,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731448</Id>
 					<Name><![CDATA[text131]]></Name>
-					<X>1100</X><Y>320</Y>
+					<X>580</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26336,10 +26434,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731450</Id>
 					<Name><![CDATA[text_legend18]]></Name>
-					<X>1555</X><Y>335</Y>
+					<X>1435</X><Y>395</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26357,10 +26455,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731452</Id>
 					<Name><![CDATA[text_legend16]]></Name>
-					<X>1555</X><Y>270</Y>
+					<X>1435</X><Y>330</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26378,10 +26476,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731454</Id>
 					<Name><![CDATA[text_legend20]]></Name>
-					<X>1555</X><Y>385</Y>
+					<X>1435</X><Y>445</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26399,7 +26497,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Line>
 					<Id>1723567731456</Id>
 					<Name><![CDATA[line1]]></Name>
-					<X>920</X><Y>40</Y>
+					<X>280</X><Y>940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26423,10 +26521,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731458</Id>
 					<Name><![CDATA[text_legend19]]></Name>
-					<X>1555</X><Y>360</Y>
+					<X>1435</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26444,10 +26542,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731460</Id>
 					<Name><![CDATA[oval8]]></Name>
-					<X>1535</X><Y>205</Y>
+					<X>1415</X><Y>265</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26466,7 +26564,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731462</Id>
 					<Name><![CDATA[text132]]></Name>
-					<X>1100</X><Y>90</Y>
+					<X>580</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26487,7 +26585,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731464</Id>
 					<Name><![CDATA[text133]]></Name>
-					<X>1370</X><Y>320</Y>
+					<X>850</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26508,10 +26606,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Oval>
 					<Id>1723567731466</Id>
 					<Name><![CDATA[oval16]]></Name>
-					<X>1535</X><Y>280</Y>
+					<X>1415</X><Y>340</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26530,10 +26628,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731468</Id>
 					<Name><![CDATA[text_legend12]]></Name>
-					<X>1555</X><Y>220</Y>
+					<X>1435</X><Y>280</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26551,10 +26649,10 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731470</Id>
 					<Name><![CDATA[text_legend24]]></Name>
-					<X>1555</X><Y>485</Y>
+					<X>1435</X><Y>545</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26572,7 +26670,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Group>
 					<Id>1723567731472</Id>
 					<Name><![CDATA[gr_membersPercGraph]]></Name>
-					<X>1080</X><Y>740</Y>
+					<X>1130</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26587,7 +26685,7 @@ traceln("-------Finished iteration " + iterator + "---------");
     			<TimePlot>
 					<Id>1723567731475</Id>
 					<Name><![CDATA[pl_projects]]></Name>
-					<X>940</X><Y>90</Y>
+					<X>420</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26644,7 +26742,7 @@ traceln("-------Finished iteration " + iterator + "---------");
     			<TimePlot>
 					<Id>1723567731478</Id>
 					<Name><![CDATA[pl_members]]></Name>
-					<X>1220</X><Y>90</Y>
+					<X>700</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26701,7 +26799,7 @@ traceln("-------Finished iteration " + iterator + "---------");
     			<TimePlot>
 					<Id>1723567731481</Id>
 					<Name><![CDATA[pl_ECs]]></Name>
-					<X>940</X><Y>320</Y>
+					<X>420</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26758,7 +26856,7 @@ traceln("-------Finished iteration " + iterator + "---------");
     			<TimePlot>
 					<Id>1723567731484</Id>
 					<Name><![CDATA[pl_intalledCap]]></Name>
-					<X>1220</X><Y>320</Y>
+					<X>700</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26815,7 +26913,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Text>
 					<Id>1723567731486</Id>
 					<Name><![CDATA[text134]]></Name>
-					<X>1090</X><Y>630</Y>
+					<X>1140</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26836,7 +26934,7 @@ traceln("-------Finished iteration " + iterator + "---------");
     			<TimePlot>
 					<Id>1723567731489</Id>
 					<Name><![CDATA[pl_percMembers]]></Name>
-					<X>930</X><Y>630</Y>
+					<X>980</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -26890,35 +26988,6 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>yyyy</LabelFormat>
     			</TimePlot>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1723568034153</Id>
-					<Name><![CDATA[cb_simulation]]></Name>
-					<X>50</X><Y>520</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="170" Height="30">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[if(cb_simulation.isSelected()){
-	detailedSimulation = false;
-}
-else {
-	detailedSimulation = true;
-}]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Fastest simulation]]></LabelText>
-						<DefaultValueCode><![CDATA[true]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-						<Link>rapidRun</Link>
-	 				</ExtendedProperties>
-				</Control>
 				<Rectangle>
 					<Id>1723809674238</Id>
 					<Name><![CDATA[menuViewOpen]]></Name>
@@ -26927,6 +26996,7 @@ else {
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<VisibleCode><![CDATA[v_isViewAreaMenuVisible]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26951,6 +27021,7 @@ else {
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<VisibleCode><![CDATA[v_isViewAreaMenuVisible]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -26988,6 +27059,504 @@ else {
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Text>
+					<Id>1724011194824</Id>
+					<Name><![CDATA[text19]]></Name>
+					<X>80</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[Number of Runs:]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194828</Id>
+					<Name><![CDATA[text20]]></Name>
+					<X>270</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( getEngine().getRunCount() )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194830</Id>
+					<Name><![CDATA[text21]]></Name>
+					<X>80</X><Y>190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12566464</Color>
+					<Text><![CDATA[Parameters]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Line>
+					<Id>1724011194832</Id>
+					<Name><![CDATA[line]]></Name>
+					<X>70</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>2</LineWidth>
+					<LineColor>-12566464</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>210</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Text>
+					<Id>1724011194834</Id>
+					<Name><![CDATA[text22]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>80</X><Y>670</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[willingnessToInvestTime]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194836</Id>
+					<Name><![CDATA[text23]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>270</X><Y>670</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( p_willingnessToInitiateTimeThreshold )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194838</Id>
+					<Name><![CDATA[edit_p_willingnessToInvestTimeThrehsold]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>80</X><Y>690</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor>-12042869</TextColor>
+						<Enabled>false</Enabled>
+						<ActionCode><![CDATA[p_willingnessToInitiateTimeThreshold = Double.parseDouble( value );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="12" Style="0"/>
+						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInitiateTimeThreshold )]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Rectangle>
+					<Id>1724011194840</Id>
+					<Name><![CDATA[rectangle]]></Name>
+					<X>70</X><Y>270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>210</Width>
+					<Height>60</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-657931</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1724011194842</Id>
+					<Name><![CDATA[text24]]></Name>
+					<X>80</X><Y>340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[collective learning rate]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194844</Id>
+					<Name><![CDATA[text25]]></Name>
+					<X>270</X><Y>340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( p_collectiveLearningRate )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194846</Id>
+					<Name><![CDATA[edit_p_collectiveLearningRate]]></Name>
+					<X>80</X><Y>360</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor>-12042869</TextColor>
+						<Enabled>true</Enabled>
+						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
+						<ActionCode><![CDATA[p_collectiveLearningRate = Double.parseDouble( value );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="12" Style="0"/>
+						<DefaultValueCode><![CDATA[String.valueOf( p_collectiveLearningRate )]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Rectangle>
+					<Id>1724011194848</Id>
+					<Name><![CDATA[rectangle1]]></Name>
+					<X>70</X><Y>390</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>210</Width>
+					<Height>60</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-657931</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1724011194850</Id>
+					<Name><![CDATA[text29]]></Name>
+					<X>80</X><Y>220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[willing to initiate threshold]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194852</Id>
+					<Name><![CDATA[text30]]></Name>
+					<X>270</X><Y>220</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194854</Id>
+					<Name><![CDATA[edit_p_willingnessToInitiateThreshold]]></Name>
+					<X>80</X><Y>240</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor>-12042869</TextColor>
+						<Enabled>true</Enabled>
+						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
+						<ActionCode><![CDATA[p_willingnessToInitiateThreshold = Double.parseDouble( value );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="12" Style="0"/>
+						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInitiateThreshold )]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1724011194856</Id>
+					<Name><![CDATA[text31]]></Name>
+					<X>80</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[willing to invest threshold]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194858</Id>
+					<Name><![CDATA[text32]]></Name>
+					<X>270</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( p_willingnessToInvestThreshold )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194860</Id>
+					<Name><![CDATA[edit_p_willingnessToInvestThreshold]]></Name>
+					<X>80</X><Y>300</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor>-12042869</TextColor>
+						<Enabled>true</Enabled>
+						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
+						<ActionCode><![CDATA[p_willingnessToInvestThreshold = Double.parseDouble( value );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="12" Style="0"/>
+						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInvestThreshold )]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194862</Id>
+					<Name><![CDATA[cb_simulation]]></Name>
+					<X>80</X><Y>520</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="170" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[if(cb_simulation.isSelected()){
+	detailedSimulation = false;
+}
+else {
+	detailedSimulation = true;
+}]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Fastest simulation]]></LabelText>
+						<DefaultValueCode><![CDATA[true]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+						<Link>rapidRun</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1724011194864</Id>
+					<Name><![CDATA[text27]]></Name>
+					<X>80</X><Y>400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[individual learning rate]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724011194866</Id>
+					<Name><![CDATA[text28]]></Name>
+					<X>270</X><Y>400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format( p_individualLearningRate )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724011194868</Id>
+					<Name><![CDATA[edit_p_learningRate]]></Name>
+					<X>80</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor>-12042869</TextColor>
+						<Enabled>true</Enabled>
+						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
+						<ActionCode><![CDATA[p_individualLearningRate = Double.parseDouble( value );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="12" Style="0"/>
+						<DefaultValueCode><![CDATA[String.valueOf( p_individualLearningRate )]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 			<Parameters>			
@@ -27006,7 +27575,7 @@ else {
 				<Parameter>
 					<ParameterName><![CDATA[p_learningRate]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[p_learningRate]]></Code>
+						<Code><![CDATA[p_individualLearningRate]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -27351,6 +27920,29 @@ public class J_Household {
 			pbc = (timeAvailability * environment.v_weight_ta_to_pbc + homeOwenershipNormalized * environment.v_weight_ho_to_pbc) / (environment.v_weight_ta_to_pbc + environment.v_weight_ho_to_pbc);
 		}		
 	}
+	
+	//Set category
+	/*
+	public void f_setCategory(double[] valuesForPercentiles) {
+		if(awarenessOfConsequence >= valuesForPercentiles[0]) {
+			district.c_firstAdopters.add(this);
+		}
+		else if(awarenessOfConsequence >= valuesForPercentiles[1]) {
+			district.c_secondAdopters.add(this);
+		}
+		else if(awarenessOfConsequence >= valuesForPercentiles[3]) {
+			district.c_thirdAdopters.add(this);
+		}
+		else if(awarenessOfConsequence >= valuesForPercentiles[4]) {
+			district.c_fourthAdopters.add(this);
+		}
+		else {
+			district.c_lastAdopters.add(this);
+		}
+		
+	}
+	*/
+	
 	//1.1. Initialize household's social network
 	public void f_initializeNetwork(double averageNetworkSize, double networkSizeSD, double shareLocal, double shareSimilar, NetworkStructure networkStructure ) {
 		double mean = 0.5;
@@ -27359,15 +27951,14 @@ public class J_Household {
 		double networkSize = Math.round(normal(0,1, 0.5, 0.05, random) * averageNetworkSize);
 		J_Household household;
 		if(networkStructure == RANDOM_NETWORK) {
-			Maak hier ipv people who are willing to participate mensen met een vergelijkbare attitude and awareness van of iig dezelfde dingen
-			double wtp_min = willingnessToParticipate - 0.1;
-			double wtp_max = willingnessToParticipate + 0.1;
+			double aoc_min = awarenessOfConsequence - 0.1;
+			double aoc_max = awarenessOfConsequence + 0.1;
 			
 			List<J_Household> filteredHouseholdsMun = municipality.c_households.stream()
-					.filter(h -> h.willingnessToParticipate >= wtp_min && h.willingnessToParticipate <= wtp_max )
+					.filter(h -> h.awarenessOfConsequence >= aoc_min && h.awarenessOfConsequence <= aoc_max )
 					.collect(Collectors.toList());
 			List<J_Household> filteredHouseholdsEnv = municipality.c_households.stream()
-					.filter(h -> h.willingnessToParticipate >= wtp_min && h.willingnessToParticipate <= wtp_max )
+					.filter(h -> h.awarenessOfConsequence >= aoc_min && h.awarenessOfConsequence <= aoc_max )
 					.collect(Collectors.toList());
 			
 			for(int i=0; i<networkSize; i++) {
@@ -27397,11 +27988,11 @@ public class J_Household {
 				traceln("Error: hh " + householdIndex + " has no households in network");
 			}
 		}
-		/*
-		if(householdIndex < 5) {
+		
+		if(householdIndex % 1000 == 0) {
 			System.out.println("Household " + householdIndex + " has " + householdsInNetwork.size() + " households in network");
 		}
-		*/
+		
 	}
 	
 	public void f_setSubjectiveNorm() {
