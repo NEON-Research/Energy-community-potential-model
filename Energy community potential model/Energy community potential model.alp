@@ -136,16 +136,12 @@
 				<Name><![CDATA[RANDOM_NETWORK]]></Name>
 			</Option>
 			<Option>
-				<Id>1721130426155</Id>
-				<Name><![CDATA[SMALL_WORLD]]></Name>
-			</Option>
-			<Option>
 				<Id>1721130426156</Id>
-				<Name><![CDATA[GEOGRAPHICAL_SMALL_WORLD]]></Name>
+				<Name><![CDATA[SMALL_WORLD_GEOGRAPHICAL]]></Name>
 			</Option>
 			<Option>
-				<Id>1721130426157</Id>
-				<Name><![CDATA[GEOGRAPHICAL_NEIGHBORHOOD]]></Name>
+				<Id>1724060105330</Id>
+				<Name><![CDATA[SMALL_WORLD_SIMILAR]]></Name>
 			</Option>
 		</OptionList>
 		<OptionList>
@@ -217,7 +213,12 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import org.json.JSONObject; // for JSON parsing
 import org.json.JSONArray;
-import java.util.stream.Collectors;]]></Import>
+import java.util.stream.Collectors;
+
+import org.apache.commons.math3.linear.CholeskyDecomposition;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 			<StartupCode><![CDATA[f_initalizeSettings();]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
@@ -1259,7 +1260,7 @@ import java.util.stream.Collectors;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723815526493</Id>
 					<Name><![CDATA[v_willingToVolunteer_perc]]></Name>
-					<X>370</X><Y>2110</Y>
+					<X>370</X><Y>2070</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1353,6 +1354,36 @@ import java.util.stream.Collectors;]]></Import>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724055859925</Id>
+					<Name><![CDATA[v_radiusEC]]></Name>
+					<X>370</X><Y>2090</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[5000]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724055867476</Id>
+					<Name><![CDATA[v_changeOfMeeting]]></Name>
+					<X>370</X><Y>2110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -2584,54 +2615,6 @@ import java.util.stream.Collectors;]]></Import>
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1723800700371</Id>
-					<Name><![CDATA[p_radiusEC]]></Name>
-					<X>370</X><Y>2050</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[8000]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1723800700369</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1723802190098</Id>
-					<Name><![CDATA[p_changeOfMeeting]]></Name>
-					<X>370</X><Y>2070</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.3]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1723802190096</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
 					<Id>1723819411276</Id>
 					<Name><![CDATA[p_shareSimilarcontactsInNetwork]]></Name>
 					<X>370</X><Y>1970</Y>
@@ -2649,6 +2632,54 @@ import java.util.stream.Collectors;]]></Import>
 						<ParameterEditor>
 							<Id>1723819411274</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1724059847082</Id>
+					<Name><![CDATA[p_networkType]]></Name>
+					<X>370</X><Y>2010</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[NetworkStructure]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1724059847080</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1724082586840</Id>
+					<Name><![CDATA[p_agentDriversRandom]]></Name>
+					<X>370</X><Y>1880</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1724082586838</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -4574,8 +4605,12 @@ int members = count(c_households, x->x.ECMember);
 int nonMembers = c_households.size() - members;
 double percMembers = roundToDecimal( (double) members / (members + nonMembers) * 100,3);
 double percNonMembers = roundToDecimal( (double)nonMembers / (members + nonMembers) * 100,3);
+
+double avgWtPVolunteers = roundToDecimal(averageWhere(c_households, x->x.willingnessToParticipate, x->x.willingToVolunteer),3);
+double avgWtPNonVolunteers = roundToDecimal(averageWhere(c_households, x->x.willingnessToParticipate, x->x.willingToVolunteer == false),3);
 if(detailedSimulation == true){
 	traceln("average pbc: " + averagePBC + ", WtP: " + averageWtP + ", attitude: " + averageAttitude + ", subjective norm " + averageSubjectiveNorm);
+	traceln("average WtP volunteers " + avgWtPVolunteers + " avg WtP non-volunteers " + avgWtPNonVolunteers);
 }
 ds_avgUtility.add(averageWtP);
 ds_willingnessToInitiateThreshold.add(p_willingnessToInitiateThreshold);
@@ -4602,11 +4637,13 @@ ds_projectInitiators.add(totalProjectInitiators);
 ds_investors.add(totalInvestors);
 ds_willingToInitiate.add(totalWillingToInitiate);
 ds_willingToInvest.add(totalWillingToInvest);
-/*
-for(J_Household hh : c_households){
-	ds_utility.add(hh.willingnessToParticipate);
+
+if(detailedSimulation){
+	for(J_Household hh : c_households){
+		ds_utility.add(hh.willingnessToParticipate);
+	}
 }
-*/]]></Body>
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -4993,7 +5030,9 @@ for( EnergyCommunity EC : pop_energyCommunities){
 f_updateSocialLearning();	
 
 //8. Update cost data etc.
-f_updateCostData();]]></Body>
+f_updateCostData();
+
+traceln("Total potential initators: " + count(c_households, x->x.willingnessToParticipate > p_willingnessToInitiateThreshold && x.willingToVolunteer));]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -5138,17 +5177,29 @@ double sd_timeAvailability = selectFrom(behavioral_variables)
 
 
 //Set parameters
-for(GZ_District n : pop_GZ_Districts){
-	for(J_Household x : n.c_households){
-		//Define AwarenessOfConsequences
-		x.f_setSocioDemographicParameters(n.p_ownerOccupiedHomes, n.p_lowIncomeHouseholds_perc, v_willingToVolunteer_perc);
-		x.f_setAwarenessOfConsequence(mean_environmentalConcern, sd_environmentalConcern, mean_awarenessEC, sd_awarenessEC);
-		x.f_setAttitude(mean_financialAttitude, sd_financialAttitude, mean_renewablesAttitude, sd_renewablesAttitude);
-		x.f_setPBC(mean_timeAvailability, sd_timeAvailability);
+if( p_agentDriversRandom == true){
+	for(GZ_District n : pop_GZ_Districts){
+		for(J_Household x : n.c_households){
+			//Define AwarenessOfConsequences
+			x.f_setSocioDemographicParameters(n.p_ownerOccupiedHomes, n.p_lowIncomeHouseholds_perc, v_willingToVolunteer_perc);
+			x.f_setAwarenessOfConsequence(mean_environmentalConcern, sd_environmentalConcern, mean_awarenessEC, sd_awarenessEC);
+			x.f_setAttitude(mean_financialAttitude, sd_financialAttitude, mean_renewablesAttitude, sd_renewablesAttitude);
+			x.f_setPBC(mean_timeAvailability, sd_timeAvailability);
+		}
 	}
 }
+else {
+	for(GZ_District n : pop_GZ_Districts){
+		for(J_Household x : n.c_households){
+			//Define AwarenessOfConsequences
+			x.f_setSocioDemographicParameters(n.p_ownerOccupiedHomes, n.p_lowIncomeHouseholds_perc, v_willingToVolunteer_perc);
+		}
+	}
+	f_correlatedVariablesGenerator();
+}
 //traceln("going to initialize param incl netw.");
-f_setNetwork3();
+f_setNetwork(p_networkType);
+f_setWillingToVolunteerToTimeAvailable();
 
 for(J_Household x : c_households){
 	x.f_setSubjectiveNorm(); // happens after network initialization as it is dependend on network
@@ -5381,116 +5432,34 @@ for(GZ_Neighborhood nbh : pop_GZ_Neighborhoods){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1723986203176</Id>
 					<Name><![CDATA[f_setNetwork]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>-250</X><Y>1800</Y>
+					<X>-250</X><Y>1960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[traceln("In network setting");
-
-//List national
-int nbOfCategories = 6;
-List<J_Household> orderedAoCTotal = sortDescending(c_households, x->x.awarenessOfConsequence);
-double[] percentileValuesTotalLB = new double[nbOfCategories];
-double[] percentileValuesTotalUB = new double[nbOfCategories];
-for(int i=0; i<nbOfCategories; i++){
-	double percentileLB = (i+1.0)/ (double) nbOfCategories;
-	double percentileUB = (double) i / (double) nbOfCategories;
-	
-	int indexOfPercentileLB = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
-	int indexOfPercentileUB = (int) Math.floor(percentileUB * orderedAoCTotal.size());
-	
-	if( i == 0){
-		//indexOfPercentileUB[i] = 0;
-		//indexOfPercentileLB[i] = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
-	
-		percentileValuesTotalUB[i] = 1;
-		percentileValuesTotalLB[i] = orderedAoCTotal.get(indexOfPercentileLB).awarenessOfConsequence; //LB = Lower bound
-	}
-	else if( i == 5){
-		//indexOfPercentileUB[i] = indexOfPercentileLB[i-1];
-		//indexOfPercentileLB[i] = orderedAoCTotal.size() - 1;		
-		percentileValuesTotalUB[i] = percentileValuesTotalLB[i-1];
-		percentileValuesTotalLB[i] = 0;
-	}
-	else {
-		//indexOfPercentileUB[i] = indexOfPercentileLB[i-1];
-		//indexOfPercentileLB[i] = (int) Math.floor(percentileLB * orderedAoCTotal.size() - 1);
-		percentileValuesTotalUB[i] = percentileValuesTotalLB[i-1];
-		percentileValuesTotalLB[i] = orderedAoCTotal.get(indexOfPercentileLB).awarenessOfConsequence; //LB = Lower bound
-	}
-	traceln("perc UB "+ percentileUB + " perc LB " + percentileLB);
-	traceln("Percentile value LB " + percentileValuesTotalLB[i] + " perc value ub " + percentileValuesTotalUB[i]);
-}
-
-traceln("Percentile value LB " + percentileValuesTotalLB[0] + " perc value ub " + percentileValuesTotalUB[0]);
-//List district
-//int indexPercentile = 0;
-for(GZ_District d : pop_GZ_Districts){
-	if(d.p_households > 0){
-		/*
-		List<J_Household> orderedAoCDistrict = sortDescending(c_households, x->x.awarenessOfConsequence);
-		double[] percentileValuesDistrict = new double[5];
-		for(int i=0; i<5; i++){
-			int indexOfPercentile = (int) Math.round((i+1)/5);
-			percentileValuesDistrict[i] = orderedAoCDistrict.get(indexOfPercentile).awarenessOfConsequence;
-		}
-		*/
-		for(J_Household x : d.c_households){
-			int ipCopy = 0;
-			while(x.awarenessOfConsequence <= percentileValuesTotalLB[ipCopy]){
-				ipCopy++;
-			} 
-			indexPercentile = ipCopy;
-			if(x.householdIndex < 5){
-				traceln("Household " + x.householdIndex + " is in index percentile " + indexPercentile);
-			}
-			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
-			for(int i=0; i<networkSize; i++) {
-				J_Household connection;
-			
-				connection = randomFrom(d.c_households);
-				/*
-				double rand = uniform(0,1);
-				double rand2 =  uniform(0,1);
-				if(rand < p_shareLocalContactsInNetwork) {
-					if( rand < p_shareSimilarcontactsInNetwork) {
-						connection = randomWhere(d.c_households, y->y.awarenessOfConsequence <= percentileValuesTotalUB[indexPercentile] && y.awarenessOfConsequence >= percentileValuesTotalLB[indexPercentile]);
-					}
-					else {
-						connection = randomFrom(d.c_households);
-					}
-				}
-				else {
-					if( rand < p_shareSimilarcontactsInNetwork) {
-						connection = randomWhere(c_households, y->y.awarenessOfConsequence <= percentileValuesTotalUB[indexPercentile] && y.awarenessOfConsequence >= percentileValuesTotalLB[indexPercentile]);
-					}
-					else {
-						connection = randomFrom(c_households);
-					}
-				}
-				*/
-				x.householdsInNetwork.add(connection);
-				connection.householdsInNetwork.add(x);
-			}
-			if(x.householdsInNetwork.size() == 0) {
-				traceln("Error: hh " + x.householdIndex + " has no households in network");
-			}		
-			if(x.householdIndex % 1000 == 0) {
-				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
-			}
-		}
-	}
-}
-]]></Body>
+					<Parameter>
+						<Name><![CDATA[networkType]]></Name>
+						<Type><![CDATA[NetworkStructure]]></Type>
+					</Parameter>
+					<Body><![CDATA[switch(networkType){
+	case RANDOM_NETWORK:
+		f_setNetworkRandom();
+		break;
+	case SMALL_WORLD_GEOGRAPHICAL:
+		f_setNetworkSmallWorld();
+		break;
+	case SMALL_WORLD_SIMILAR:
+		f_setNetworkSimilar();
+		break;
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1723993996698</Id>
 					<Name><![CDATA[f_setNetwork2]]></Name>
-					<X>-250</X><Y>2000</Y>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>-260</X><Y>1780</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5633,6 +5602,9 @@ for(GZ_District d : pop_GZ_Districts){
 					}
 				}
 				
+				if(x.householdsInNetwork.contains(connection)){
+					connection = randomFrom(c_households);
+				}
 				x.householdsInNetwork.add(connection);
 				connection.householdsInNetwork.add(x);
 			}
@@ -5651,7 +5623,7 @@ for(GZ_District d : pop_GZ_Districts){
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1723997447068</Id>
-					<Name><![CDATA[f_setNetwork3]]></Name>
+					<Name><![CDATA[f_setNetworkSimilar]]></Name>
 					<X>-250</X><Y>2020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -5680,17 +5652,17 @@ for(int i=0; i<nbOfCategories; i++){
 		percentileValues[i] = 1;
 	}
 	else if( i == nbOfCategories - 1){
-		percentileValues[i + 1] = 0;
+		percentileValues[i + 1] = -0.0001;
 		percentileValues[i] = meanAoC + standardDeviation * sdMultiplier;
 	}
 	else {
 		percentileValues[i] = meanAoC + standardDeviation * sdMultiplier;
 	}
 	sdMultiplier--;
-}
+}/*
 for(int i=0; i<percentileValues.length; i++){
 	traceln("Perct. value is " + percentileValues[i] + " at sd " + sdMultiplier);
-}
+}*/
 /*
 List<J_Household> households11 = new ArrayList<J_Household>();
 for(J_Household hh : c_households){
@@ -5720,7 +5692,7 @@ List<J_Household> households6 = c_households.stream()
     .filter(h -> h.awarenessOfConsequence >= percentileValues[6] && h.awarenessOfConsequence <= percentileValues[5])
     .collect(Collectors.toList());
 
-traceln("list 1 = " + households1.size() + " list 2 = " + households2.size() +" list 3 = " + households3.size() + " list 4 = " + households4.size() +" list 5 = " + households5.size() +" list 6 = " + households6.size());
+//traceln("list 1 = " + households1.size() + " list 2 = " + households2.size() +" list 3 = " + households3.size() + " list 4 = " + households4.size() +" list 5 = " + households5.size() +" list 6 = " + households6.size());
 
 //int indexPercentile = 0;
 for(GZ_District d : pop_GZ_Districts){
@@ -5746,26 +5718,30 @@ for(GZ_District d : pop_GZ_Districts){
 		    .filter(h -> h.awarenessOfConsequence >= percentileValues[6] && h.awarenessOfConsequence <= percentileValues[5])
 		    .collect(Collectors.toList());
     	
-    	traceln("dist. list 1 = " + householdsDistrict1.size() + " dist. list 2 = " + householdsDistrict2.size() +" dist. list 3 = " + householdsDistrict3.size() + " dist. list 4 = " + householdsDistrict4.size() +" dist. list 5 = " + householdsDistrict5.size() +" dist. list 6 = " + householdsDistrict6.size());
+    	//traceln("dist. list 1 = " + householdsDistrict1.size() + " dist. list 2 = " + householdsDistrict2.size() +" dist. list 3 = " + householdsDistrict3.size() + " dist. list 4 = " + householdsDistrict4.size() +" dist. list 5 = " + householdsDistrict5.size() +" dist. list 6 = " + householdsDistrict6.size());
     	
 		//SET HH NETWORKS
 		for(J_Household x : d.c_households){
 			int ipCopy = 0;
 			while(x.awarenessOfConsequence <= percentileValues[ipCopy]){
 				ipCopy++;
+				/*
+				if(ipCopy == 7){
+					traceln(x.awarenessOfConsequence + "AoC");
+				}*/
 			} 
 			indexPercentile = ipCopy;
 			int category = ipCopy;
-			if(x.householdIndex < 5){
+			/*if(x.householdIndex < 5){
 				traceln("Household " + x.householdIndex + " is in category " + category + " with awareness " + x.awarenessOfConsequence );
-			}
+			}*/
 			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
 			for(int i=0; i<networkSize; i++) {
 				J_Household connection;				
 				double rand = uniform(0,1);
 				double rand2 =  uniform(0,1);
 				if(rand < p_shareLocalContactsInNetwork) {
-					if( rand < p_shareSimilarcontactsInNetwork) {
+					if( rand2 < p_shareSimilarcontactsInNetwork) {
 						if(category == 1){
 							connection = randomFrom(householdsDistrict1);
 							cat1++;
@@ -5796,7 +5772,7 @@ for(GZ_District d : pop_GZ_Districts){
 					}
 				}
 				else {
-					if( rand < p_shareSimilarcontactsInNetwork) {
+					if( rand2 < p_shareSimilarcontactsInNetwork) {
 						if(category == 1){
 							connection = randomFrom(households1);
 							cat1++;
@@ -5827,6 +5803,9 @@ for(GZ_District d : pop_GZ_Districts){
 					}
 				}
 				
+				if(x.householdsInNetwork.contains(connection)){
+					connection = randomFrom(c_households);
+				}
 				x.householdsInNetwork.add(connection);
 				connection.householdsInNetwork.add(x);
 			}
@@ -5838,6 +5817,320 @@ for(GZ_District d : pop_GZ_Districts){
 			}*/
 		}
 	}
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724059461485</Id>
+					<Name><![CDATA[f_setNetworkSmallWorld]]></Name>
+					<X>-250</X><Y>2000</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//int indexPercentile = 0;
+for(GZ_District d : pop_GZ_Districts){
+	if(d.p_households > 0){
+		//SET HH NETWORKS
+		for(J_Household x : d.c_households){
+			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
+			for(int i=0; i<networkSize; i++) {
+				J_Household connection;				
+				double rand = uniform(0,1);
+				//Connection from local population
+				if(rand < p_shareLocalContactsInNetwork) {
+					connection = randomFrom(d.c_households);	
+				}
+				//Connection from global population
+				else {
+					connection = randomFrom(c_households);	
+				}
+						
+				if(x.householdsInNetwork.contains(connection)){
+					connection = randomFrom(c_households);
+				}
+				x.householdsInNetwork.add(connection);
+				connection.householdsInNetwork.add(x);
+			}
+			if(x.householdsInNetwork.size() == 0) {
+				traceln("Error: hh " + x.householdIndex + " has no households in network");
+			}/*		
+			if(x.householdIndex % 1000 == 0) {
+				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
+			}*/
+		}
+	}
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724067046021</Id>
+					<Name><![CDATA[f_setNetworkRandom]]></Name>
+					<X>-250</X><Y>1980</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//int indexPercentile = 0;
+for(GZ_District d : pop_GZ_Districts){
+	if(d.p_households > 0){
+		//SET HH NETWORKS
+		for(J_Household x : d.c_households){
+			double networkSize = Math.round(normal(0,1, 0.5, 0.05) * p_networkSizeMean);
+			for(int i=0; i<networkSize; i++) {
+				J_Household connection = randomFrom(c_households);						
+				if(x.householdsInNetwork.contains(connection)){
+					connection = randomFrom(c_households);
+				}
+				x.householdsInNetwork.add(connection);
+				connection.householdsInNetwork.add(x);
+			}
+			if(x.householdsInNetwork.size() == 0) {
+				traceln("Error: hh " + x.householdIndex + " has no households in network");
+			}/*		
+			if(x.householdIndex % 1000 == 0) {
+				System.out.println("Household " + x.householdIndex + " has " + x.householdsInNetwork.size() + " households in network");
+			}*/
+		}
+	}
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724070123769</Id>
+					<Name><![CDATA[f_correlatedVariablesGenerator]]></Name>
+					<X>-250</X><Y>1860</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[//Get mean behavioral drivers
+double mean_WtP = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("willingness_to_participate"))
+	.firstResult(behavioral_variables.mean_norm);
+	
+double mean_environmentalConcern = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("environmental_concern"))
+	.firstResult(behavioral_variables.mean_norm);
+	
+double mean_renewablesAttitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("renewables_attitude"))
+	.firstResult(behavioral_variables.mean_norm);
+	
+double mean_financialAttitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("financial_attitude"))
+	.firstResult(behavioral_variables.mean_norm);
+/*	
+double mean_attitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("attitude"))
+	.firstResult(behavioral_variables.mean_norm);
+*/
+double mean_awarenessEC = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("awareness_EC"))
+	.firstResult(behavioral_variables.mean_norm);
+
+double mean_timeAvailability = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("time_available"))
+	.firstResult(behavioral_variables.mean_norm);
+
+//Get sd behavioral drivers
+double sd_WtP = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("willingness_to_participate"))
+	.firstResult(behavioral_variables.sd_norm);
+	
+double sd_environmentalConcern = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("environmental_concern"))
+	.firstResult(behavioral_variables.sd_norm);
+	
+double sd_renewablesAttitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("renewables_attitude"))
+	.firstResult(behavioral_variables.sd_norm);
+	
+double sd_financialAttitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("financial_attitude"))
+	.firstResult(behavioral_variables.sd_norm);
+/*	
+double sd_attitude = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("attitude"))
+	.firstResult(behavioral_variables.sd_norm);
+*/	
+double sd_awarenessEC = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("awareness_EC"))
+	.firstResult(behavioral_variables.sd_norm);
+
+double sd_timeAvailability = selectFrom(behavioral_variables)
+	.where(behavioral_variables.variable.eq("time_available"))
+	.firstResult(behavioral_variables.sd_norm);
+
+
+double mean1 = mean_environmentalConcern;
+double mean2 = mean_awarenessEC;
+double mean3 = mean_financialAttitude;
+double mean4 = mean_timeAvailability;
+double mean5 = mean_renewablesAttitude;
+
+double sd1 = sd_environmentalConcern;
+double sd2 = sd_awarenessEC;
+double sd3 = sd_financialAttitude;
+double sd4 = sd_timeAvailability;
+double sd5 = sd_renewablesAttitude;
+
+double rho12 = 0.4;
+double rho13 = 0.23;	//conr
+double rho14 = 0.4;	//conr
+double rho15 = 0.4;	//conr
+double rho23 = 0.4;
+double rho24 = 0.4;
+double rho25 = 0.4;
+double rho34 = 0.4;
+double rho35 = 0.26;	//conr
+double rho45 = 0.4;
+
+// Step 1: Covariance matrix
+double[][] covarianceMatrix = {
+		{sd1 * sd1, rho12 * sd1 * sd2, rho13 * sd1 * sd3, rho14 * sd1 * sd4, rho15 * sd1 * sd5},
+		{rho12 * sd1 * sd2, sd2 * sd2, rho23 * sd2 * sd3, rho24 * sd2 * sd4, rho25 * sd2 * sd5},
+		{rho13 * sd1 * sd3, rho23 * sd2 * sd3, sd3 * sd3, rho34 * sd3 * sd4, rho35 * sd3 * sd5},
+		{rho14 * sd1 * sd4, rho24 * sd2 * sd4, rho34 * sd3 * sd4, sd4 * sd4, rho45 * sd4 * sd5},
+		{rho15 * sd1 * sd5, rho25 * sd2 * sd5, rho35 * sd3 * sd5, rho45 * sd4 * sd5, sd5 * sd5},
+};
+
+// Step 2: Cholesky decomposition
+//RealMatrix matrix2 = new Array2DRowRealMatrix(covarianceMatrix);
+RealMatrix matrix = MatrixUtils.createRealMatrix(covarianceMatrix);
+CholeskyDecomposition choleskyDecomposition = new CholeskyDecomposition(matrix);
+RealMatrix L = choleskyDecomposition.getL();
+
+for(J_Household x : c_households){
+	f_setCorrelatedVariablesHousehold(x, L, mean1, mean2, mean3, mean4, mean5);
+}
+
+//To normalize values
+double min_aoc = min(c_households, x->x.awarenessOfConsequence);
+double min_att = min(c_households, x->x.attitude);
+double min_ta = min(c_households, x->x.timeAvailability);
+double min_pbc = min(c_households, x->x.pbc);
+
+double max_aoc = max(c_households, x->x.awarenessOfConsequence);
+double max_att = max(c_households, x->x.attitude);
+double max_ta = max(c_households, x->x.timeAvailability);
+double max_pbc = max(c_households, x->x.pbc);
+
+double diff_aoc = max_aoc - min_aoc;
+double diff_att = max_att - min_att;
+double diff_ta = max_ta - min_ta;
+double diff_pbc = max_pbc - min_pbc;
+for(J_Household x : c_households){
+	x.awarenessOfConsequence = (x.awarenessOfConsequence - min_aoc) / diff_aoc;
+	x.attitude = (x.attitude - min_att) / diff_att;
+	x.timeAvailability = (x.timeAvailability - min_ta) / diff_ta;
+	x.pbc = (x.pbc - min_pbc) / diff_pbc;
+	/*
+	if(x.householdIndex < 100){
+		traceln("Correlated input params " + x.awarenessOfConsequence + " AoC " + x.attitude + " att. " + x.timeAvailability + " ta " + x.pbc + " pbc");
+	}*/
+}
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724080440814</Id>
+					<Name><![CDATA[f_setCorrelatedVariablesHousehold]]></Name>
+					<X>-250</X><Y>1880</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[household]]></Name>
+						<Type><![CDATA[J_Household]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[L]]></Name>
+						<Type><![CDATA[RealMatrix]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[mean1]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[mean2]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[mean3]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[mean4]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[mean5]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Step 3: Generate independent standard normal variables
+/*
+double z1 = normal(0,1);
+double z2 = normal(0,1);
+double z3 = normal(0,1);
+double z4 = normal(0,1);
+double z5 = normal(0,1);
+*/
+Random random = new Random();  // Ensure this generates different values each time
+double z1 = random.nextGaussian();
+double z2 = random.nextGaussian();
+double z3 = random.nextGaussian();
+double z4 = random.nextGaussian();
+double z5 = random.nextGaussian();
+
+// Step 4: Apply Cholesky transformation
+double Y1 = L.getEntry(0, 0) * z1;
+double Y2 = L.getEntry(1, 0) * z1 + L.getEntry(1, 1) * z2;
+double Y3 = L.getEntry(2, 0) * z1 + L.getEntry(2, 1) * z2 + L.getEntry(2, 2) * z3;
+double Y4 = L.getEntry(3, 0) * z1 + L.getEntry(3, 1) * z2 + L.getEntry(3, 2) * z3 + L.getEntry(3, 3) * z4; 
+double Y5 = L.getEntry(4, 0) * z1 + L.getEntry(4, 1) * z2 + L.getEntry(4, 2) * z3 + L.getEntry(4, 3) * z4 + L.getEntry(4, 4) * z5; 
+
+// Step 5: Add means to get the final correlated variables
+double X1 = Y1 + mean1;  // Adding mean of 10 to Y1
+double X2 = Y2 + mean2;  // Adding mean of 20 to Y2
+double X3 = Y3 + mean3;  // Adding mean of 30 to Y3
+double X4 = Y4 + mean4;
+double X5 = Y5 + mean5;
+
+double[] correlatedInputParams = {X1, X2, X3, X4, X5};
+/*
+if(household.householdIndex < 100){
+	//traceln("Correlated input params " + X1 + " ec " + X2 + " aew " + X3 + " fa " + X4 + " ta " + X5 + " ra ");
+}
+*/
+household.f_initializeCharacteristics(correlatedInputParams);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724084247150</Id>
+					<Name><![CDATA[f_setWillingToVolunteerToTimeAvailable]]></Name>
+					<X>-250</X><Y>1900</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Determine the index that separates the top 5%
+int n = c_households.size();
+int topPercentIndex = (int) Math.ceil(v_willingToVolunteer_perc * n) - 1; // 0-based index
+
+List<J_Household> sortedTimeAvailable = sortDescending(c_households, x->x.timeAvailability);
+//double thresholdValue = sortedTimeAvailable.get(sortedTimeAvailable).getTimeAvailability();
+
+for(int i=0; i<topPercentIndex+1; i++){
+	sortedTimeAvailable.get(i).willingToVolunteer = true;
 }
 ]]></Body>
 				</Function>
@@ -6899,14 +7192,14 @@ for(GZ_District d : pop_GZ_Districts){
 						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
 					</RecurrenceCode>
 					<Value><![CDATA[]]></Value>
-					<NumberOfIntervals>10</NumberOfIntervals>
+					<NumberOfIntervals>20</NumberOfIntervals>
 					<MinMaxAutodetect>true</MinMaxAutodetect>
 					<RangeMinExpression><![CDATA[0]]></RangeMinExpression>
 					<RangeMaxExpression><![CDATA[1]]></RangeMaxExpression>
-					<InitialIntervalSize><![CDATA[0.05]]></InitialIntervalSize>
+					<InitialIntervalSize><![CDATA[0.01]]></InitialIntervalSize>
 					<CalculateCDF>true</CalculateCDF>
 					<CalculatePercentiles>false</CalculatePercentiles>
-					<LowPercent>10</LowPercent>
+					<LowPercent>5</LowPercent>
 					<HighPercent>10</HighPercent>
 					<Title><![CDATA[]]></Title>
 				</HistogramData>
@@ -8590,7 +8883,7 @@ for(GZ_District d : pop_GZ_Districts){
 					<ShowLegend>false</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[49]]></TimeWindowExpression>
 					<SamplesToKeep>50</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
@@ -8643,7 +8936,7 @@ for(GZ_District d : pop_GZ_Districts){
 					<ShowLegend>false</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[49]]></TimeWindowExpression>
 					<SamplesToKeep>50</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
@@ -8696,7 +8989,7 @@ for(GZ_District d : pop_GZ_Districts){
 					<ShowLegend>false</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[49]]></TimeWindowExpression>
 					<SamplesToKeep>50</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
@@ -8749,7 +9042,7 @@ for(GZ_District d : pop_GZ_Districts){
 					<ShowLegend>false</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<TimeWindowExpression><![CDATA[49]]></TimeWindowExpression>
 					<SamplesToKeep>50</SamplesToKeep>
 					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
@@ -13530,7 +13823,7 @@ EnergyCommunity EC = main.add_pop_energyCommunities();
 //Set board members
 EC.c_boardMembers.addAll(initiatorHouseholds);
 //initiatorHouseholds.forEach(x->x.status = BOARD_MEMBER);
-initiatorHouseholds.forEach(x->x.f_becomeCommunityInitiator(EC));
+//initiatorHouseholds.forEach(x->x.f_becomeCommunityInitiator(EC));
 
 
 //Set EC municipality and neighborhood data
@@ -14033,6 +14326,18 @@ return p_municipality.c_ECs.get(indexMin);]]></Body>
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[0]]></Code>
 						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724154817968</Id>
+					<Name><![CDATA[v_willingToInitiate]]></Name>
+					<X>50</X><Y>560</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -14912,8 +15217,8 @@ project.membersInvestment_eur = communityInvestment;
 double projectTypeCapacity = projectType.requiredCapacity;
 
 //traceln(projectType.toString() + " project type, req. cap " + projectTypeCapacity + ", and hh WtI " + count(c_householdsInRange, x->x.willingnessToInitiate == true) + " has required cap " + projectType.hasRequiredBoardCapacity);
-int willingToInitiate = count(c_householdsInRange, x->x.willingnessToInitiate);
-for(int i=0; i<willingToInitiate; i++){
+//int willingToInitiate = count(c_householdsInRange, x->x.willingnessToInitiate);
+for(int i=0; i<v_willingToInitiate; i++){
 	J_Household hh = randomWhere(c_householdsInRange, x->x.willingnessToInitiate == true);
 	hh.f_becomeProjectInitiator(project);
 }
@@ -15393,13 +15698,14 @@ if( p_hasProjectDevelopmentPartner == true){
 	professionalCapacity += 1;
 }
 //Set board cap
-double boardCapacity;
-int willingToInitiate = count(c_householdsInRange, x->x.willingnessToInitiate);
-if( willingToInitiate >= initiatorsRequired){
+double boardCapacity = 0;
+v_willingToInitiate = count(c_householdsInRange, x->x.willingnessToInitiate);
+if( v_willingToInitiate >= initiatorsRequired){
 	boardCapacity = 1;
+	v_willingToInitiate = initiatorsRequired;
 }
 else {
-	boardCapacity = willingToInitiate / initiatorsRequired;
+	boardCapacity = v_willingToInitiate / initiatorsRequired;
 }
 professionalCapacity += boardCapacity;
 
@@ -15409,9 +15715,10 @@ v_professionalCapacity = professionalCapacity / 4 + v_learnedCapacity;
 if(v_professionalCapacity > 1){
 	v_professionalCapacity = 1;
 	if(main.detailedSimulation){
-		traceln("prof capacity > 1");
+		//traceln("prof capacity > 1");
 	}
-}]]></Body>
+}
+]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -16736,7 +17043,7 @@ traceln("At neighborhood " + this.getIndex() + ", min, average and max utility i
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1723726967137</Id>
 					<Name><![CDATA[f_instantiateEC]]></Name>
-					<X>50</X><Y>200</Y>
+					<X>40</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -16745,13 +17052,28 @@ traceln("At neighborhood " + this.getIndex() + ", min, average and max utility i
 						<Name><![CDATA[initiatorsRequired]]></Name>
 						<Type><![CDATA[double]]></Type>
 					</Parameter>
-					<Body><![CDATA[if( p_nearestEC == null && c_households.size() > 0){
+					<Body><![CDATA[List<GZ_District> districtsInRange = new ArrayList<>();
+if( p_nearestEC == null && c_households.size() > 0){
+		/*		
+	//Set districts in range without EC
+	int initiatingHouseholds = 0;
+	for(GZ_District dis : p_municipality.c_districts){
+		if(dis.p_nearestEC == null && this.distanceTo(dis) < main.v_radiusEC){ //TODO:Why 4km, maybe use districts instead
+			districtsInRange.add(dis);
+			initiatingHouseholds += count(dis.c_households, x->x.willingnessToInitiate);
+		}
+	}
+	if(!districtsInRange.contains(this)){
+		traceln("------Error-----: This is not in list");
+	}
+	*/
 	int initiatingHouseholds = count(c_households, x->x.willingnessToInitiate);
+	traceln(initiatingHouseholds + " initators at district " + this.getIndex());
 	boolean hasEnooughHouseholdsToJoinEC = count(c_households, x->x.willingnessToInvest) > main.p_householdsJoiningECThreshold * p_households;
 	int nbOfECsInMun = p_municipality.c_ECs.size();
 	double rand = uniform(0,1);
 	
-	if( initiatingHouseholds >= initiatorsRequired ) {// && rand < main.p_changeOfMeeting){ //initiate EC
+	if( initiatingHouseholds >= initiatorsRequired && rand < main.v_changeOfMeeting){ //initiate EC
 		List<J_Household> initiatorHouseholds = new ArrayList<>();
 		initiatorHouseholds = findAll(c_households, x->x.willingnessToInitiate);
 		f_initiateEC(initiatorHouseholds);
@@ -16767,14 +17089,14 @@ traceln("At neighborhood " + this.getIndex() + ", min, average and max utility i
 	}
 	
 	//Join exisiting EC if very few households left within municipality
-	/*
-	else if(nbOfECsInMun > 0 && sumWhere(p_municipality.c_neighborhoods, x->x.p_households, x->x.p_nearestEC == null) < 300){
+	else if(nbOfECsInMun > 0 && sumWhere(p_municipality.c_districts, x->x.p_households, x->x.p_nearestEC == null) < 500){
 		p_nearestEC = f_getNearestEC(nbOfECsInMun);
 		//p_nearestEC.c_neighborhoods.add(this);
 		p_nearestEC.c_districts.add(this);
 		p_nearestEC.c_householdsInRange.addAll(c_households);
+		//traceln("adding final districts with few hh to EC");
 	}
-	*/
+	
 }
 
 
@@ -16801,7 +17123,7 @@ EnergyCommunity EC = main.add_pop_energyCommunities();
 //Set board members
 EC.c_boardMembers.addAll(initiatorHouseholds);
 //initiatorHouseholds.forEach(x->x.status = BOARD_MEMBER);
-initiatorHouseholds.forEach(x->x.f_becomeCommunityInitiator(EC));
+//initiatorHouseholds.forEach(x->x.f_becomeCommunityInitiator(EC));
 
 
 //Set EC municipality and neighborhood data
@@ -16816,7 +17138,7 @@ EC.c_districts.add(this);
 
 //Connect to other neighborhoods to get households in range
 for(GZ_District dis : EC.p_municipality.c_districts){
-	if(dis.p_nearestEC == null && this.distanceTo(dis) < main.p_radiusEC){ //TODO:Why 4km, maybe use districts instead
+	if(dis.p_nearestEC == null && this.distanceTo(dis) < main.v_radiusEC){ //TODO:Why 4km, maybe use districts instead
 		dis.p_nearestEC = EC;
 		EC.c_districts.add(dis);
 	}
@@ -17334,7 +17656,8 @@ else {
 			<Id>1717511797832</Id>
 			<Name><![CDATA[Simulation]]></Name>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<InitialSetupCode><![CDATA[//f_setTimeAvailable();]]></InitialSetupCode>
+			<InitialSetupCode><![CDATA[//f_setTimeAvailable();
+f_setColorPalette();]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -17361,7 +17684,7 @@ f_setPlots();]]></AfterSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.74]]></Code>
+							<Code><![CDATA[0.7]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -17539,6 +17862,36 @@ f_setPlots();]]></AfterSimulationRunCode>
 						<Type><![CDATA[int]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724060327263</Id>
+					<Name><![CDATA[v_networkType]]></Name>
+					<X>-400</X><Y>450</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[NetworkStructure]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1724056329426</Id>
+					<Name><![CDATA[c_colorPalette]]></Name>
+					<X>-400</X><Y>550</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[Color]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -17577,7 +17930,7 @@ ds3.fillFrom(ds_ECMembers);
 ds4.fillFrom(ds_ECs);
 ds5.fillFrom(ds_ECInstalledCap);
 
-Color color = randomColor();
+Color color = randomFrom(c_colorPalette);
 iterator++;
 String run = "run " + iterator;
 pl_percMembers.addDataSet(ds1, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
@@ -17586,7 +17939,96 @@ pl_members.addDataSet(ds3, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, T
 pl_ECs.addDataSet(ds4, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
 pl_intalledCap.addDataSet(ds5, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
 
+    
+double xOval = 1415;
+double yOval = 165 + iterator * 25;
+double rotationOval = 0;
+Color lineColor = color;
+Color fillColor = color;
+double radiusX = 8;
+double radiusY = 8;
+double lineWidth = 0;
+LineStyle lineStyle = LINE_STYLE_SOLID;    
+    
+ShapeOval oval = new ShapeOval(true, xOval, yOval, rotationOval, lineColor, fillColor, radiusX, radiusY, lineWidth, lineStyle);
+presentation.add(oval);
+
+ShapeDrawMode drawMode = presentation.getDrawMode();
+double xText = 1435;
+double yText = 155 + iterator * 25;
+double z = 0;
+double rotationText = 0;
+String text = run + " WtIni Th:" + p_willingnessToInitiateThreshold + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_individualLearningRate + " network: " + v_networkType;
+Font font = new Font("SansSerif", Font.PLAIN, 11);
+TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
+
+ShapeText textShape = new ShapeText(drawMode, true, xText, yText, z, rotationText, color, text, font, alignment);
+presentation.add(textShape);
+
 traceln("-------Finished iteration " + iterator + "---------");
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724056340526</Id>
+					<Name><![CDATA[f_setColorPalette]]></Name>
+					<X>-400</X><Y>570</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Adding 50 readable and matching c_colorPalette
+c_colorPalette.add(new Color(0xFF5733));   // Orange Red
+c_colorPalette.add(new Color(0xC70039));   // Red
+c_colorPalette.add(new Color(0x900C3F));   // Dark Red
+c_colorPalette.add(new Color(0x581845));   // Dark Purple
+c_colorPalette.add(new Color(0xFFC300));   // Yellow
+c_colorPalette.add(new Color(0xFF5733));   // Orange
+c_colorPalette.add(new Color(0xDAF7A6));   // Light Green
+c_colorPalette.add(new Color(0x33FF57));   // Green
+c_colorPalette.add(new Color(0x28B463));   // Dark Green
+c_colorPalette.add(new Color(0x239B56));   // Forest Green
+c_colorPalette.add(new Color(0x1F618D));   // Navy Blue
+c_colorPalette.add(new Color(0x2874A6));   // Steel Blue
+c_colorPalette.add(new Color(0x5DADE2));   // Sky Blue
+c_colorPalette.add(new Color(0x85C1E9));   // Light Blue
+c_colorPalette.add(new Color(0x154360));   // Midnight Blue
+c_colorPalette.add(new Color(0x76448A));   // Medium Purple
+c_colorPalette.add(new Color(0x7D3C98));   // Plum
+c_colorPalette.add(new Color(0x884EA0));   // Amethyst
+c_colorPalette.add(new Color(0xA569BD));   // Orchid
+c_colorPalette.add(new Color(0xE74C3C));   // Red Orange
+c_colorPalette.add(new Color(0xF39C12));   // Sunflower
+c_colorPalette.add(new Color(0xF1C40F));   // Golden Yellow
+c_colorPalette.add(new Color(0xD35400));   // Pumpkin
+c_colorPalette.add(new Color(0xBA4A00));   // Burnt Orange
+c_colorPalette.add(new Color(0x1ABC9C));   // Turquoise
+c_colorPalette.add(new Color(0x16A085));   // Teal
+c_colorPalette.add(new Color(0xF7DC6F));   // Pastel Yellow
+c_colorPalette.add(new Color(0xF4D03F));   // Bright Yellow
+c_colorPalette.add(new Color(0x229954));   // Emerald Green
+c_colorPalette.add(new Color(0x3498DB));   // Bright Blue
+c_colorPalette.add(new Color(0x2ECC71));   // Light Green
+c_colorPalette.add(new Color(0x48C9B0));   // Aquamarine
+c_colorPalette.add(new Color(0x45B39D));   // Sea Green
+c_colorPalette.add(new Color(0x138D75));   // Dark Teal
+c_colorPalette.add(new Color(0x117864));   // Pine Green
+c_colorPalette.add(new Color(0x1F618D));   // Dark Blue
+c_colorPalette.add(new Color(0x5B2C6F));   // Royal Purple
+c_colorPalette.add(new Color(0x6C3483));   // Deep Purple
+c_colorPalette.add(new Color(0x7FB3D5));   // Pastel Blue
+c_colorPalette.add(new Color(0x85929E));   // Gray Blue
+c_colorPalette.add(new Color(0xD98880));   // Soft Red
+c_colorPalette.add(new Color(0xCD6155));   // Coral Red
+c_colorPalette.add(new Color(0xA93226));   // Crimson
+c_colorPalette.add(new Color(0x873600));   // Mahogany
+c_colorPalette.add(new Color(0xA04000));   // Sienna
+c_colorPalette.add(new Color(0xB9770E));   // Bronze
+c_colorPalette.add(new Color(0xAF601A));   // Rust
+c_colorPalette.add(new Color(0xD4AC0D));   // Mustard Yellow
+c_colorPalette.add(new Color(0xB7950B));   // Olive
+c_colorPalette.add(new Color(0xD68910));   // Amber
 ]]></Body>
 				</Function>
 			</Functions>
@@ -18227,1264 +18669,6 @@ else {
 						<Link>rapidRun</Link>
 	 				</ExtendedProperties>
 				</Control>
-				<Oval>
-					<Id>1723810274597</Id>
-					<Name><![CDATA[oval5]]></Name>
-					<X>1615</X><Y>210</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274599</Id>
-					<Name><![CDATA[text_legend14]]></Name>
-					<X>1340</X><Y>670</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Energy community statistics]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>18</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274601</Id>
-					<Name><![CDATA[oval22]]></Name>
-					<X>1615</X><Y>525</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Oval>
-					<Id>1723810274603</Id>
-					<Name><![CDATA[oval17]]></Name>
-					<X>1615</X><Y>400</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274605</Id>
-					<Name><![CDATA[text_legend8]]></Name>
-					<X>1635</X><Y>200</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274607</Id>
-					<Name><![CDATA[oval19]]></Name>
-					<X>1615</X><Y>450</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274609</Id>
-					<Name><![CDATA[text_legend10]]></Name>
-					<X>1635</X><Y>250</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274611</Id>
-					<Name><![CDATA[text_legend25]]></Name>
-					<X>1635</X><Y>590</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274613</Id>
-					<Name><![CDATA[text_legend13]]></Name>
-					<X>1340</X><Y>120</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Energy community statistics]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>18</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-    			<TimePlot>
-					<Id>1723810274616</Id>
-					<Name><![CDATA[pl_avgHouseholdIndicators]]></Name>
-					<X>1300</X><Y>710</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1721808000000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>EAST</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>yyyy</LabelFormat>
-    			</TimePlot>
-				<Text>
-					<Id>1723810274618</Id>
-					<Name><![CDATA[text_legend9]]></Name>
-					<X>1635</X><Y>225</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274620</Id>
-					<Name><![CDATA[oval25]]></Name>
-					<X>1615</X><Y>600</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Oval>
-					<Id>1723810274622</Id>
-					<Name><![CDATA[oval6]]></Name>
-					<X>1615</X><Y>235</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274624</Id>
-					<Name><![CDATA[text128]]></Name>
-					<X>1600</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Legend]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274626</Id>
-					<Name><![CDATA[oval24]]></Name>
-					<X>1615</X><Y>575</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274628</Id>
-					<Name><![CDATA[text_legend23]]></Name>
-					<X>1635</X><Y>540</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274630</Id>
-					<Name><![CDATA[oval20]]></Name>
-					<X>1615</X><Y>475</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Oval>
-					<Id>1723810274632</Id>
-					<Name><![CDATA[oval15]]></Name>
-					<X>1615</X><Y>335</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Oval>
-					<Id>1723810274634</Id>
-					<Name><![CDATA[oval9]]></Name>
-					<X>1615</X><Y>310</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274636</Id>
-					<Name><![CDATA[text_legend22]]></Name>
-					<X>1635</X><Y>515</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274638</Id>
-					<Name><![CDATA[oval23]]></Name>
-					<X>1615</X><Y>550</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274640</Id>
-					<Name><![CDATA[text129]]></Name>
-					<X>1450</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Members (#)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274642</Id>
-					<Name><![CDATA[text_legend15]]></Name>
-					<X>1635</X><Y>325</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274644</Id>
-					<Name><![CDATA[text130]]></Name>
-					<X>1450</X><Y>710</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Avg. value of adoption drivers]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274646</Id>
-					<Name><![CDATA[text_legend21]]></Name>
-					<X>1635</X><Y>490</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274648</Id>
-					<Name><![CDATA[text_legend11]]></Name>
-					<X>1635</X><Y>275</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274650</Id>
-					<Name><![CDATA[oval21]]></Name>
-					<X>1615</X><Y>500</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274652</Id>
-					<Name><![CDATA[text_legend17]]></Name>
-					<X>1635</X><Y>390</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274654</Id>
-					<Name><![CDATA[oval7]]></Name>
-					<X>1615</X><Y>260</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Oval>
-					<Id>1723810274656</Id>
-					<Name><![CDATA[oval18]]></Name>
-					<X>1615</X><Y>425</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274658</Id>
-					<Name><![CDATA[text131]]></Name>
-					<X>1180</X><Y>400</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[ECs (#)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274660</Id>
-					<Name><![CDATA[text_legend18]]></Name>
-					<X>1635</X><Y>415</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274662</Id>
-					<Name><![CDATA[text_legend16]]></Name>
-					<X>1635</X><Y>350</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274664</Id>
-					<Name><![CDATA[text_legend20]]></Name>
-					<X>1635</X><Y>465</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Line>
-					<Id>1723810274666</Id>
-					<Name><![CDATA[line1]]></Name>
-					<X>1000</X><Y>120</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-4144960</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>0</Dx>
-					<Dy>840</Dy>
-					<Dz>0</Dz>
-				</Line>
-				<Text>
-					<Id>1723810274668</Id>
-					<Name><![CDATA[text_legend19]]></Name>
-					<X>1635</X><Y>440</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274670</Id>
-					<Name><![CDATA[oval8]]></Name>
-					<X>1615</X><Y>285</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274672</Id>
-					<Name><![CDATA[text132]]></Name>
-					<X>1180</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Projects (#)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274674</Id>
-					<Name><![CDATA[text133]]></Name>
-					<X>1450</X><Y>400</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Installed capacity (kW)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Oval>
-					<Id>1723810274676</Id>
-					<Name><![CDATA[oval16]]></Name>
-					<X>1615</X><Y>360</Y>
-					<Label><X>0</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<RadiusX>8</RadiusX>
-					<RadiusY>40</RadiusY>
-					<Rotation>0.0</Rotation>
-					<FillColor>-4144960</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Oval>
-				<Text>
-					<Id>1723810274678</Id>
-					<Name><![CDATA[text_legend12]]></Name>
-					<X>1635</X><Y>300</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1723810274680</Id>
-					<Name><![CDATA[text_legend24]]></Name>
-					<X>1635</X><Y>565</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Group>
-					<Id>1723810274682</Id>
-					<Name><![CDATA[gr_membersPercGraph]]></Name>
-					<X>1160</X><Y>820</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-
-
-				</Group>
-    			<TimePlot>
-					<Id>1723810274685</Id>
-					<Name><![CDATA[pl_projects]]></Name>
-					<X>1020</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>YEAR</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimePlot>
-    			<TimePlot>
-					<Id>1723810274688</Id>
-					<Name><![CDATA[pl_members]]></Name>
-					<X>1300</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>YEAR</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimePlot>
-    			<TimePlot>
-					<Id>1723810274691</Id>
-					<Name><![CDATA[pl_ECs]]></Name>
-					<X>1020</X><Y>400</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>YEAR</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimePlot>
-    			<TimePlot>
-					<Id>1723810274694</Id>
-					<Name><![CDATA[pl_intalledCap]]></Name>
-					<X>1300</X><Y>400</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>YEAR</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimePlot>
-				<Text>
-					<Id>1723810274696</Id>
-					<Name><![CDATA[text134]]></Name>
-					<X>1170</X><Y>710</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Share of EC members in population (%)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-    			<TimePlot>
-					<Id>1723810274699</Id>
-					<Name><![CDATA[pl_percMembers]]></Name>
-					<X>1010</X><Y>710</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1721808000000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>230</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>50</XOffset>
-						<YOffset>30</YOffset>
-						<Width>220</Width>
-						<Height>170</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>false</ShowLegend>
-					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
-					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
-					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
-					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>yyyy</LabelFormat>
-    			</TimePlot>
 				<Text>
 					<Id>1723809776972</Id>
 					<Name><![CDATA[text27]]></Name>
@@ -19552,6 +18736,1176 @@ else {
 						<LinkTo>false</LinkTo>
 					</ExtendedProperties>
 				</Control>
+				<Control Type="ComboBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724060138658</Id>
+					<Name><![CDATA[cb_networkType]]></Name>
+					<X>70</X><Y>450</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor/>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[if(cb_networkType.getValue().equals("Random")){
+	v_networkType = RANDOM_NETWORK;
+}
+else if(cb_networkType.getValue().equals("Small world")){
+	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
+}
+else if(cb_networkType.getValue().equals("Small world similar")){
+	v_networkType = SMALL_WORLD_SIMILAR;
+}]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<DefaultValueCode><![CDATA["Small world similar"]]></DefaultValueCode>
+						<Editable>false</Editable>
+						<Button><![CDATA[Random]]></Button>
+						<Button><![CDATA[Small world]]></Button>
+						<Button><![CDATA[Small world similar]]></Button>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1724060163918</Id>
+					<Name><![CDATA[text33]]></Name>
+					<X>75</X><Y>430</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[individual learning rate]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855453</Id>
+					<Name><![CDATA[oval5]]></Name>
+					<X>1415</X><Y>190</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855458</Id>
+					<Name><![CDATA[oval22]]></Name>
+					<X>1415</X><Y>505</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855460</Id>
+					<Name><![CDATA[oval17]]></Name>
+					<X>1415</X><Y>380</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855462</Id>
+					<Name><![CDATA[text_legend8]]></Name>
+					<X>1435</X><Y>180</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855464</Id>
+					<Name><![CDATA[oval19]]></Name>
+					<X>1415</X><Y>430</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855466</Id>
+					<Name><![CDATA[text_legend10]]></Name>
+					<X>1435</X><Y>230</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855468</Id>
+					<Name><![CDATA[text_legend25]]></Name>
+					<X>1435</X><Y>570</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855470</Id>
+					<Name><![CDATA[text_legend9]]></Name>
+					<X>1435</X><Y>205</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855472</Id>
+					<Name><![CDATA[oval25]]></Name>
+					<X>1415</X><Y>580</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855474</Id>
+					<Name><![CDATA[oval6]]></Name>
+					<X>1415</X><Y>215</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855476</Id>
+					<Name><![CDATA[text128]]></Name>
+					<X>1400</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Legend]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855478</Id>
+					<Name><![CDATA[oval24]]></Name>
+					<X>1415</X><Y>555</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855480</Id>
+					<Name><![CDATA[text_legend23]]></Name>
+					<X>1435</X><Y>520</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855482</Id>
+					<Name><![CDATA[oval20]]></Name>
+					<X>1415</X><Y>455</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855484</Id>
+					<Name><![CDATA[oval15]]></Name>
+					<X>1415</X><Y>315</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855486</Id>
+					<Name><![CDATA[oval9]]></Name>
+					<X>1415</X><Y>290</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855488</Id>
+					<Name><![CDATA[text_legend22]]></Name>
+					<X>1435</X><Y>495</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855490</Id>
+					<Name><![CDATA[oval23]]></Name>
+					<X>1415</X><Y>530</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855492</Id>
+					<Name><![CDATA[text129]]></Name>
+					<X>850</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Members (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855494</Id>
+					<Name><![CDATA[text_legend15]]></Name>
+					<X>1435</X><Y>305</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855496</Id>
+					<Name><![CDATA[text_legend21]]></Name>
+					<X>1435</X><Y>470</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855498</Id>
+					<Name><![CDATA[text_legend11]]></Name>
+					<X>1435</X><Y>255</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855500</Id>
+					<Name><![CDATA[oval21]]></Name>
+					<X>1415</X><Y>480</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855502</Id>
+					<Name><![CDATA[text_legend17]]></Name>
+					<X>1435</X><Y>370</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855504</Id>
+					<Name><![CDATA[oval7]]></Name>
+					<X>1415</X><Y>240</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Oval>
+					<Id>1724145855506</Id>
+					<Name><![CDATA[oval18]]></Name>
+					<X>1415</X><Y>405</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855508</Id>
+					<Name><![CDATA[text131]]></Name>
+					<X>580</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ECs (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855510</Id>
+					<Name><![CDATA[text_legend18]]></Name>
+					<X>1435</X><Y>395</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855512</Id>
+					<Name><![CDATA[text_legend16]]></Name>
+					<X>1435</X><Y>330</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855514</Id>
+					<Name><![CDATA[text_legend20]]></Name>
+					<X>1435</X><Y>445</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855516</Id>
+					<Name><![CDATA[text_legend19]]></Name>
+					<X>1435</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855518</Id>
+					<Name><![CDATA[oval8]]></Name>
+					<X>1415</X><Y>265</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855520</Id>
+					<Name><![CDATA[text132]]></Name>
+					<X>580</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Projects (#)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855522</Id>
+					<Name><![CDATA[text133]]></Name>
+					<X>850</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Installed capacity (kW)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Oval>
+					<Id>1724145855524</Id>
+					<Name><![CDATA[oval16]]></Name>
+					<X>1415</X><Y>340</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>8</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4144960</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
+				<Text>
+					<Id>1724145855526</Id>
+					<Name><![CDATA[text_legend12]]></Name>
+					<X>1435</X><Y>280</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1724145855528</Id>
+					<Name><![CDATA[text_legend24]]></Name>
+					<X>1435</X><Y>545</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Group>
+					<Id>1724145855530</Id>
+					<Name><![CDATA[gr_membersPercGraph]]></Name>
+					<X>1130</X><Y>260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+
+				</Group>
+    			<TimePlot>
+					<Id>1724145855533</Id>
+					<Name><![CDATA[pl_projects]]></Name>
+					<X>420</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1723190400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>YEAR</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<SamplesToKeep>50</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1724145855536</Id>
+					<Name><![CDATA[pl_members]]></Name>
+					<X>700</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1723190400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>YEAR</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<SamplesToKeep>50</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1724145855539</Id>
+					<Name><![CDATA[pl_ECs]]></Name>
+					<X>420</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1723190400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>YEAR</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<SamplesToKeep>50</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<TimePlot>
+					<Id>1724145855542</Id>
+					<Name><![CDATA[pl_intalledCap]]></Name>
+					<X>700</X><Y>420</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1723190400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>YEAR</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<SamplesToKeep>50</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+				<Text>
+					<Id>1724145855544</Id>
+					<Name><![CDATA[text134]]></Name>
+					<X>1140</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Share of EC members in population (%)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+    			<TimePlot>
+					<Id>1724145855547</Id>
+					<Name><![CDATA[pl_percMembers]]></Name>
+					<X>980</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1721808000000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>false</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<SamplesToKeep>50</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
 			</Presentation>
 
 			<Parameters>			
@@ -19733,13 +20087,16 @@ else {
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_radiusEC]]></ParameterName>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_changeOfMeeting]]></ParameterName>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[p_shareSimilarcontactsInNetwork]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_networkType]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_networkType]]></Code>
+					</ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_agentDriversRandom]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -19764,6 +20121,7 @@ else {
 			<Id>1723105243144</Id>
 			<Name><![CDATA[MonteCarlo]]></Name>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
+			<InitialSetupCode><![CDATA[f_setColorPalette();]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -19838,6 +20196,21 @@ f_setPlots();
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1724056515343</Id>
+					<Name><![CDATA[c_colorPalette]]></Name>
+					<X>-496</X><Y>186</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[Color]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -19862,7 +20235,7 @@ ds3.fillFrom(ds_ECMembers);
 ds4.fillFrom(ds_ECs);
 ds5.fillFrom(ds_ECInstalledCap);
 
-Color color = randomColor();
+Color color = randomFrom(c_colorPalette);
 iterator++;
 String run = "run " + iterator;
 pl_percMembers.addDataSet(ds1, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
@@ -19872,6 +20245,69 @@ pl_ECs.addDataSet(ds4, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimeP
 pl_intalledCap.addDataSet(ds5, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
 
 traceln("-------Finished iteration " + iterator + "---------");
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724056515365</Id>
+					<Name><![CDATA[f_setColorPalette]]></Name>
+					<X>-496</X><Y>206</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Adding 50 readable and matching c_colorPalette
+c_colorPalette.add(new Color(0xFF5733));   // Orange Red
+c_colorPalette.add(new Color(0xC70039));   // Red
+c_colorPalette.add(new Color(0x900C3F));   // Dark Red
+c_colorPalette.add(new Color(0x581845));   // Dark Purple
+c_colorPalette.add(new Color(0xFFC300));   // Yellow
+c_colorPalette.add(new Color(0xFF5733));   // Orange
+c_colorPalette.add(new Color(0xDAF7A6));   // Light Green
+c_colorPalette.add(new Color(0x33FF57));   // Green
+c_colorPalette.add(new Color(0x28B463));   // Dark Green
+c_colorPalette.add(new Color(0x239B56));   // Forest Green
+c_colorPalette.add(new Color(0x1F618D));   // Navy Blue
+c_colorPalette.add(new Color(0x2874A6));   // Steel Blue
+c_colorPalette.add(new Color(0x5DADE2));   // Sky Blue
+c_colorPalette.add(new Color(0x85C1E9));   // Light Blue
+c_colorPalette.add(new Color(0x154360));   // Midnight Blue
+c_colorPalette.add(new Color(0x76448A));   // Medium Purple
+c_colorPalette.add(new Color(0x7D3C98));   // Plum
+c_colorPalette.add(new Color(0x884EA0));   // Amethyst
+c_colorPalette.add(new Color(0xA569BD));   // Orchid
+c_colorPalette.add(new Color(0xE74C3C));   // Red Orange
+c_colorPalette.add(new Color(0xF39C12));   // Sunflower
+c_colorPalette.add(new Color(0xF1C40F));   // Golden Yellow
+c_colorPalette.add(new Color(0xD35400));   // Pumpkin
+c_colorPalette.add(new Color(0xBA4A00));   // Burnt Orange
+c_colorPalette.add(new Color(0x1ABC9C));   // Turquoise
+c_colorPalette.add(new Color(0x16A085));   // Teal
+c_colorPalette.add(new Color(0xF7DC6F));   // Pastel Yellow
+c_colorPalette.add(new Color(0xF4D03F));   // Bright Yellow
+c_colorPalette.add(new Color(0x229954));   // Emerald Green
+c_colorPalette.add(new Color(0x3498DB));   // Bright Blue
+c_colorPalette.add(new Color(0x2ECC71));   // Light Green
+c_colorPalette.add(new Color(0x48C9B0));   // Aquamarine
+c_colorPalette.add(new Color(0x45B39D));   // Sea Green
+c_colorPalette.add(new Color(0x138D75));   // Dark Teal
+c_colorPalette.add(new Color(0x117864));   // Pine Green
+c_colorPalette.add(new Color(0x1F618D));   // Dark Blue
+c_colorPalette.add(new Color(0x5B2C6F));   // Royal Purple
+c_colorPalette.add(new Color(0x6C3483));   // Deep Purple
+c_colorPalette.add(new Color(0x7FB3D5));   // Pastel Blue
+c_colorPalette.add(new Color(0x85929E));   // Gray Blue
+c_colorPalette.add(new Color(0xD98880));   // Soft Red
+c_colorPalette.add(new Color(0xCD6155));   // Coral Red
+c_colorPalette.add(new Color(0xA93226));   // Crimson
+c_colorPalette.add(new Color(0x873600));   // Mahogany
+c_colorPalette.add(new Color(0xA04000));   // Sienna
+c_colorPalette.add(new Color(0xB9770E));   // Bronze
+c_colorPalette.add(new Color(0xAF601A));   // Rust
+c_colorPalette.add(new Color(0xD4AC0D));   // Mustard Yellow
+c_colorPalette.add(new Color(0xB7950B));   // Olive
+c_colorPalette.add(new Color(0xD68910));   // Amber
 ]]></Body>
 				</Function>
 			</Functions>
@@ -25119,13 +25555,13 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Id>1723565769610</Id>
 			</FreeformParamValue>
 			<FreeformParamValue>	
-				<Id>1723800700371</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1723802190098</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
 				<Id>1723819411276</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1724059847082</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1724082586840</Id>
 			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1717511993091</Id>
@@ -25340,15 +25776,15 @@ traceln("-------Finished iteration " + iterator + "---------");
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
-				<Id>1723800700371</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1723802190098</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
 				<Id>1723819411276</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1724059847082</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1724082586840</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -25381,6 +25817,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 			<Name><![CDATA[CompareRuns]]></Name>
 			<Import><![CDATA[import com.anylogic.libraries.processmodeling.RackSystem.DrawMode;]]></Import>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
+			<InitialSetupCode><![CDATA[f_setColorPalette();]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -25465,7 +25902,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.74]]></Code>
+							<Code><![CDATA[0.7]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -25480,7 +25917,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.735]]></Code>
+							<Code><![CDATA[0.6]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -25541,6 +25978,36 @@ f_setPlots();
 						<Type><![CDATA[boolean]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724067207767</Id>
+					<Name><![CDATA[v_networkType]]></Name>
+					<X>-540</X><Y>420</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[NetworkStructure]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1724056520460</Id>
+					<Name><![CDATA[c_colorPalette]]></Name>
+					<X>-371</X><Y>572</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[Color]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -25565,7 +26032,7 @@ ds3.fillFrom(ds_ECMembers);
 ds4.fillFrom(ds_ECs);
 ds5.fillFrom(ds_ECInstalledCap);
 
-Color color = randomColor();
+Color color = randomFrom(c_colorPalette);
 iterator++;
 String run = "run " + iterator;
 pl_percMembers.addDataSet(ds1, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
@@ -25584,7 +26051,7 @@ double rotationOval = 0;
 Color lineColor = color;
 Color fillColor = color;
 double radiusX = 8;
-double radiusY = 1;
+double radiusY = 8;
 double lineWidth = 0;
 LineStyle lineStyle = LINE_STYLE_SOLID;    
     
@@ -25596,7 +26063,7 @@ double xText = 1435;
 double yText = 155 + iterator * 25;
 double z = 0;
 double rotationText = 0;
-String text = run;
+String text = run + " WtIni Th:" + p_willingnessToInitiateThreshold + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_individualLearningRate + " network: " + v_networkType;
 Font font = new Font("SansSerif", Font.PLAIN, 11);
 TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
 
@@ -25611,6 +26078,69 @@ presentation.add(textShape);
 
 
 traceln("-------Finished iteration " + iterator + "---------");
+]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724056520462</Id>
+					<Name><![CDATA[f_setColorPalette]]></Name>
+					<X>-371</X><Y>592</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Adding 50 readable and matching c_colorPalette
+c_colorPalette.add(new Color(0xFF5733));   // Orange Red
+c_colorPalette.add(new Color(0xC70039));   // Red
+c_colorPalette.add(new Color(0x900C3F));   // Dark Red
+c_colorPalette.add(new Color(0x581845));   // Dark Purple
+c_colorPalette.add(new Color(0xFFC300));   // Yellow
+c_colorPalette.add(new Color(0xFF5733));   // Orange
+c_colorPalette.add(new Color(0xDAF7A6));   // Light Green
+c_colorPalette.add(new Color(0x33FF57));   // Green
+c_colorPalette.add(new Color(0x28B463));   // Dark Green
+c_colorPalette.add(new Color(0x239B56));   // Forest Green
+c_colorPalette.add(new Color(0x1F618D));   // Navy Blue
+c_colorPalette.add(new Color(0x2874A6));   // Steel Blue
+c_colorPalette.add(new Color(0x5DADE2));   // Sky Blue
+c_colorPalette.add(new Color(0x85C1E9));   // Light Blue
+c_colorPalette.add(new Color(0x154360));   // Midnight Blue
+c_colorPalette.add(new Color(0x76448A));   // Medium Purple
+c_colorPalette.add(new Color(0x7D3C98));   // Plum
+c_colorPalette.add(new Color(0x884EA0));   // Amethyst
+c_colorPalette.add(new Color(0xA569BD));   // Orchid
+c_colorPalette.add(new Color(0xE74C3C));   // Red Orange
+c_colorPalette.add(new Color(0xF39C12));   // Sunflower
+c_colorPalette.add(new Color(0xF1C40F));   // Golden Yellow
+c_colorPalette.add(new Color(0xD35400));   // Pumpkin
+c_colorPalette.add(new Color(0xBA4A00));   // Burnt Orange
+c_colorPalette.add(new Color(0x1ABC9C));   // Turquoise
+c_colorPalette.add(new Color(0x16A085));   // Teal
+c_colorPalette.add(new Color(0xF7DC6F));   // Pastel Yellow
+c_colorPalette.add(new Color(0xF4D03F));   // Bright Yellow
+c_colorPalette.add(new Color(0x229954));   // Emerald Green
+c_colorPalette.add(new Color(0x3498DB));   // Bright Blue
+c_colorPalette.add(new Color(0x2ECC71));   // Light Green
+c_colorPalette.add(new Color(0x48C9B0));   // Aquamarine
+c_colorPalette.add(new Color(0x45B39D));   // Sea Green
+c_colorPalette.add(new Color(0x138D75));   // Dark Teal
+c_colorPalette.add(new Color(0x117864));   // Pine Green
+c_colorPalette.add(new Color(0x1F618D));   // Dark Blue
+c_colorPalette.add(new Color(0x5B2C6F));   // Royal Purple
+c_colorPalette.add(new Color(0x6C3483));   // Deep Purple
+c_colorPalette.add(new Color(0x7FB3D5));   // Pastel Blue
+c_colorPalette.add(new Color(0x85929E));   // Gray Blue
+c_colorPalette.add(new Color(0xD98880));   // Soft Red
+c_colorPalette.add(new Color(0xCD6155));   // Coral Red
+c_colorPalette.add(new Color(0xA93226));   // Crimson
+c_colorPalette.add(new Color(0x873600));   // Mahogany
+c_colorPalette.add(new Color(0xA04000));   // Sienna
+c_colorPalette.add(new Color(0xB9770E));   // Bronze
+c_colorPalette.add(new Color(0xAF601A));   // Rust
+c_colorPalette.add(new Color(0xD4AC0D));   // Mustard Yellow
+c_colorPalette.add(new Color(0xB7950B));   // Olive
+c_colorPalette.add(new Color(0xD68910));   // Amber
 ]]></Body>
 				</Function>
 			</Functions>
@@ -26734,7 +27264,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
+					<SamplesToKeep>51</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
@@ -26791,7 +27321,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
+					<SamplesToKeep>51</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
@@ -26848,7 +27378,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
+					<SamplesToKeep>51</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
@@ -26905,7 +27435,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
-					<SamplesToKeep>50</SamplesToKeep>
+					<SamplesToKeep>51</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
@@ -26986,7 +27516,7 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<SamplesToKeep>50</SamplesToKeep>
 					<TimeWindowExpression><![CDATA[50]]></TimeWindowExpression>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
-					<LabelFormat>yyyy</LabelFormat>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
 				<Rectangle>
 					<Id>1723809674238</Id>
@@ -27557,6 +28087,62 @@ else {
 						<LinkTo>false</LinkTo>
 					</ExtendedProperties>
 				</Control>
+				<Control Type="ComboBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1724067185843</Id>
+					<Name><![CDATA[cb_networkType]]></Name>
+					<X>80</X><Y>480</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor/>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[if(cb_networkType.getValue().equals("Random")){
+	v_networkType = RANDOM_NETWORK;
+}
+else if(cb_networkType.getValue().equals("Small world")){
+	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
+}
+else if(cb_networkType.getValue().equals("Small world similar")){
+	v_networkType = SMALL_WORLD_SIMILAR;
+}]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<DefaultValueCode><![CDATA["Small world similar"]]></DefaultValueCode>
+						<Editable>false</Editable>
+						<Button><![CDATA[Random]]></Button>
+						<Button><![CDATA[Small world]]></Button>
+						<Button><![CDATA[Small world similar]]></Button>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1724067185856</Id>
+					<Name><![CDATA[text33]]></Name>
+					<X>85</X><Y>460</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12171190</Color>
+					<Text><![CDATA[individual learning rate]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 			<Parameters>			
@@ -27738,13 +28324,16 @@ else {
 					<ParameterName><![CDATA[p_professionalCapacityThreshold]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_radiusEC]]></ParameterName>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_changeOfMeeting]]></ParameterName>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[p_shareSimilarcontactsInNetwork]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_networkType]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_networkType]]></Code>
+					</ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_agentDriversRandom]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -27865,7 +28454,34 @@ public class J_Household {
 	public double latitude;
 	public double longitude;
 	
-
+	public void f_initializeCharacteristics(double[] characteristics) {
+		double environmentalConcern = characteristics[0];
+		double awarenessEC = characteristics[1];
+		awarenessOfConsequence = (environmentalConcern * environment.v_weight_envc_to_aoc + awarenessEC * environment.v_weight_aec_to_aoc) / (environment.v_weight_envc_to_aoc + environment.v_weight_aec_to_aoc);
+	
+		double financialAttitude = characteristics[2];
+		double renewablesAttitude = characteristics[3];
+		attitude = (financialAttitude * environment.v_weight_fa_to_attitude + renewablesAttitude * environment.v_weight_ra_to_attitude) / (environment.v_weight_fa_to_attitude + environment.v_weight_ra_to_attitude);
+		
+		timeAvailability = characteristics[4];
+		double homeOwenershipNormalized = 0;
+		if( homeOwner == true) {
+			homeOwenershipNormalized = 1;
+		}
+		//set pbc
+		if(lowIncomeHousehold == true) {
+			pbc = 0;
+		}
+		else {
+			pbc = (timeAvailability * environment.v_weight_ta_to_pbc + homeOwenershipNormalized * environment.v_weight_ho_to_pbc) / (environment.v_weight_ta_to_pbc + environment.v_weight_ho_to_pbc);
+		}	
+	}
+	
+	
+	
+	
+	
+	
 	//1. Initialization
 	public void f_setSocioDemographicParameters(double ownerOccupiedHomes_perc, double lowIncomeHouseholds_perc, double willingToVolunteer_perc) {
 		double rand1 = uniform(0,1, random);
@@ -27882,13 +28498,13 @@ public class J_Household {
 		else {
 			lowIncomeHousehold = false;
 		}
-		double rand3 = uniform(0,1, random);
+		/*double rand3 = uniform(0,1, random);
 		if( rand3 < willingToVolunteer_perc) {
 			willingToVolunteer = true;
 		}
 		else {
 			willingToVolunteer = false;
-		}
+		}*/
 	}
 	
 	public void f_setAwarenessOfConsequence(double mean_environmentalConcern, double sd_environmentalConcern, double mean_awarenessEC, double sd_awarenessEC){
@@ -28070,7 +28686,7 @@ public class J_Household {
 		//Reset values
 		willingnessToInvest = false;
 	}
-	
+	/*
 	public void f_becomeCommunityInitiator(EnergyCommunity EC) {
 		localEC = EC;
 		ECMember = true;
@@ -28078,7 +28694,7 @@ public class J_Household {
 		role = BOARD_MEMBER;
 		willingnessToInitiate = false;
 	}
-	
+	*/
 	public void f_becomeProjectInitiator(J_ECProject project) {
 		localEC = project.energyCommunity;
 		ECMember = true;
@@ -28122,11 +28738,11 @@ public class J_Household {
 	public void f_updateIntention() {
 		f_getPersonalNorm();					
 		f_getWillingnessToParticipate();
-		if(ECMember == false) {
+		if(role == NON_MEMBER) {
 			f_getWillingnessToInvest();
 		}
 		
-		if(ECBoardMember == false && projectInitiator == false && willingnessToInvest == true) {
+		if(!(role == PROJECT_INITIATOR) && willingnessToInvest == true) {
 			f_getWillingnessToInitiate(willingnessToParticipate);
 		}
 
