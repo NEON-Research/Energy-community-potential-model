@@ -211,8 +211,8 @@ import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import org.json.JSONObject; // for JSON parsing
-import org.json.JSONArray;
+//import org.json.JSONObject; // for JSON parsing
+//import org.json.JSONArray;
 import java.util.stream.Collectors;
 
 import org.apache.commons.math3.linear.CholeskyDecomposition;
@@ -220,7 +220,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 			<StartupCode><![CDATA[f_initalizeSettings();]]></StartupCode>
-			<DestroyCode><![CDATA[f_writeToExcel();]]></DestroyCode>
+			<DestroyCode><![CDATA[//f_writeToExcel();]]></DestroyCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1717511797825</Id>
@@ -2781,6 +2781,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="Parameter">
 					<Id>1724254010396</Id>
 					<Name><![CDATA[p_scenarioIndex]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-240</X><Y>2360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6328,6 +6329,7 @@ if( policyMeasureCollectiveLearning){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1724253785710</Id>
 					<Name><![CDATA[f_writeToExcel]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-239</X><Y>2303</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -7763,6 +7765,7 @@ ef_MCResults.writeFile();]]></Body>
 				<ExcelFile>
 					<Id>1724253785712</Id>
 					<Name><![CDATA[ef_MCResults]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>-239</X><Y>2333</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -18168,7 +18171,8 @@ else {
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<InitialSetupCode><![CDATA[
 //f_setTimeAvailable();
-f_setColorPalette();]]></InitialSetupCode>
+f_setColorPalette();
+//ef_MCResults.readFile();]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -18179,6 +18183,8 @@ ds_ECMembers.fillFrom(root.ds_ECMembers);
 ds_ECs.fillFrom(root.ds_ECs);
 ds_percMembers.fillFrom(root.ds_percMembers);
 f_setPlots();
+//f_writeToExcel();
+//ef_MCResults.writeFile();
 ]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
@@ -18582,7 +18588,47 @@ c_colorPalette.add(new Color(0xB7950B));   // Olive
 c_colorPalette.add(new Color(0xD68910));   // Amber
 ]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1724255688111</Id>
+					<Name><![CDATA[f_writeToExcel]]></Name>
+					<X>1481</X><Y>1123</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[int sheetIndexEC = rb_scenarioSetting.getValue() * 2 + 2;
+int sheetIndexProjects = rb_scenarioSetting.getValue() * 2 + 3;
+
+//int sheetIndexEC = 2;
+//int sheetIndexProjects = 3;
+int columnIndex = iterator + 1;
+for( int i=0; i<ds_ECs.size(); i++ ){
+	ef_MCResults.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
+	ef_MCResults.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
+}
+]]></Body>
+				</Function>
 			</Functions>
+			<Connectivity>
+				<ExcelFile>
+					<Id>1724255688113</Id>
+					<Name><![CDATA[ef_MCResults]]></Name>
+					<X>1481</X><Y>1153</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ResourceReference>
+						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
+						<ClassName><![CDATA[results_monte_carlo.xlsx]]></ClassName>
+					</ResourceReference>
+					<SaveInSnapshot>false</SaveInSnapshot>
+					<LoadOnStartup>false</LoadOnStartup>
+					<SaveOnDispose>false</SaveOnDispose>
+				</ExcelFile>
+			</Connectivity>
 			<AnalysisData>
     			<DataSet>
 					<Id>1723810274706</Id>
@@ -27092,7 +27138,7 @@ ds_ECMembers.fillFrom(root.ds_ECMembers);
 ds_ECs.fillFrom(root.ds_ECs);
 ds_percMembers.fillFrom(root.ds_percMembers);
 f_setPlots();
-//f_writeToExcel();
+f_writeToExcel();
 
 ]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
@@ -27183,7 +27229,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.66]]></Code>
+							<Code><![CDATA[0.63]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -27198,7 +27244,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.025]]></Code>
+							<Code><![CDATA[0.05]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -27213,7 +27259,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.01]]></Code>
+							<Code><![CDATA[0.05]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -27228,7 +27274,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.7]]></Code>
+							<Code><![CDATA[0.8]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -27272,6 +27318,21 @@ f_setPlots();
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724257748624</Id>
+					<Name><![CDATA[scenarioIndex]]></Name>
+					<X>60</X><Y>340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[3]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="CollectionVariable">
@@ -27434,8 +27495,8 @@ traceln("-------Finished iteration " + iterator + "---------");
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[int sheetIndexEC = rb_scenarioSetting.getValue() * 2 + 2;
-int sheetIndexProjects = rb_scenarioSetting.getValue() * 2 + 3;
+					<Body><![CDATA[int sheetIndexEC = scenarioIndex * 2 + 2;
+int sheetIndexProjects = scenarioIndex * 2 + 3;
 
 //int sheetIndexEC = 2;
 //int sheetIndexProjects = 3;
@@ -27458,7 +27519,7 @@ for( int i=0; i<ds_ECs.size(); i++ ){
 					<ShowLabel>true</ShowLabel>
 					<ResourceReference>
 						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-						<ClassName><![CDATA[_results_monte_carlo.xlsx]]></ClassName>
+						<ClassName><![CDATA[results_monte_carlo.xlsx]]></ClassName>
 					</ResourceReference>
 					<SaveInSnapshot>false</SaveInSnapshot>
 					<LoadOnStartup>false</LoadOnStartup>
@@ -28175,7 +28236,9 @@ for( int i=0; i<ds_ECs.size(); i++ ){
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[columnIndex = rb_scenarioSetting.getValue() + 2;
+						<ActionCode><![CDATA[scenarioIndex = rb_scenarioSetting.getValue();
+/*
+columnIndex = rb_scenarioSetting.getValue() + 2;
 
 willingnessToInitiateThreshold = ef_MCResults.getCellNumericValue(1, 2, columnIndex);
 willingnessToInvestThreshold = ef_MCResults.getCellNumericValue(1, 3, columnIndex);
@@ -28191,7 +28254,7 @@ else if( networkStructure.equals("SMALL_WORLD_GEOGRAPHICAL")){
 }
 else if( networkStructure.equals("RANDOM_NETWORK")){
 	v_networkType = RANDOM_NETWORK;
-}]]></ActionCode>
+}*/]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="14" Style="0"/>
@@ -28208,7 +28271,7 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 			<AfterExperimentCode><![CDATA[ef_MCResults.writeFile();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>10</NumberOfRuns>
+			<NumberOfRuns>30</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1717511993091</Id>
 				<Expression Class="CodeValue">
@@ -28263,7 +28326,7 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 			<FreeformParamValue>	
 				<Id>1721987881314</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.71]]></Code>
+					<Code><![CDATA[willingnessToInitiateThreshold]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -28338,7 +28401,7 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 			<FreeformParamValue>	
 				<Id>1722328632281</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.02]]></Code>
+					<Code><![CDATA[individualLearningRate]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -28350,7 +28413,7 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 			<FreeformParamValue>	
 				<Id>1722427979146</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.65]]></Code>
+					<Code><![CDATA[willingnessToInvestThreshold]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -28377,13 +28440,13 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 			<FreeformParamValue>	
 				<Id>1723559720220</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.001]]></Code>
+					<Code><![CDATA[collectiveLearningRate]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1723561525403</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.7]]></Code>
+					<Code><![CDATA[professionalCapacity]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -31390,11 +31453,6 @@ public class J_ECArea implements Serializable {
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[json-20230618.jar]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-			<Location>FILE_SYSTEM</Location>
-		</Resource>
-		<Resource>
 			<Path><![CDATA[_energy_communities.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
@@ -31425,12 +31483,12 @@ public class J_ECArea implements Serializable {
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[_results_monte_carlo.xlsx]]></Path>
+			<Path><![CDATA[results_monte_carlo.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[results_monte_carlo.xlsx]]></Path>
+			<Path><![CDATA[commons-io-2.16.1.jar]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
@@ -31450,7 +31508,7 @@ public class J_ECArea implements Serializable {
 	<ClassPathEntry>
 		<ResourceReference>
 			<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-			<ClassName><![CDATA[json-20230618.jar]]></ClassName>
+			<ClassName><![CDATA[commons-io-2.16.1.jar]]></ClassName>
 		</ResourceReference>
 		<Imported>true</Imported>
 		<Folder>false</Folder>
