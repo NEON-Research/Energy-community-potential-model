@@ -717,7 +717,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811112859</Id>
 					<Name><![CDATA[v_maxShareTheoreticalPVRooftopPotential]]></Name>
-					<X>40</X><Y>2300</Y>
+					<X>40</X><Y>2370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -732,7 +732,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811196904</Id>
 					<Name><![CDATA[v_weight_envc_to_aoc]]></Name>
-					<X>40</X><Y>2520</Y>
+					<X>40</X><Y>2590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -744,7 +744,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811206105</Id>
 					<Name><![CDATA[v_weight_aec_to_aoc]]></Name>
-					<X>40</X><Y>2540</Y>
+					<X>40</X><Y>2610</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -756,7 +756,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811218035</Id>
 					<Name><![CDATA[v_weight_aoc_to_pn]]></Name>
-					<X>40</X><Y>2560</Y>
+					<X>40</X><Y>2630</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -768,7 +768,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811226172</Id>
 					<Name><![CDATA[v_weight_sn_to_pn]]></Name>
-					<X>40</X><Y>2580</Y>
+					<X>40</X><Y>2650</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -780,7 +780,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811235799</Id>
 					<Name><![CDATA[v_weight_ra_to_attitude]]></Name>
-					<X>40</X><Y>2600</Y>
+					<X>40</X><Y>2670</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -792,7 +792,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811244595</Id>
 					<Name><![CDATA[v_weight_fa_to_attitude]]></Name>
-					<X>40</X><Y>2620</Y>
+					<X>40</X><Y>2690</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -804,7 +804,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811254124</Id>
 					<Name><![CDATA[v_weight_cb_to_attitude]]></Name>
-					<X>40</X><Y>2640</Y>
+					<X>40</X><Y>2710</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -816,7 +816,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811263716</Id>
 					<Name><![CDATA[v_weight_eb_to_attitude]]></Name>
-					<X>40</X><Y>2660</Y>
+					<X>40</X><Y>2730</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -828,7 +828,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811274869</Id>
 					<Name><![CDATA[v_weight_attitude_to_wtp]]></Name>
-					<X>40</X><Y>2680</Y>
+					<X>40</X><Y>2750</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -840,7 +840,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811284106</Id>
 					<Name><![CDATA[v_weight_sn_to_wtp]]></Name>
-					<X>40</X><Y>2700</Y>
+					<X>40</X><Y>2770</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -852,7 +852,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811292473</Id>
 					<Name><![CDATA[v_weight_pbc_to_wtp]]></Name>
-					<X>40</X><Y>2720</Y>
+					<X>40</X><Y>2790</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -864,7 +864,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811305231</Id>
 					<Name><![CDATA[v_weight_pn_to_wtp]]></Name>
-					<X>40</X><Y>2740</Y>
+					<X>40</X><Y>2810</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -876,7 +876,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811313419</Id>
 					<Name><![CDATA[v_weight_ta_to_pbc]]></Name>
-					<X>40</X><Y>2760</Y>
+					<X>40</X><Y>2830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -888,7 +888,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811322538</Id>
 					<Name><![CDATA[v_weight_ho_to_pbc]]></Name>
-					<X>40</X><Y>2780</Y>
+					<X>40</X><Y>2850</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1024,7 +1024,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811724441</Id>
 					<Name><![CDATA[v_maxShareTheoreticalPVFieldPotential]]></Name>
-					<X>40</X><Y>2320</Y>
+					<X>40</X><Y>2390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1039,7 +1039,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811739816</Id>
 					<Name><![CDATA[v_maxShareTheoreticalWindPotential]]></Name>
-					<X>40</X><Y>2340</Y>
+					<X>40</X><Y>2410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1054,7 +1054,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811913634</Id>
 					<Name><![CDATA[v_investmentCostsPVRooftop_eur_kW]]></Name>
-					<X>40</X><Y>2380</Y>
+					<X>40</X><Y>2450</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1069,7 +1069,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811929463</Id>
 					<Name><![CDATA[v_investmentCostsPVField_eur_kW]]></Name>
-					<X>40</X><Y>2400</Y>
+					<X>40</X><Y>2470</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1084,7 +1084,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811944979</Id>
 					<Name><![CDATA[v_investmentCostsWindSmallScale_eur_kW]]></Name>
-					<X>40</X><Y>2420</Y>
+					<X>40</X><Y>2490</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1099,7 +1099,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723811959579</Id>
 					<Name><![CDATA[v_investmentCostsWindLargeScale_eur_kW]]></Name>
-					<X>40</X><Y>2440</Y>
+					<X>40</X><Y>2510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1144,7 +1144,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1723812357184</Id>
 					<Name><![CDATA[v_discountRate]]></Name>
-					<X>40</X><Y>2460</Y>
+					<X>40</X><Y>2530</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1402,6 +1402,36 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[1]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724239297921</Id>
+					<Name><![CDATA[v_averageSizeProject_kW]]></Name>
+					<X>40</X><Y>2280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[518]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1724239319346</Id>
+					<Name><![CDATA[v_averageMembers]]></Name>
+					<X>40</X><Y>2300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[99]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -15292,7 +15322,7 @@ for(J_ProjectType x : c_projectTypes){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1722246129209</Id>
 					<Name><![CDATA[f_siteAvailability]]></Name>
-					<X>-200</X><Y>300</Y>
+					<X>-200</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -15434,30 +15464,43 @@ GZ_District n = randomFrom(c_districts);
 GISRegion g = randomFrom(n.c_gisRegions);
 project.location = g.randomPointInside();
 
+/*
+int potentialInvestors = count(c_householdsInRange, x->x.willingnessToInvest);
+if( potentialInvestors)
 project.c_members = findAll(c_householdsInRange, x->x.willingnessToInvest);
-project.investors_nb = project.c_members.size();
-//traceln(project.investors_nb + " investors at new project at community " + this.getIndex());
-double communityInvestment = project.investors_nb * main.v_averageInvestmentHouseholds;
-project.membersInvestment_eur = communityInvestment;
+if( project.c_members.size() > )
+*/
 
 //double projectTypeCapacity = projectType.requiredCapacity;
 
 //traceln(projectType.toString() + " project type, req. cap " + projectTypeCapacity + ", and hh WtI " + count(c_householdsInRange, x->x.willingnessToInitiate == true) + " has required cap " + projectType.hasRequiredBoardCapacity);
 //int willingToInitiate = count(c_householdsInRange, x->x.willingnessToInitiate);
+int initiators = 0;
 for(int i=0; i<v_willingToInitiate; i++){
 	J_Household hh = randomWhere(c_householdsInRange, x->x.willingnessToInitiate == true);
 	if(hh == null){
-		traceln(v_willingToInitiate + " nb of initiatiors");
+		traceln("Not enought initiators " + v_willingToInitiate + " nb of initiatiors");
 	}
 	hh.f_becomeProjectInitiator(project);
-}
-
-for(J_Household hh : project.c_members){
 	hh.f_invest(project);
+	project.c_members.add(hh);
+	initiators++;
 }
 
+for(int i=0; i<main.v_averageMembers - initiators; i++){
+	J_Household hh = randomWhere(c_householdsInRange, x->x.willingnessToInvest == true);
+	if(hh == null){
+		traceln("Not enought investors " + count(c_householdsInRange, x->x.willingnessToInvest == true) + " nb of initiatiors");
+	}
+	hh.f_invest(project);
+	project.c_members.add(hh);
+}
+
+project.investors_nb = project.c_members.size();
+project.membersInvestment_eur = project.investors_nb * main.v_averageInvestmentHouseholds;
+project.ratedPower_kW = v_averageSizeProject_kW;
 //7. Set installed capacity (ratedPower_kW)
-project.ratedPower_kW = f_setProjectRatedPower(project.membersInvestment_eur, project.projectSubType, project.investors_nb); //TODO: Improve power calc.
+//project.ratedPower_kW = f_setProjectRatedPower(project.membersInvestment_eur, project.projectSubType, project.investors_nb); //TODO: Improve power calc.
 
 //8. draw project on map
 f_drawPointOnMap(project);
@@ -15648,9 +15691,11 @@ else{
 	*/
 	//traceln( "At EC" + this.getIndex() + " prof cap = " + v_professionalCapacity + " with threshold " + main.p_professionalCapacityThreshold);
 	if( v_professionalCapacity < main.p_professionalCapacityThreshold){
-		traceln( v_professionalCapacity + " prof cap at EC " + this.getIndex());
+		if( main.detailedSimulation){
+			traceln( v_professionalCapacity + " prof cap at EC " + this.getIndex());
+		}
 	}
-	if( v_professionalCapacity > main.p_professionalCapacityThreshold && rand < 0.5){
+	if( v_professionalCapacity > main.p_professionalCapacityThreshold ){// && rand < 0.5){
 		return true;
 	}
 	else{
@@ -15664,7 +15709,7 @@ else{
 					<ReturnType><![CDATA[ProjectSubType]]></ReturnType>
 					<Id>1722348126510</Id>
 					<Name><![CDATA[f_getProjectType]]></Name>
-					<X>-210</X><Y>280</Y>
+					<X>-210</X><Y>310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -15679,39 +15724,49 @@ for(J_ProjectType x : c_projectTypes){
 //f_financialComparison(); //TODO: Only for relevant categories
 
 ProjectSubType projectType = null;// new ProjectSubType();
-double rand = normal(0,1);
+double rand = random(0,1);
+/*
 double v_shareWindLargeScale = 0.08;
 double v_shareWindSmallScale = 0.02;
 double v_sharePVField = 0.1;
-/*
+double v_sharePVRooftop = 1 - v_shareWindLargeScale - v_shareWindSmallScale - v_sharePVField;
+*/
+double v_shareWindLargeScale = 52.9 / 100;
+double v_shareWindSmallScale = 0.74 / 100;
+double v_sharePVField = 24.93 / 100;
+double v_sharePVRooftop = 1 - v_shareWindLargeScale - v_shareWindSmallScale - v_sharePVField;
+
 if( rand < v_shareWindLargeScale){
-	if( hasAvailableSiteWind && hasPotentialInvestorsWindLargeScale ){
+	if( hasAvailableSiteWind ){// && hasPotentialInvestorsWindLargeScale ){
 		projectType = WINDPARK;
 	}
 }
 else if( rand < v_shareWindSmallScale + v_shareWindLargeScale){
-	if( hasAvailableSiteWind && hasPotentialInvestorsWindSmallScale ){
+	if( hasAvailableSiteWind ){//&& hasPotentialInvestorsWindSmallScale ){
 		projectType = WINDSMALLSCALE;
 	}
 }
 else if( rand < v_shareWindSmallScale + v_shareWindLargeScale + v_sharePVField){
-	if( hasAvailableSitePVField && hasPotentialInvestorsPVField){
+	if( hasAvailableSitePVField ){// && hasPotentialInvestorsPVField){
 		projectType = PVFIELD;
 	}
 }
 else {
-	if( hasAvailableSitePVRooftop && hasPotentialInvestorsPVRooftop){
+	if( hasAvailableSitePVRooftop ){//&& hasPotentialInvestorsPVRooftop){
 		projectType = PVROOFTOP;
 	}
 }
-*/
-J_ProjectType PT = randomWhere(c_projectTypes, x->x.isPossible);
-if( PT == null){
-	traceln( "No possible project type at EC " + this.getIndex());
+
+if(projectType == null){
+	traceln("Project type not with initial selection");
+	J_ProjectType PT = randomWhere(c_projectTypes, x->x.hasAvailableSite);
+	projectType = PT.type;
+	//traceln( "No possible project type at EC " + this.getIndex());
 	//projectType = randomWhere(c_projectTypes, x->x.hasAvailableSite && x.hasRequiredPotentialInvestors);
 }
-else{
-	projectType = PT.type;
+
+if( projectType == null){
+	traceln( "No possible project type at EC " + this.getIndex());
 }
 
 //traceln( projectType + " project type at EC " + this.getIndex())
@@ -15767,50 +15822,59 @@ boolean newProject = f_checkBoundaryConditions();
 	
 //4. Initiate new project
 if( newProject ){
+
+	int potentialInvestors = count(c_householdsInRange, x->x.willingnessToInvest);
+	double requiredInvestors = main.v_averageMembers;
+	
 	ProjectSubType projectType = f_getProjectType();
 	
 	if (projectType != null){
+		if(potentialInvestors >= requiredInvestors){
 		
-		//All checks done in boundary conditions
-		f_startProject(projectType);
-		
-		/*
-		//5. Find investors
-		for(J_Household hh : c_householdsInRange){
-			if(hh.ECMember == false){
-			//	hh.f_getIntention();
-				hh.f_getWillingnessToInvest();
-			}
-		}
-		*/
-	
-		//6. Check if enough investors
-		/*
-		int investors = count(c_householdsInRange, x->x.willingnessToInvest);
-		double communityInvestment = f_getCommunityInvestment(investors);
-				
-		//6.1 set size threshold
-		double sizeThreshold = 0;
-		if(initiatedProjectType.type == WINDPARK){
-			sizeThreshold = main.v_investmentThresholdWindLargeScale;
-		}
-		else if(initiatedProjectType.type == WINDSMALLSCALE){
-			sizeThreshold = main.v_investmentThresholdWindSmallScale;
-		}
-		else if(initiatedProjectType.type == PVFIELD){
-			sizeThreshold = main.v_investmentThresholdPVField;
-		}
-		else if(initiatedProjectType.type == PVROOFTOP){
-			sizeThreshold = main.v_investmentThresholdPVRooftop;
-		}
-	
-		if( communityInvestment >= sizeThreshold){
-			//7. Start project
+			//All checks done in boundary conditions
+			f_startProject(projectType);
 			
+			/*
+			//5. Find investors
+			for(J_Household hh : c_householdsInRange){
+				if(hh.ECMember == false){
+				//	hh.f_getIntention();
+					hh.f_getWillingnessToInvest();
+				}
+			}
+			*/
+		
+			//6. Check if enough investors
+			/*
+			int investors = count(c_householdsInRange, x->x.willingnessToInvest);
+			double communityInvestment = f_getCommunityInvestment(investors);
+					
+			//6.1 set size threshold
+			double sizeThreshold = 0;
+			if(initiatedProjectType.type == WINDPARK){
+				sizeThreshold = main.v_investmentThresholdWindLargeScale;
+			}
+			else if(initiatedProjectType.type == WINDSMALLSCALE){
+				sizeThreshold = main.v_investmentThresholdWindSmallScale;
+			}
+			else if(initiatedProjectType.type == PVFIELD){
+				sizeThreshold = main.v_investmentThresholdPVField;
+			}
+			else if(initiatedProjectType.type == PVROOFTOP){
+				sizeThreshold = main.v_investmentThresholdPVRooftop;
+			}
+		
+			if( communityInvestment >= sizeThreshold){
+				//7. Start project
+				
+			}
+			else { 
+				traceln("Not enough investment cap at EC " + this.getIndex() + " with " + communityInvestment + " eur, and " + sizeThreshold + " eur required for project type " + initiatedProjectType.toString()); 
+			}*/
 		}
-		else { 
-			traceln("Not enough investment cap at EC " + this.getIndex() + " with " + communityInvestment + " eur, and " + sizeThreshold + " eur required for project type " + initiatedProjectType.toString()); 
-		}*/
+		else{ 
+			traceln(requiredInvestors + " req. investors " + potentialInvestors + " potential investors, at EC " + this.getIndex());
+		}
 	}
 	else{
 		if(main.detailedSimulation){
@@ -15826,7 +15890,7 @@ if( newProject ){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1722352972340</Id>
 					<Name><![CDATA[f_hasFinancialCapacity]]></Name>
-					<X>-200</X><Y>320</Y>
+					<X>-200</X><Y>350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
