@@ -15498,7 +15498,7 @@ for(int i=0; i<main.v_averageMembers - initiators; i++){
 
 project.investors_nb = project.c_members.size();
 project.membersInvestment_eur = project.investors_nb * main.v_averageInvestmentHouseholds;
-project.ratedPower_kW = v_averageSizeProject_kW;
+project.ratedPower_kW = main.v_averageSizeProject_kW;
 //7. Set installed capacity (ratedPower_kW)
 //project.ratedPower_kW = f_setProjectRatedPower(project.membersInvestment_eur, project.projectSubType, project.investors_nb); //TODO: Improve power calc.
 
@@ -15724,7 +15724,7 @@ for(J_ProjectType x : c_projectTypes){
 //f_financialComparison(); //TODO: Only for relevant categories
 
 ProjectSubType projectType = null;// new ProjectSubType();
-double rand = random(0,1);
+double rand = uniform(0,1);
 /*
 double v_shareWindLargeScale = 0.08;
 double v_shareWindSmallScale = 0.02;
