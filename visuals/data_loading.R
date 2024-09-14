@@ -70,16 +70,16 @@ get_median_and_iqr <- function(df) {
 }
 
 # Calculate median and IQR for each scenario
-scenario1_stats <- get_median_and_iqr(data_without_years_scen1)
-scenario2_stats <- get_median_and_iqr(data_without_years_scen2)
-scenario3_stats <- get_median_and_iqr(data_without_years_scen3)
-scenario4_stats <- get_median_and_iqr(data_without_years_scen4)
+scenario1_stats <- get_median_and_iqr(data_scenario1_filtered)
+scenario2_stats <- get_median_and_iqr(data_scenario2_filtered)
+scenario3_stats <- get_median_and_iqr(data_scenario3_filtered)
+scenario4_stats <- get_median_and_iqr(data_scenario4_filtered)
 
-# Calculate mean and confidence intervals for each scenario
-scenario1_stats <- get_mean_and_ci(data_without_years_scen1)
-scenario2_stats <- get_mean_and_ci(data_without_years_scen2)
-scenario3_stats <- get_mean_and_ci(data_without_years_scen3)
-scenario4_stats <- get_mean_and_ci(data_without_years_scen4)
+# # Calculate mean and confidence intervals for each scenario
+# scenario1_stats <- get_mean_and_ci(data_scenario1_filtered)
+# scenario2_stats <- get_mean_and_ci(data_scenario2_filtered)
+# scenario3_stats <- get_mean_and_ci(data_scenario3_filtered)
+# scenario4_stats <- get_mean_and_ci(data_scenario4_filtered)
 
 # Add the years column to each scenario data frame
 scenario1_stats$Year <- years
@@ -93,4 +93,3 @@ scenario2_stats$scenario <- "High contagion"
 scenario3_stats$scenario <- "High professionalization"
 scenario4_stats$scenario <- "Combined policies"
 
-scenario1_data_filtered <-subset(scenario1_stats, year >=2023)

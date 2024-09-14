@@ -23353,7 +23353,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>3</ReplicationPerIteration>
+				<ReplicationPerIteration>30</ReplicationPerIteration>
 				<MinimumReplication>5</MinimumReplication>
 				<MaximumReplication>30</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -23372,7 +23372,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 				<FinalDate><![CDATA[1608595200000]]></FinalDate>	
 				<FinalTime><![CDATA[11.98082191780822]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
-				<IterationCount>10</IterationCount>
+				<IterationCount>400</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
 			</ModelTimeProperties>
 		</OptimizationExperiment>
