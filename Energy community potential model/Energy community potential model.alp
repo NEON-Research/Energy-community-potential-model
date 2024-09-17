@@ -23261,7 +23261,7 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[0.005]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.3]]></Code>
+					<Code><![CDATA[0.05]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23296,7 +23296,7 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[0.005]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.02]]></Code>
+					<Code><![CDATA[0.05]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
