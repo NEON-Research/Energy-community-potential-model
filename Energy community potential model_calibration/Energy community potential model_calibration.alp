@@ -159,8 +159,7 @@ import org.apache.commons.math3.linear.CholeskyDecomposition;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
-			<StartupCode><![CDATA[f_initalizeSettings();
-traceln("testing start");]]></StartupCode>
+			<StartupCode><![CDATA[f_initalizeSettings();]]></StartupCode>
 			<DestroyCode><![CDATA[//f_writeToExcel();]]></DestroyCode>
 			<Generic>false</Generic>
 			<GenericParameter>
@@ -5179,6 +5178,7 @@ for(EnergyCommunity EC : pop_energyCommunities){
 	EC.f_learningFromNetwork(p_collectiveLearningRate);
 }
 
+//traceln("Learned in year " + getYear() + " from " + pop_energyCommunities.size() + " ECs and " + c_ECProjects.size() + " projects");
 ]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -17496,7 +17496,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.75]]></Code>
+							<Code><![CDATA[0.7207]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -17524,7 +17524,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.66]]></Code>
+							<Code><![CDATA[0.6191]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -17539,7 +17539,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.03]]></Code>
+							<Code><![CDATA[0.0143]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -17554,7 +17554,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.048]]></Code>
+							<Code><![CDATA[0.0035]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -17569,7 +17569,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.824]]></Code>
+							<Code><![CDATA[0.8157]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -23487,12 +23487,13 @@ f_setPlots();
 f_writeToExcel();
 
 traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
-
+/*
 if( getCurrentIteration() % (getMaximumIterations() / 4) == 0 ) {
 	v_scenarioIndex++;
 	rb_scenarioSetting.setValue(v_scenarioIndex, true);
 	traceln("Next scenario after " + getCurrentIteration() + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
-}]]></AfterSimulationRunCode>
+}
+*/]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -23867,7 +23868,26 @@ for( int i=0; i<ds_ECs.size(); i++ ){
 	ef_MCResults.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
 	ef_MCResults.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
 }
-]]></Body>
+
+int rowIndex = 48;
+ef_MCResults.setCellValue(v_willingnessToInitiateThreshold, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_willingnessToInvestThreshold, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_professionalCapacity, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_individualLearningRate, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_collectiveLearningRate, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_networkType.toString(), sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_policyMeasureIndividualLearning, sheetIndexEC, rowIndex, columnIndex);
+rowIndex++;
+ef_MCResults.setCellValue(v_policyMeasureCollectiveLearning, sheetIndexEC, rowIndex, columnIndex);
+
+
+ef_MCResults.writeFile();]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -25345,7 +25365,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 
 			<AfterExperimentCode><![CDATA[ef_MCResults.writeFile();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>false</AllowParallelEvaluations>
-			<UseFreeformParameters>true</UseFreeformParameters>
+			<UseFreeformParameters>false</UseFreeformParameters>
 			<NumberOfRuns>12</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1717511993091</Id>
@@ -25584,7 +25604,19 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1721987881314</Id>
-				<Type>FIXED</Type>
+				<Type>RANGE</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.720707 - 0.720707 * 0.1]]></Code>
+				</Expression>
+				<From Class="CodeValue">
+					<Code><![CDATA[0.648636012]]></Code>
+				</From>
+				<To Class="CodeValue">
+					<Code><![CDATA[0.792777348]]></Code>
+				</To>
+				<Step Class="CodeValue">
+					<Code><![CDATA[0.036035334]]></Code>
+				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722004240925</Id>
@@ -25676,7 +25708,19 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722328632281</Id>
-				<Type>FIXED</Type>
+				<Type>RANGE</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.014312 - 0.014312 * 0.1]]></Code>
+				</Expression>
+				<From Class="CodeValue">
+					<Code><![CDATA[0.012881028]]></Code>
+				</From>
+				<To Class="CodeValue">
+					<Code><![CDATA[0.015743478]]></Code>
+				</To>
+				<Step Class="CodeValue">
+					<Code><![CDATA[0.000715613]]></Code>
+				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722411364419</Id>
@@ -25688,27 +25732,72 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722427979146</Id>
-				<Type>FIXED</Type>
+				<Type>RANGE</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.55718]]></Code>
+				</Expression>
+				<From Class="CodeValue">
+					<Code><![CDATA[0.557183455]]></Code>
+				</From>
+				<To Class="CodeValue">
+					<Code><![CDATA[0.681002001]]></Code>
+				</To>
+				<Step Class="CodeValue">
+					<Code><![CDATA[0.030954636]]></Code>
+				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723192087407</Id>
 				<Type>FIXED</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[false]]></Code>
+				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723559720220</Id>
-				<Type>FIXED</Type>
+				<Type>RANGE</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.003159]]></Code>
+				</Expression>
+				<From Class="CodeValue">
+					<Code><![CDATA[0.003158562]]></Code>
+				</From>
+				<To Class="CodeValue">
+					<Code><![CDATA[0.003860465]]></Code>
+				</To>
+				<Step Class="CodeValue">
+					<Code><![CDATA[0.000175476]]></Code>
+				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723561525403</Id>
-				<Type>FIXED</Type>
+				<Type>RANGE</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.815705]]></Code>
+				</Expression>
+				<From Class="CodeValue">
+					<Code><![CDATA[0.734134088]]></Code>
+				</From>
+				<To Class="CodeValue">
+					<Code><![CDATA[0.897274996]]></Code>
+				</To>
+				<Step Class="CodeValue">
+					<Code><![CDATA[0.040785227]]></Code>
+				</Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1724186854788</Id>
 				<Type>FIXED</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[false]]></Code>
+				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1724186876083</Id>
 				<Type>FIXED</Type>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[false]]></Code>
+				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1726673274247</Id>
@@ -25728,9 +25817,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 			</PresentationProperties>
 			<ReplicationsProperties>
-				<UseReplication>false</UseReplication>
+				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>100</ReplicationPerIteration>
+				<ReplicationPerIteration>10</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>10</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
