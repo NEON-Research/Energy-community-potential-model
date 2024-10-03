@@ -4,7 +4,7 @@
 	         AnyLogic Project File
 *************************************************
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.9.1.202408021042" AlpVersion="8.9.1">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.9.1.202408021032" AlpVersion="8.9.1">
 <Model>
 	<Id>1717511797816</Id>
 	<Name><![CDATA[Energy community potential model_calibration]]></Name>
@@ -160,7 +160,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 			<StartupCode><![CDATA[f_initalizeSettings();
-]]></StartupCode>
+traceln("testing start");]]></StartupCode>
 			<DestroyCode><![CDATA[//f_writeToExcel();]]></DestroyCode>
 			<Generic>false</Generic>
 			<GenericParameter>
@@ -1386,6 +1386,21 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[99]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1725544560632</Id>
+					<Name><![CDATA[v_networkType]]></Name>
+					<X>710</X><Y>1410</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[NetworkStructure]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -2639,7 +2654,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1724186854788</Id>
-					<Name><![CDATA[policyMeasureIndividualLearning]]></Name>
+					<Name><![CDATA[policyMeasureIndvidualLearning]]></Name>
 					<X>370</X><Y>1890</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2697,30 +2712,6 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<ParameterEditor>
 							<Id>1726673274245</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1727435559217</Id>
-					<Name><![CDATA[p_networkType]]></Name>
-					<X>710</X><Y>1410</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[NetworkStructure]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1727435559215</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -5332,7 +5323,7 @@ else {
 	f_correlatedVariablesGenerator();
 }
 //traceln("going to initialize param incl netw.");
-f_setNetwork(p_networkType);
+f_setNetwork(v_networkType);
 f_setWillingToVolunteerToTimeAvailable();
 
 for(J_Household x : c_households){
@@ -6308,7 +6299,7 @@ c_ECAreasWithoutEC.addAll(c_ECAreas);
 					<Body><![CDATA[double indLearningRate = p_learningRate;
 double colLearningRate = p_collectiveLearningRate;
 
-if( policyMeasureIndividualLearning){
+if( policyMeasureIndvidualLearning){
 	p_learningRate = p_learningRate * 2;
 }
 if( policyMeasureCollectiveLearning){
@@ -20183,7 +20174,7 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[policyMeasureIndividualLearning]]></ParameterName>
+					<ParameterName><![CDATA[policyMeasureIndvidualLearning]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_policyMeasureIndividualLearning]]></Code>
 					</ParameterValue>
@@ -20196,12 +20187,6 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[modeCalibration]]></ParameterName>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_networkType]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[v_networkType]]></Code>
-					</ParameterValue>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -20258,14 +20243,14 @@ observable_3.fillFrom( ds_ECProjectsObserved );]]></InitialSetupCode>
 			<BeforeEachExperimentRunCode><![CDATA[datasetCurrentObjective.reset();
 datasetBestInfeasibleObjective.reset();
 datasetBestFeasibleObjective.reset();
-
 dsCurrentFor_observable_1.reset();
+//observable_1.reset();
 dsBestFeasibleFor_observable_1.reset();
-
 dsCurrentFor_observable_2.reset();
+//observable_2.reset();
 dsBestFeasibleFor_observable_2.reset();
-
 dsCurrentFor_observable_3.reset();
+//observable_3.reset();
 dsBestFeasibleFor_observable_3.reset();
 ]]></BeforeEachExperimentRunCode>
 			<AfterSimulationRunCode><![CDATA[DataSet ECs = root.ds_ECs;
@@ -20292,13 +20277,13 @@ for(int i=0; i<ECs.size(); i++){
 	}
 }
 
+observable_1.fillFrom( ds_ECsObserved );
 dsCurrentFor_observable_1.fillFrom( ds_ECs );
+observable_2.fillFrom( ds_ECMembersObserved );
 dsCurrentFor_observable_2.fillFrom( ds_ECMembers );
+observable_3.fillFrom( ds_ECProjectsObserved );
 dsCurrentFor_observable_3.fillFrom( ds_ECProjects );
-
-double totalSettings = p_willingnessToInitiateThreshold + p_willingnessToInvestThreshold + p_learningRate + p_professionalCapacityThreshold + p_collectiveLearningRate;
-double MAE = f_MAE(dsCurrentFor_observable_1, observable_1) + f_MAE(dsCurrentFor_observable_3, observable_3);
-traceln("------Finished replication " + getCurrentReplication() + " in iteration " + getCurrentIteration() + " with dsCurrentFor_observable_1 size " + dsCurrentFor_observable_1.size() + " and MAE " + MAE + " total settings " + totalSettings);]]></AfterSimulationRunCode>
+]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -20452,8 +20437,11 @@ presentation.add(textShape);
 					<Body><![CDATA[double difECs = 0;
 double difECProjects = 0;
 
-double totalSettings = p_willingnessToInitiateThreshold + p_willingnessToInvestThreshold + p_learningRate + p_professionalCapacityThreshold + p_collectiveLearningRate;
-double MAE = f_MAE(dsCurrentFor_observable_1, observable_1) + f_MAE(dsCurrentFor_observable_3, observable_3);
+for(int i=0; i < ds_ECs.size(); i++){
+	difECs += abs(ds_ECs.getY(i) - ds_ECsObserved.getY(i));
+	difECProjects += abs(ds_ECProjects.getY(i) - ds_ECProjectsObserved.getY(i));
+}
+
 
 int sheetIndex = 1;
 int rowIndex = getCurrentIteration() + 1;
@@ -20482,43 +20470,15 @@ for(int columnIndex = 1; columnIndex < 10; columnIndex++){
 		value = getCurrentObjectiveValue();
 	}
 	else if(columnIndex == 8){
-		value = totalSettings;
+		value = difECs;
 	}
 	else if(columnIndex == 9){
-		value = MAE;
+		value = difECProjects;
 	}
 	
 	ef_calibrationResults.setCellValue(value, sheetIndex, rowIndex, columnIndex);
 }
 ef_calibrationResults.writeFile();]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1727204957199</Id>
-					<Name><![CDATA[f_MAE]]></Name>
-					<X>-340</X><Y>900</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[resultsData]]></Name>
-						<Type><![CDATA[DataSet]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[observedData]]></Name>
-						<Type><![CDATA[DataSet]]></Type>
-					</Parameter>
-					<Body><![CDATA[double sumAbsoluteErrors = 0;
-for( int i=0; i < observedData.size(); i++ ){
-	double observedValue = observedData.getY(i);
-	double resultsValue	= resultsData.getY(i);
-	double absoluteError = abs(observedValue - resultsValue);
-	sumAbsoluteErrors += absoluteError;
-}
-double MAE = sumAbsoluteErrors / observedData.size();
-return MAE;]]></Body>
 				</Function>
 			</Functions>
 			<TableFunctions>
@@ -22483,7 +22443,7 @@ return MAE;]]></Body>
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( policyMeasureIndividualLearning )]]></TextCode>
+					<TextCode><![CDATA[format( policyMeasureIndvidualLearning )]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -22506,7 +22466,7 @@ return MAE;]]></Body>
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( policyMeasureIndividualLearning )]]></TextCode>
+					<TextCode><![CDATA[format( policyMeasureIndvidualLearning )]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -22627,7 +22587,7 @@ s += "p_willingnessToInvestThreshold\t" + format( p_willingnessToInvestThreshold
 s += "detailedSimulation\t" + format( detailedSimulation ) + "\n";
 s += "p_collectiveLearningRate\t" + format( p_collectiveLearningRate ) + "\n";
 s += "p_professionalCapacityThreshold\t" + format( p_professionalCapacityThreshold ) + "\n";
-s += "policyMeasureIndvidualLearning\t" + format( policyMeasureIndividualLearning ) + "\n";
+s += "policyMeasureIndvidualLearning\t" + format( policyMeasureIndvidualLearning ) + "\n";
 s += "policyMeasureCollectiveLearning\t" + format( policyMeasureCollectiveLearning ) + "\n";
 
 copyToClipboard( s );]]></ActionCode>
@@ -23450,11 +23410,8 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[true]]></Code>
 				</Value>
 			</Parameter>
-			<Parameter>	
-				<Id>1727435559217</Id>
-				<Type>FIXED</Type>
-			</Parameter>
-			<ObjectiveFunctionCode><![CDATA[(f_MAE(dsCurrentFor_observable_1, observable_1) + f_MAE(dsCurrentFor_observable_3, observable_3))]]></ObjectiveFunctionCode>
+			<ObjectiveFunctionCode><![CDATA[difference( ds_ECs, ds_ECsObserved ) +
+(difference( ds_ECProjects, ds_ECProjectsObserved ))]]></ObjectiveFunctionCode>
 			<Objective>MINIMIZE</Objective>  
 			<OptimizationEngine>NATIVE</OptimizationEngine>
 			<AfterIterationCode><![CDATA[if (isBestSolutionFeasible()) {
@@ -23473,11 +23430,9 @@ if( isBestSolutionFeasible() && isCurrentSolutionBest() ) {
 }
 f_addToPlot();
 f_writeToExcel();
-double totalSettings = p_willingnessToInitiateThreshold + p_willingnessToInvestThreshold + p_learningRate + p_professionalCapacityThreshold + p_collectiveLearningRate;
-double MAE = f_MAE(dsCurrentFor_observable_1, observable_1) + f_MAE(dsCurrentFor_observable_3, observable_3);
-traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds"  + " with dsCurrentFor_observable_1 size " + dsCurrentFor_observable_1.size() + " and MAE " + MAE + " total settings " + totalSettings);
+traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
 ]]></AfterIterationCode>
-			<AllowParallelEvaluations>false</AllowParallelEvaluations>
+			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<Requirement>
 				<Enabled>true</Enabled>
 				<Expression><![CDATA[observable_1.getYMax()]]></Expression>
@@ -23487,7 +23442,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
+				<ReplicationPerIteration>3</ReplicationPerIteration>
 				<MinimumReplication>5</MinimumReplication>
 				<MaximumReplication>30</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -23506,7 +23461,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 				<FinalDate><![CDATA[2556057600000]]></FinalDate>	
 				<FinalTime><![CDATA[39.02465753424657]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
-				<IterationCount>1000</IterationCount>
+				<IterationCount>10</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
 			</ModelTimeProperties>
 		</OptimizationExperiment>
@@ -23532,12 +23487,12 @@ f_setPlots();
 f_writeToExcel();
 
 traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
-/*
+
 if( getCurrentIteration() % (getMaximumIterations() / 4) == 0 ) {
 	v_scenarioIndex++;
 	rb_scenarioSetting.setValue(v_scenarioIndex, true);
 	traceln("Next scenario after " + getCurrentIteration() + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
-}*/]]></AfterSimulationRunCode>
+}]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -23905,33 +23860,14 @@ int sheetIndexProjects = v_scenarioIndex * 2 + 3;
 //int sheetIndexProjects = 3;
 
 
-int columnIndex = iterator + 1; //- (getMaximumIterations() / 4 * rb_scenarioSetting.getValue());
+int columnIndex = iterator + 1 - (getMaximumIterations() / 4 * rb_scenarioSetting.getValue());
 ef_MCResults.setCellValue("run" + iterator, sheetIndexEC, 1, columnIndex);
 ef_MCResults.setCellValue("run" + iterator, sheetIndexProjects, 1, columnIndex);
 for( int i=0; i<ds_ECs.size(); i++ ){
 	ef_MCResults.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
 	ef_MCResults.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
 }
-
-int rowIndex = 48;
-ef_MCResults.setCellValue(v_willingnessToInitiateThreshold, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_willingnessToInvestThreshold, sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_professionalCapacity, sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_individualLearningRate, sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_collectiveLearningRate, sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_networkType.toString(), sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_policyMeasureIndividualLearning, sheetIndexProjects, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_policyMeasureCollectiveLearning, sheetIndexProjects, rowIndex, columnIndex);
-ef_MCResults.writeFile();
-
- ]]></Body>
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -25410,7 +25346,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<AfterExperimentCode><![CDATA[ef_MCResults.writeFile();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>false</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>300</NumberOfRuns>
+			<NumberOfRuns>12</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1717511993091</Id>
 			</FreeformParamValue>
@@ -25582,9 +25518,6 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<FreeformParamValue>	
 				<Id>1726673274247</Id>
 			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1727435559217</Id>
-			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1717511993091</Id>
 				<Type>FIXED</Type>
@@ -25651,19 +25584,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1721987881314</Id>
-				<Type>RANGE</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[0.64863]]></Code>
-				</Expression>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.648636012]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.792777348]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.072070668]]></Code>
-				</Step>
+				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722004240925</Id>
@@ -25755,16 +25676,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722328632281</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.012881028]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.015743478]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.001431225]]></Code>
-				</Step>
+				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722411364419</Id>
@@ -25776,49 +25688,19 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722427979146</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.557183455]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.681002001]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.061909273]]></Code>
-				</Step>
+				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723192087407</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723559720220</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.003159]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.003860465]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.000350951]]></Code>
-				</Step>
+				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723561525403</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.734134088]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.897274996]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.081570454]]></Code>
-				</Step>
+				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1724186854788</Id>
@@ -25831,13 +25713,6 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1726673274247</Id>
 				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1727435559217</Id>
-				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_networkType]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified date]]></StopOption>
@@ -25855,7 +25730,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<ReplicationsProperties>
 				<UseReplication>false</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
+				<ReplicationPerIteration>100</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>10</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -26181,9 +26056,6 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<FreeformParamValue>	
 				<Id>1726673274247</Id>
 			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1727435559217</Id>
-			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1717511993091</Id>
 				<Type>FIXED</Type>
@@ -26389,10 +26261,6 @@ else if( rb_scenarioSetting.getValue() == 3){
 				<Id>1726673274247</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1727435559217</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified date]]></StopOption>
 				<InitialDate><![CDATA[1230768000000]]></InitialDate>	
@@ -26408,1180 +26276,6 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</PresentationProperties>
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
-				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
-				<MinimumReplication>2</MinimumReplication>
-				<MaximumReplication>10</MaximumReplication>
-				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
-				<ErrorPercent>0.5</ErrorPercent>
-				<ExpressionForConfidenceComputation><![CDATA[0]]></ExpressionForConfidenceComputation>
-			</ReplicationsProperties>
-		</ParamVariationExperiment>
-		<!--   =========  Parameter Variation Experiment   ========  -->
-		<ParamVariationExperiment ActiveObjectClassId="1717511797819">
-			<Id>1727434758908</Id>
-			<Name><![CDATA[ParametersVariation]]></Name>
-			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<InitialSetupCode><![CDATA[v_runTimer = System.currentTimeMillis();
-//f_setColorPalette();
-//rb_scenarioSetting.setValue(0, true);
-ef_MCResults.readFile();
-
-v_willingnessToInitiateThreshold = v_willingnessToInitiateThresholdDefault;
-v_willingnessToInvestThreshold = v_willingnessToInvestThresholdDefault;
-v_individualLearningRate = v_individualLearningRateDefault;
-v_professionalCapacityThreshold = v_professionalCapacityThresholdDefault;
-v_collectiveLearningRate = v_collectiveLearningRateDefault;
-]]></InitialSetupCode>
-			<MaximumMemory>16384</MaximumMemory>
-			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
-			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
-			<BeforeSimulationRunCode><![CDATA[f_setParamSettings();]]></BeforeSimulationRunCode>
-			<AfterSimulationRunCode><![CDATA[ds_ECProjects.fillFrom(root.ds_ECProjects);
-
-ds_ECInstalledCap.fillFrom(root.ds_ECInstalledCap);
-ds_ECMembers.fillFrom(root.ds_ECMembers);
-ds_ECs.fillFrom(root.ds_ECs);
-ds_percMembers.fillFrom(root.ds_percMembers);
-//f_setPlots();
-f_writeToExcel();
-
-//traceln("-------Finished iteration " + iteration + " in step " + stepCounter + " and variable " + variableCounter + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
-traceln("-------Finished iteration " + getCurrentIteration() + " with iterator " + iterator + " and replication " + getCurrentReplication() + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
-/*
-if( getCurrentIteration() % (getMaximumIterations() / 4) == 0 ) {
-	v_scenarioIndex++;
-	rb_scenarioSetting.setValue(v_scenarioIndex, true);
-	traceln("Next scenario after " + getCurrentIteration() + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
-}*/]]></AfterSimulationRunCode>
-			<SeedValue>1</SeedValue>
-			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
-			<VmArgs><![CDATA[]]></VmArgs>
-			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
-			<Variables>
-				<Variable Class="PlainVariable">
-					<Id>1727435103387</Id>
-					<Name><![CDATA[iterator]]></Name>
-					<X>464</X><Y>408</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727435287758</Id>
-					<Name><![CDATA[v_runTimer]]></Name>
-					<X>480</X><Y>440</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727435413346</Id>
-					<Name><![CDATA[v_scenarioIndex]]></Name>
-					<X>480</X><Y>460</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439245778</Id>
-					<Name><![CDATA[replications]]></Name>
-					<X>900</X><Y>200</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[10]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297234</Id>
-					<Name><![CDATA[v_willingnessToInitiateThreshold]]></Name>
-					<X>900</X><Y>220</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.75]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297236</Id>
-					<Name><![CDATA[v_willingnessToInvestThreshold]]></Name>
-					<X>900</X><Y>240</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297238</Id>
-					<Name><![CDATA[v_individualLearningRate]]></Name>
-					<X>900</X><Y>260</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297240</Id>
-					<Name><![CDATA[v_collectiveLearningRate]]></Name>
-					<X>900</X><Y>280</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.048]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297242</Id>
-					<Name><![CDATA[v_professionalCapacityThreshold]]></Name>
-					<X>900</X><Y>300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.824]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439297244</Id>
-					<Name><![CDATA[v_networkType]]></Name>
-					<X>900</X><Y>320</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[NetworkStructure]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439513394</Id>
-					<Name><![CDATA[variableCounter]]></Name>
-					<X>900</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860832</Id>
-					<Name><![CDATA[v_willingnessToInitiateThresholdDefault]]></Name>
-					<X>1140</X><Y>220</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.72070668]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860854</Id>
-					<Name><![CDATA[v_willingnessToInvestThresholdDefault]]></Name>
-					<X>1140</X><Y>240</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.619092728]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860856</Id>
-					<Name><![CDATA[v_individualLearningRateDefault]]></Name>
-					<X>1140</X><Y>260</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.014312253
-]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860858</Id>
-					<Name><![CDATA[v_collectiveLearningRateDefault]]></Name>
-					<X>1140</X><Y>280</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.003509514
-]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860860</Id>
-					<Name><![CDATA[v_professionalCapacityThresholdDefault]]></Name>
-					<X>1140</X><Y>300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.815704542
-]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727439860862</Id>
-					<Name><![CDATA[v_networkTypeDefault]]></Name>
-					<X>1140</X><Y>320</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[NetworkStructure]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727440565667</Id>
-					<Name><![CDATA[iteration]]></Name>
-					<X>900</X><Y>170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727441726410</Id>
-					<Name><![CDATA[stepCounter]]></Name>
-					<X>900</X><Y>410</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727938228897</Id>
-					<Name><![CDATA[v_policyMeasureIndividualLearning]]></Name>
-					<X>900</X><Y>460</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1727938228900</Id>
-					<Name><![CDATA[v_policyMeasureCollectiveLearning]]></Name>
-					<X>900</X><Y>482.807</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-			</Variables>
-			<Functions>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1727435103383</Id>
-					<Name><![CDATA[f_setPlots]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>464</X><Y>248</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[int dataSetSize = 50;
-DataSet ds1 = new DataSet(dataSetSize);
-DataSet ds2 = new DataSet(dataSetSize);
-DataSet ds3 = new DataSet(dataSetSize);
-DataSet ds4 = new DataSet(dataSetSize);
-DataSet ds5 = new DataSet(dataSetSize);
-ds1.fillFrom(ds_percMembers);
-ds2.fillFrom(ds_ECProjects);
-ds3.fillFrom(ds_ECMembers);
-ds4.fillFrom(ds_ECs);
-ds5.fillFrom(ds_ECInstalledCap);
-
-Color color = randomFrom(c_colorPalette);
-iterator++;
-String run = "run " + iterator;
-pl_percMembers.addDataSet(ds1, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
-pl_projects.addDataSet(ds2, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
-pl_members.addDataSet(ds3, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
-pl_ECs.addDataSet(ds4, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
-pl_intalledCap.addDataSet(ds5, run, color, true, TimePlot.INTERPOLATION_LINEAR, 1, TimePlot.POINT_NONE);
-
-// Create the oval
-//ShapeOval oval = new ShapeOval(this, SHAPE_DRAW_2D, true, 50, 50, 0, 0, 100, 50, Color.BLUE, Color.BLACK, 1.0, LINE_STYLE_SOLID);
-  //  addPresentation(oval);
-    
-double xOval = 1415;
-double yOval = 165 + iterator * 25;
-double rotationOval = 0;
-Color lineColor = color;
-Color fillColor = color;
-double radiusX = 8;
-double radiusY = 8;
-double lineWidth = 0;
-LineStyle lineStyle = LINE_STYLE_SOLID;    
-    
-ShapeOval oval = new ShapeOval(true, xOval, yOval, rotationOval, lineColor, fillColor, radiusX, radiusY, lineWidth, lineStyle);
-presentation.add(oval);
-
-ShapeDrawMode drawMode = presentation.getDrawMode();
-double xText = 1435;
-double yText = 155 + iterator * 25;
-double z = 0;
-double rotationText = 0;
-String text = run;// + " WtIni Th:" + p_willingnessToInitiateThreshold + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_individualLearningRate + " network: " + v_networkType;
-Font font = new Font("SansSerif", Font.PLAIN, 11);
-TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
-
-ShapeText textShape = new ShapeText(drawMode, true, xText, yText, z, rotationText, color, text, font, alignment);
-presentation.add(textShape);
-
-
-
-
-
-
-
-
-
-]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1727435103385</Id>
-					<Name><![CDATA[f_writeToExcel]]></Name>
-					<X>624</X><Y>248</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[iterator++;
-
-int sheetIndexEC = v_scenarioIndex * 2 + 2;
-int sheetIndexProjects = v_scenarioIndex * 2 + 3;
-
-//int sheetIndexEC = 2;
-//int sheetIndexProjects = 3;
-
-
-int columnIndex = iterator + 1; //- (getMaximumIterations() / 4 * rb_scenarioSetting.getValue());
-ef_MCResults.setCellValue("run" + iterator, sheetIndexEC, 1, columnIndex);
-ef_MCResults.setCellValue("run" + iterator, sheetIndexProjects, 1, columnIndex);
-for( int i=0; i<ds_ECs.size(); i++ ){
-	ef_MCResults.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
-	ef_MCResults.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
-}
-
-int rowIndex = 48;
-ef_MCResults.setCellValue(p_willingnessToInitiateThreshold, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(p_willingnessToInvestThreshold, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(p_professionalCapacityThreshold, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(p_learningRate, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(p_collectiveLearningRate, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(p_networkType.toString(), sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(policyMeasureIndividualLearning, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(policyMeasureCollectiveLearning, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(iteration, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(stepCounter, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(variableCounter, sheetIndexEC, rowIndex, columnIndex);
-
-ef_MCResults.writeFile();
- ]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1727439375483</Id>
-					<Name><![CDATA[f_setParamSettings]]></Name>
-					<X>900</X><Y>370</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[if(getCurrentIteration() == 30){
-	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
-}
-if(getCurrentIteration() == 60){
-	v_networkType = RANDOM_NETWORK;
-}
-if(getCurrentIteration() == 90){
-	v_policyMeasureIndividualLearning= true;
-	v_policyMeasureCollectiveLearning = true;
-	v_networkType = SMALL_WORLD_SIMILAR;
-}
-if(getCurrentIteration() == 120){
-	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
-}
-if(getCurrentIteration() == 150){
-	v_networkType = RANDOM_NETWORK;
-}
-/*
-if( iteration == replications){
-	traceln("Changing settings after " + (iteration ) + " iterations");
-	iteration = 0;
-}
-//traceln(getCurrentIteration() + " current iteration");
-if( iteration == 0){ // This way also in first round this function is executed
-	if( variableCounter == 1){
-		v_willingnessToInitiateThreshold = v_willingnessToInitiateThresholdDefault * 0.9 + v_willingnessToInitiateThresholdDefault * stepCounter * 0.02;
-	}
-	else if( variableCounter == 2){
-		v_willingnessToInvestThreshold = v_willingnessToInvestThresholdDefault * 0.9 + v_willingnessToInitiateThresholdDefault * stepCounter * 0.02;
-	} 
-	else if( variableCounter == 3){
-		v_individualLearningRate = v_individualLearningRateDefault * 0.9 + v_willingnessToInitiateThresholdDefault * stepCounter * 0.02;
-	}
-	else if( variableCounter == 4){
-		v_professionalCapacityThreshold = v_professionalCapacityThresholdDefault * 0.9 + v_willingnessToInitiateThresholdDefault * stepCounter * 0.02;
-	}
-	else if( variableCounter == 5){
-		v_collectiveLearningRate = v_collectiveLearningRateDefault * 0.9 + v_willingnessToInitiateThresholdDefault * stepCounter * 0.02;
-	}
-	if( getCurrentIteration() > 1){ //Make sure not to skip inital iteration
-		stepCounter++;
-	}
-}
-
-if( stepCounter == 11){
-	stepCounter = 0;
-	variableCounter++;
-	v_willingnessToInitiateThreshold = v_willingnessToInitiateThresholdDefault;
-	v_willingnessToInvestThreshold = v_willingnessToInvestThresholdDefault;
-	v_individualLearningRate = v_individualLearningRateDefault;
-	v_professionalCapacityThreshold = v_professionalCapacityThresholdDefault;
-	v_collectiveLearningRate = v_collectiveLearningRateDefault;
-} 
-
-iteration++;
-
-if(getCurrentIteration() == 551){
-	v_willingnessToInitiateThreshold = v_willingnessToInitiateThresholdDefault;
-	v_willingnessToInvestThreshold = v_willingnessToInvestThresholdDefault;
-	v_individualLearningRate = v_individualLearningRateDefault;
-	v_professionalCapacityThreshold = v_professionalCapacityThresholdDefault;
-	v_collectiveLearningRate = v_collectiveLearningRateDefault;
-	v_networkType = RANDOM_NETWORK;
-}
-if(getCurrentIteration() == 581){
-	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
-}
-if(getCurrentIteration() == 611){
-	v_networkType = SMALL_WORLD_SIMILAR;
-}
-*/]]></Body>
-				</Function>
-			</Functions>
-			<Connectivity>
-				<ExcelFile>
-					<Id>1727435103484</Id>
-					<Name><![CDATA[ef_MCResults]]></Name>
-					<X>624</X><Y>278</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<ResourceReference>
-						<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-						<ClassName><![CDATA[_monte_carlo_results.xlsx]]></ClassName>
-					</ResourceReference>
-					<SaveInSnapshot>false</SaveInSnapshot>
-					<LoadOnStartup>true</LoadOnStartup>
-					<SaveOnDispose>true</SaveOnDispose>
-				</ExcelFile>
-			</Connectivity>
-			<AnalysisData>
-    			<DataSet>
-					<Id>1727435103390</Id>
-					<Name><![CDATA[ds_percMembers]]></Name>
-					<X>464</X><Y>358</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1721808000000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>50</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1727435103403</Id>
-					<Name><![CDATA[ds_percNonMembers]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>464</X><Y>378</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1721980800000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>50</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1727435103418</Id>
-					<Name><![CDATA[ds_ECProjects]]></Name>
-					<X>464</X><Y>278</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>50</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1727435103436</Id>
-					<Name><![CDATA[ds_ECInstalledCap]]></Name>
-					<X>464</X><Y>298</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>50</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1727435103448</Id>
-					<Name><![CDATA[ds_ECMembers]]></Name>
-					<X>464</X><Y>318</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>50</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1727435103465</Id>
-					<Name><![CDATA[ds_ECs]]></Name>
-					<X>464</X><Y>338</Y>
-					<Label><X>15</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1723190400000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<SamplesToKeep>100</SamplesToKeep>
-				</DataSet>
-			</AnalysisData>
-
-
-			<AfterExperimentCode><![CDATA[ef_MCResults.writeFile();]]></AfterExperimentCode>
-			<AllowParallelEvaluations>false</AllowParallelEvaluations>
-			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>180</NumberOfRuns>
-			<FreeformParamValue>	
-				<Id>1717511993091</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721306114104</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721306125369</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721306149222</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721306174595</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721719408289</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831376792</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831385044</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831392035</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831397436</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831405568</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831589091</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831600479</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721831616941</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721916230375</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721916244790</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1721987881314</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_willingnessToInitiateThreshold]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722004240925</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722005324073</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722243473006</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722243519194</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722243586122</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722243617146</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722243646496</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244116949</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244116956</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244116960</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244116963</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244116966</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244121078</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244121082</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244121085</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244121088</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244121091</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244125678</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244125681</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244125684</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244125687</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722244125690</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722328632281</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_individualLearningRate]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722411364419</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722411712362</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1722427979146</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_willingnessToInvestThreshold]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1723192087407</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1723559720220</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_collectiveLearningRate]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1723561525403</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_professionalCapacityThreshold]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1724186854788</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_policyMeasureIndividualLearning]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1724186876083</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_policyMeasureCollectiveLearning]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1726673274247</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1727435559217</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[v_networkType]]></Code>
-				</Expression>
-			</FreeformParamValue>
-			<RangeVariationParamValue>	
-				<Id>1717511993091</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721306114104</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721306125369</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721306149222</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721306174595</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721719408289</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831376792</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831385044</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831392035</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831397436</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831405568</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831589091</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831600479</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721831616941</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721916230375</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721916244790</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1721987881314</Id>
-				<Type>RANGE</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[0.648636012]]></Code>
-				</Expression>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.648636012]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.792777348]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.072070668]]></Code>
-				</Step>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722004240925</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722005324073</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722243473006</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722243519194</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722243586122</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722243617146</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722243646496</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244116949</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244116956</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244116960</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244116963</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244116966</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244121078</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244121082</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244121085</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244121088</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244121091</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244125678</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244125681</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244125684</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244125687</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722244125690</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722328632281</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.012881028]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.015743478]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.001431225]]></Code>
-				</Step>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722411364419</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722411712362</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1722427979146</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.557183455]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.681002001]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.061909273]]></Code>
-				</Step>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1723192087407</Id>
-				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1723559720220</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.003159]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.003860465]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.000350951]]></Code>
-				</Step>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1723561525403</Id>
-				<Type>RANGE</Type>
-				<From Class="CodeValue">
-					<Code><![CDATA[0.734134088]]></Code>
-				</From>
-				<To Class="CodeValue">
-					<Code><![CDATA[0.897274996]]></Code>
-				</To>
-				<Step Class="CodeValue">
-					<Code><![CDATA[0.081570454]]></Code>
-				</Step>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1724186854788</Id>
-				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1724186876083</Id>
-				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1726673274247</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1727435559217</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<ModelTimeProperties>
-				<StopOption><![CDATA[Stop at specified date]]></StopOption>
-				<InitialDate><![CDATA[1230768000000]]></InitialDate>	
-				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[2556057600000]]></FinalDate>	
-				<FinalTime><![CDATA[42.02465753424657]]></FinalTime>	
-			</ModelTimeProperties>
-			<PresentationProperties>
-				<EnableZoomAndPanning>true</EnableZoomAndPanning>
-				<Title><![CDATA[Energy community potential model_calibration : ParametersVariation]]></Title>
-				<EnableDeveloperPanel>true</EnableDeveloperPanel>
-				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
-			</PresentationProperties>
-			<ReplicationsProperties>
-				<UseReplication>false</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
 				<ReplicationPerIteration>10</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
@@ -29579,7 +28273,7 @@ else {
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[policyMeasureIndividualLearning]]></ParameterName>
+					<ParameterName><![CDATA[policyMeasureIndvidualLearning]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_policyMeasureIndividualLearning]]></Code>
 					</ParameterValue>
@@ -29592,12 +28286,6 @@ else {
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[modeCalibration]]></ParameterName>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_networkType]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[v_networkType]]></Code>
-					</ParameterValue>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
