@@ -1389,21 +1389,6 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1725544560632</Id>
-					<Name><![CDATA[v_networkType]]></Name>
-					<X>710</X><Y>1410</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[NetworkStructure]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1725544587110</Id>
 					<Name><![CDATA[v_shareAnnualContacts]]></Name>
 					<X>710</X><Y>1430</Y>
@@ -2711,6 +2696,30 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<ParameterEditor>
 							<Id>1726673274245</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1727957114754</Id>
+					<Name><![CDATA[p_networkType]]></Name>
+					<X>710</X><Y>1410</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[NetworkStructure]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[SMALL_WORLD_SIMILAR]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1727957114752</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -5323,7 +5332,7 @@ else {
 	f_correlatedVariablesGenerator();
 }
 //traceln("going to initialize param incl netw.");
-f_setNetwork(v_networkType);
+f_setNetwork(p_networkType);
 f_setWillingToVolunteerToTimeAvailable();
 
 for(J_Household x : c_households){
@@ -20188,6 +20197,12 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 				<Parameter>
 					<ParameterName><![CDATA[modeCalibration]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_networkType]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_networkType]]></Code>
+					</ParameterValue>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -23410,6 +23425,10 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[true]]></Code>
 				</Value>
 			</Parameter>
+			<Parameter>	
+				<Id>1727957114754</Id>
+				<Type>FIXED</Type>
+			</Parameter>
 			<ObjectiveFunctionCode><![CDATA[difference( ds_ECs, ds_ECsObserved ) +
 (difference( ds_ECProjects, ds_ECProjectsObserved ))]]></ObjectiveFunctionCode>
 			<Objective>MINIMIZE</Objective>  
@@ -25538,6 +25557,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<FreeformParamValue>	
 				<Id>1726673274247</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1727957114754</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1717511993091</Id>
 				<Type>FIXED</Type>
@@ -25801,6 +25823,10 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1726673274247</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1727957114754</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -26145,6 +26171,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<FreeformParamValue>	
 				<Id>1726673274247</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1727957114754</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1717511993091</Id>
 				<Type>FIXED</Type>
@@ -26348,6 +26377,10 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1726673274247</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1727957114754</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -28375,6 +28408,12 @@ else {
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[modeCalibration]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_networkType]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_networkType]]></Code>
+					</ParameterValue>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
