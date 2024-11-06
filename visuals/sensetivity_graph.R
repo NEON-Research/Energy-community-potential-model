@@ -10,24 +10,49 @@ library(RColorBrewer)
 
 
 # Load the Excel files
-setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\Energy community potential model_calibration")
-file_path <- "_sensetivity_analysis.xlsx"
+setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
+file_path <- "_sensetivity_calibrated_params.xlsx"
 
 data_ECs <- read_excel(file_path, sheet = "sensetivity_params_ECs")
 data_projects <- read_excel(file_path, sheet = "sensetivity_params_projects")
-
+ 
 current_variable = 5
-#currentSetting = "ECs"
-currentSetting = "Projects"
+currentSetting = "ECs"
+#currentSetting = "Projects"
 if( currentSetting == "ECs"){
   graph_title = "Energy communities"
-  variable_title = "ECs - Collective learning rate"
+  variable_title = "ECs"
+  y_axis_title = "#"
 } else{
-  variable_title = "Projects - Collective learning rate"
+  variable_title = "Projects"
   graph_title = "Projects"
+  y_axis_title = " "
 }
-
-
+# if(current_variable == 1){
+#   variable_title <- paste(variable_title, "Willingness to initiate", sep = " - ")
+# } else if(current_variable == 2){
+#   variable_title <- paste(variable_title, "Willingness to invest", sep = " - ")
+# } else if(current_variable == 3){
+#   variable_title <- paste(variable_title, "Individual learning rate", sep = " - ")
+# } else if(current_variable == 4){
+#   variable_title <- paste(variable_title, "Professional capacity", sep = " - ")
+# } else if(current_variable == 5){
+#   variable_title <- paste(variable_title, "Collective learning rate", sep = " - ")
+# }
+if(current_variable == 1){
+  variable_title = "Willingness to initiate"
+} else if(current_variable == 2){
+  variable_title = "Willingness to invest"
+} else if(current_variable == 3){
+  variable_title = "Individual learning rate"
+} else if(current_variable == 4){
+  variable_title = "Professional capacity"
+} else if(current_variable == 5){
+  variable_title = "Collective learning rate"
+}
+if( currentSetting == "Projects"){
+  variable_title = " "
+}
 # Historical data
 file_path_historic <- "_EC_summary.xlsx"
 historical_data <- read_excel(file_path_historic, sheet = "calibration_statistics")
@@ -48,6 +73,7 @@ historical_data <- historical_data %>%
   mutate(lower = ifelse(is.na(lower), mean, lower),
          upper = ifelse(is.na(upper), mean, upper))
 
+output <- data.frame(percentage = integer(), mean = numeric(), lower = numeric(), upper = numeric())
 # # Extract the years column
 # years <- data_ECs[[1]]
 # years <- head( years, 42)
@@ -80,7 +106,6 @@ get_mean_and_ci <- function(df) {
   return(data.frame(mean = mean_vals, lower = lower_ci, upper = upper_ci))
 }
 
-output <- data.frame(percentage = integer(), mean = numeric(), lower = numeric(), upper = numeric())
 
 for (i in 0:10) {
   # Filter columns where the value in row 57 == 1
@@ -138,36 +163,44 @@ palette_colors <- c("gray", palette_colors)  # Add gray for historical
 # Add color names for scenarios
 levels(combined_data$percentage) <- c("Historical", paste0("Scenario", 0:10))  # Change levels as needed
 
-# 
+
+
+# Ensure 'percentage' includes "Historical" correctly, convert to character for safety
+combined_data$percentage <- as.character(combined_data$percentage)
+
 # Create the plot
-plot5Projects = ggplot(combined_data, aes(x = year, y = mean)) +
-  # Scenario lines with color mapping based on percentage
+plot5EC = ggplot(combined_data, aes(x = year, y = mean)) +
+  # Scenario lines with individual color for each scenario
   geom_line(data = combined_data %>% filter(percentage != "Historical"),
-            aes(color = percentage), size = 0.8) +  # Scenario lines
-  # Scenario confidence interval ribbons
+            aes(color = percentage), linewidth = 0.7) +  # Scenario lines by percentage
+  # Scenario confidence interval ribbons with individual fill for each scenario
   geom_ribbon(data = combined_data %>% filter(percentage != "Historical"),
               aes(ymin = lower, ymax = upper, fill = percentage),
-              alpha = 0.12, linetype = 0) +  # Scenario CI ribbons
+              alpha = 0.1, linetype = 0) +  # Scenario CI ribbons by percentage
   # Historical data line in gray
-  geom_line(data = historical_data, aes(color = "Historical"), size = 1) +  # Historical line
+  geom_line(data = historical_data, aes(color = "Historical"), linewidth = 0.7) +  # Historical line
   # Historical confidence interval ribbon in gray
   geom_ribbon(data = historical_data, aes(ymin = lower, ymax = upper, fill = "Historical"),
-              fill = "gray", alpha = 0.3) +  # Historical CI ribbon
+              alpha = 0.3) +  # Historical CI ribbon
   # Labels and theme
   labs(title = variable_title,
-       x = "Year", y = "#",
+       x = NULL, y = y_axis_title,
        color = "Group", fill = "Group") +
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),   # Remove y-axis title
-        panel.background = element_blank(),  # Set background to blank (white)
-        plot.background = element_blank(),  # Set the plot area background to white
-        panel.grid.major = element_line(color = "grey80"),  # Optional: Customize major grid lines
-        panel.grid.minor = element_line(color = "grey90")) +   # Optional: Customize minor grid lines
-  scale_x_continuous(breaks = seq(2009, 2050, 5)) +  # Adjust x-axis breaks for clarity
-  scale_color_manual(values = c("Historical" = "gray")) +  # Explicitly set historical color
-  scale_fill_manual(values = c("Historical" = "gray"))  # Explicitly set historical fill color
-# 
+  theme_minimal() +  # Minimal theme for cleaner look
+  scale_x_continuous(breaks = seq(2010, 2050, 10)) +  # Adjust x-axis breaks for clarity
+  # Adjust color mapping: Historical is gray, scenarios are blue
+  scale_color_manual(values = c("Historical" = "dimgray", 
+                                setNames(rep("blue", length(unique(combined_data$percentage[combined_data$percentage != "Historical"]))), 
+                                         unique(combined_data$percentage[combined_data$percentage != "Historical"])))) +  # Manual color scale
+  scale_fill_manual(values = c("Historical" = "gray", 
+                               setNames(rep("blue", length(unique(combined_data$percentage[combined_data$percentage != "Historical"]))), 
+                                        unique(combined_data$percentage[combined_data$percentage != "Historical"])))) +  # Manual fill scale
+  theme(legend.position = "none")  # Place legend at the bottom for clarity
 
+
+
+# Save the grid of plots as a PNG
+png("high_quality_grid_plot.png", width = 7, height = 10, units = "in", res = 300)
 
 # Arrange plots in a grid with the shared legend at the bottom
 grid.arrange(
@@ -176,27 +209,8 @@ grid.arrange(
   heights = c(6, 1)  # Adjust space between the plot grid and legend
 )
 
+# Close the PNG device to finalize the image
+dev.off()
 
-# # Create the plot
-# ggplot(combined_data, aes(x = year, y = mean)) +
-#   # Scenario lines with color mapping based on percentage
-#   geom_line(data = combined_data %>% filter(percentage != "Historical"), 
-#             aes(color = percentage), size = 1) +  # Scenario lines
-#   # Scenario confidence interval ribbons
-#   geom_ribbon(data = combined_data %>% filter(percentage != "Historical"), 
-#               aes(ymin = lower, ymax = upper, fill = percentage), 
-#               alpha = 0.2, linetype = 0) +  # Scenario CI ribbons
-#   # Historical data line in gray
-#   geom_line(data = historical_data, aes(color = "Historical"), size = 1.2) +  # Historical line
-#   # Historical confidence interval ribbon in gray
-#   geom_ribbon(data = historical_data, aes(ymin = lower, ymax = upper, fill = "Historical"), 
-#               alpha = 0.3, fill = "gray") +  # Historical CI ribbon
-#   # Labels and theme
-#   labs(title = "Mean with 90% Confidence Intervals by Group",
-#        x = "Year", y = "#",
-#        color = "Group", fill = "Group") +
-#   theme_minimal() +  # Minimal theme for cleaner look
-#   scale_x_continuous(breaks = seq(2009, 2050, 5)) +  # Adjust x-axis breaks for clarity
-#   scale_color_manual(values = c("Historical" = "gray", palette_colors)) +  # Manual color scale
-#   scale_fill_manual(values = c("Historical" = "gray", palette_colors)) +  # Manual fill scale
-#   theme(legend.position = "bottom")  # Place legend at the bottom for clarity
+
+
