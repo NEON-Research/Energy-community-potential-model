@@ -6149,7 +6149,7 @@ for(J_Household x : c_households){
 	x.timeAvailability = (x.timeAvailability - min_ta) / diff_ta;
 	x.pbc = (x.pbc - min_pbc) / diff_pbc;
 	/*
-	if(x.householdIndex < 100){
+	if(x.id < 100){
 		traceln("Correlated input params " + x.awarenessOfConsequence + " AoC " + x.attitude + " att. " + x.timeAvailability + " ta " + x.pbc + " pbc");
 	}*/
 }
@@ -28520,10 +28520,10 @@ public class J_Household {
 	public void f_socialInteraction(double shareAnnualContacts) {
 		//Make sure to update intention at households as well!
 		if(ECMember == true) {	
-			
-			int annualContacts = (int) Math.round(householdsInNetwork.size() * shareAnnualContacts);
+			int networkSize = householdsInNetwork.size();
+			int annualContacts = (int) Math.round(networkSize * shareAnnualContacts);
 			for(int i=0; i < annualContacts; i++) {
-				int contactIndex = uniform_discr(0, annualContacts - 1, random);
+				int contactIndex = uniform_discr(0, networkSize - 1, random);
 				J_Household contact = householdsInNetwork.get(contactIndex);
 				//double initialSN = contact.subjectiveNorm;*/
 			//for( J_Household contact : householdsInNetwork ) {

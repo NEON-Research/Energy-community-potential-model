@@ -11,7 +11,7 @@ library(RColorBrewer)
 start_year <- 2020
 
 # Load the Excel files
-setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
+setwd("D:\\GitHub\\Energy-community-potential-model\\results")
 file_path <- "_sensetivity_network.xlsx"
 
 
@@ -171,7 +171,7 @@ plotECs = ggplot(all_scenarios_ECs, aes(x = year, y = mean, color = scenario, fi
   geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.16, color = NA) +  # Shaded area for confidence intervals without border
   scale_color_manual(values = palette) +  # Custom colors for each scenario
   scale_fill_manual(values = palette) +  # Matching fill colors
-  labs(title = "Sensetivity to network structure",
+  labs(title = "Sensitivity to network structure",
        x = NULL, #"Year",
        y = "# of ECs",
        color = "Scenario",
