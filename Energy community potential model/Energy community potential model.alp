@@ -7291,8 +7291,8 @@ f_updateSocialLearning();]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
 					</RecurrenceCode>
 					<Value><![CDATA[]]></Value>
-					<NumberOfIntervals>20</NumberOfIntervals>
-					<MinMaxAutodetect>false</MinMaxAutodetect>
+					<NumberOfIntervals>100</NumberOfIntervals>
+					<MinMaxAutodetect>true</MinMaxAutodetect>
 					<RangeMinExpression><![CDATA[0]]></RangeMinExpression>
 					<RangeMaxExpression><![CDATA[1]]></RangeMaxExpression>
 					<InitialIntervalSize><![CDATA[0.01]]></InitialIntervalSize>
@@ -11103,11 +11103,11 @@ else if( rb_mapView.getValue() == 1){
 					<HistogramDataExpression>
 					<Id>1725624315170</Id>
 					<Expression><![CDATA[ds_utility]]></Expression>
-						<ColorPDF>-29696</ColorPDF>
+						<ColorPDF>-32944</ColorPDF>
 						<ColorCDF>-12799119</ColorCDF>
 						<ColorLowPercent>-2448096</ColorLowPercent>
 						<ColorHighPercent>-7667573</ColorHighPercent>
-						<ColorMean>-16744448</ColorMean>
+						<ColorMean>-16776961</ColorMean>
 						<LineWidth>1</LineWidth>						
 						<Title><![CDATA[Willingness to participate]]></Title>							
 					</HistogramDataExpression>

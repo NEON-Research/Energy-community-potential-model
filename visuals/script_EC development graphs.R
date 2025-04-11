@@ -8,7 +8,7 @@ library(grid)
 
 
 # Load the Excel files
-setwd("D:\\GitHub\\Energy-community-potential-model\\results")
+setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
 file_path <- "_monte_carlo_results_final.xlsx"
 file_path_historic <- "_EC_summary.xlsx"
 

@@ -6,7 +6,7 @@ library(scales)
 library(gridExtra)
 
 # Set working directory and file paths
-setwd("D:\\GitHub\\Energy-community-potential-model\\results")
+setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
 file_path <- "_monte_carlo_results_final.xlsx"
 file_path_historic <- "_EC_summary.xlsx"
 
@@ -58,7 +58,7 @@ create_installed_capacity_plot <- function(){
   
   # Add year and scenario labels
   years_filtered <- data_scenario1_filtered$year
-  scenarios <- c("Base line", "High social learning", "High professionalization", "Combined policies")
+  scenarios <- c("Base line", "High social learning (SL)", "High professionalization (PC)", "Combined policies (SL + PC)")
   scenario_list <- list(scenario1_stats, scenario2_stats, scenario3_stats, scenario4_stats)
   
   all_scenarios <- bind_rows(
