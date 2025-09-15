@@ -15257,21 +15257,26 @@ return projectType;
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[hasNewProject = false;
-//1. Check boundary conditions
-hasProfCapacity = f_hasProfessionalCapacity();
-hasInvestors = f_hasInvestors();
 
-//2. Initiate new project if boundary conditions are met or if EC has not projects yet
-if( hasInvestors && (hasProfCapacity || c_energyProjects.size() == 0)){
+for (int i = 0; i < 10; i++){
+	//1. Check boundary conditions
+	hasProfCapacity = f_hasProfessionalCapacity();
+	hasInvestors = f_hasInvestors();
 	
-	//3. Get project type	
-	ProjectSubType projectType = f_getProjectType();
-	if (projectType != null){
-		//4. Start project
-		f_startProject(projectType);	////All checks done in boundary conditions
+	//2. Initiate new project if boundary conditions are met or if EC has not projects yet
+	if( hasInvestors && (hasProfCapacity || c_energyProjects.size() == 0)){
+		
+		//3. Get project type	
+		ProjectSubType projectType = f_getProjectType();
+		if (projectType != null){
+			//4. Start project
+			f_startProject(projectType);	////All checks done in boundary conditions
+		}
 	}
-}
-]]></Body>
+	else {
+		break;
+	}
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -15579,6 +15584,10 @@ if( potentialInvestors >  main.v_averageMembers){
 else {
 	hasInvestors = false;
 }
+/*
+if( potentialInvestors < main.v_averageMembers){
+	traceln("EC " + this.getIndex() + " has smaller potential investors than members required");
+}*/
 return hasInvestors;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -15711,6 +15720,81 @@ v_topHouseholds = sum(members, x->x.willingnessToParticipate);
 		traceln("Project " + c_energyProjects.indexOf(project) + " at EC " + this.getIndex() + " has type " + project.projectSubType + ", and members " + project.investors_nb + ", and Inst. cap " + project.ratedPower_kW + ", and initiators " + project.c_initiators.size());
 	}*/
 }]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1757946434949</Id>
+					<Name><![CDATA[f_startProject_try]]></Name>
+					<X>-390</X><Y>270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[projectType]]></Name>
+						<Type><![CDATA[ProjectSubType]]></Type>
+					</Parameter>
+					<Body><![CDATA[//1.Start a new project, if at least one project type meats all bounday conditions
+J_ECProject project = new J_ECProject();
+hasNewProject = true;
+//2. Set connections new project
+project.projectSubType = projectType;
+project.energyCommunity = this;
+c_energyProjects.add(project);
+main.c_ECProjects.add(project);
+p_municipality.c_ECProjects.add(project);
+project.constructionYear = getYear();
+		
+//3. Set project location
+//GZ_Neighborhood n = randomFrom(c_neighborhoods);
+GZ_District n = randomFrom(c_districts);
+GISRegion g = randomFrom(n.c_gisRegions);
+project.location = g.randomPointInside();
+
+//4. Set project initiatiors
+//If first project, EC initiators initiate project
+if(c_energyProjects.size() == 1){
+	project.c_initiators.addAll(c_boardMembers);
+	for(J_Household hh : c_boardMembers){
+		hh.projects.add(project);
+	}
+}
+//If second or more projects
+else{
+	for(int i=0; i<v_willingToInitiate; i++){
+		J_Household hh = findFirst(c_householdsInRange, x->x.role == WILLING_TO_INITIATE);
+		if(hh == null){
+			traceln("----ERROR---- Not enought initiators " + v_willingToInitiate + " nb of required initiatiors");
+		}
+		hh.f_becomeProjectInitiator(project);
+	}
+}
+
+//5. Set project members
+for(J_Household hh : c_householdsInRange ){
+	if( hh.role == WILLING_TO_INVEST) {
+		hh.f_invest(project);
+	}
+}
+
+//6. Set investment and rated power
+project.investors_nb = project.c_members.size();
+project.ratedPower_kW = (main.v_averageSizeProject_kW / main.v_averageMembers) * project.investors_nb;
+
+//7. draw project on map
+if( main.detailedSimulation ){
+	f_drawPointOnMap(project);
+}
+
+//8. update capacity from learning in project
+f_learningFromProject();
+
+//9. Testing
+/*
+if(main.detailedSimulation){
+	traceln("Project " + c_energyProjects.indexOf(project) + " at EC " + this.getIndex() + " has type " + project.projectSubType + ", and members " + project.investors_nb + ", and Inst. cap " + project.ratedPower_kW + ", and initiators " + project.c_initiators.size());
+}*/]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -23681,7 +23765,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>3</ReplicationPerIteration>
+				<ReplicationPerIteration>10</ReplicationPerIteration>
 				<MinimumReplication>5</MinimumReplication>
 				<MaximumReplication>30</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -23700,7 +23784,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 				<FinalDate><![CDATA[2556057600000]]></FinalDate>	
 				<FinalTime><![CDATA[39.02465753424657]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
-				<IterationCount>10</IterationCount>
+				<IterationCount>2000</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
 			</ModelTimeProperties>
 		</OptimizationExperiment>
@@ -28778,6 +28862,8 @@ public class J_Household {
 	public boolean willingnessToInvest;
 	public Role role = NON_MEMBER;
 	
+	public double yearOfInvestment;
+	
 	
 	//1. Initialization socio-demogrpahic parameters
 	public void f_setSocioDemographicParameters(double ownerOccupiedHomes_perc, double lowIncomeHouseholds_perc, double willingToVolunteer_perc) {
@@ -28875,6 +28961,7 @@ public class J_Household {
 		//Reset values
 		willingnessToInvest = false;
 		willingnessToInitiate = false;
+		yearOfInvestment = environment.simulatedYear;
 	}
 
 	//9. Become project initiator
@@ -28929,7 +29016,7 @@ public class J_Household {
 	public void f_updateIntention() {
 		f_getPersonalNorm();					
 		f_getWillingnessToParticipate();
-		if(role == NON_MEMBER) {
+		if(role == NON_MEMBER || (environment.simulatedYear - yearOfInvestment > 5)) {
 			f_getWillingnessToInvest();
 		}
 		
