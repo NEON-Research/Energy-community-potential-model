@@ -23758,7 +23758,7 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1722328632281</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.0001]]></Code>
+					<Code><![CDATA[0.001]]></Code>
 				</Min>
 				<Max Class="CodeValue">
 					<Code><![CDATA[0.1]]></Code>
@@ -23793,7 +23793,7 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1723559720220</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.0001]]></Code>
+					<Code><![CDATA[0.001]]></Code>
 				</Min>
 				<Max Class="CodeValue">
 					<Code><![CDATA[0.05]]></Code>
@@ -23856,7 +23856,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>2</ReplicationPerIteration>
+				<ReplicationPerIteration>3</ReplicationPerIteration>
 				<MinimumReplication>5</MinimumReplication>
 				<MaximumReplication>30</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -23875,7 +23875,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 				<FinalDate><![CDATA[2556057600000]]></FinalDate>	
 				<FinalTime><![CDATA[39.02465753424657]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
-				<IterationCount>5000</IterationCount>
+				<IterationCount>500</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
 			</ModelTimeProperties>
 		</OptimizationExperiment>
