@@ -23853,30 +23853,6 @@ f_writeToExcel();
 traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
 ]]></AfterIterationCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
-			<Requirement>
-				<Enabled>true</Enabled>
-				<Expression><![CDATA[dsCurrentFor_observable_1.getYMax()]]></Expression>
-				<Type>MORE_OR_EQUAL</Type>
-				<Bound>10.0</Bound>
-			</Requirement>
-			<Requirement>
-				<Enabled>true</Enabled>
-				<Expression><![CDATA[dsCurrentFor_observable_1.getYMax()]]></Expression>
-				<Type>LESS_OR_EQUAL</Type>
-				<Bound>150.0</Bound>
-			</Requirement>
-			<Requirement>
-				<Enabled>true</Enabled>
-				<Expression><![CDATA[dsCurrentFor_observable_3.getYMax()]]></Expression>
-				<Type>MORE_OR_EQUAL</Type>
-				<Bound>30.0</Bound>
-			</Requirement>
-			<Requirement>
-				<Enabled>true</Enabled>
-				<Expression><![CDATA[dsCurrentFor_observable_3.getYMax()]]></Expression>
-				<Type>LESS_OR_EQUAL</Type>
-				<Bound>250.0</Bound>
-			</Requirement>
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
