@@ -1564,6 +1564,18 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<Type><![CDATA[int]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1758103520397</Id>
+					<Name><![CDATA[v_willingnessToInitiateThreshold]]></Name>
+					<X>370</X><Y>1780</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1717511993091</Id>
 					<Name><![CDATA[modeFullNetherlands]]></Name>
@@ -1940,7 +1952,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1721987881314</Id>
-					<Name><![CDATA[p_willingnessToInitiateThreshold]]></Name>
+					<Name><![CDATA[p_willingnessToInitiateThreshold_deltaInv]]></Name>
 					<X>370</X><Y>1670</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1951,7 +1963,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;]]></Import>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.755]]></Code>
+							<Code><![CDATA[0.0755]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1721987881312</Id>
@@ -2928,6 +2940,7 @@ for(EA_Household x : pop_EA_Households){
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[//f_setStartYear(startAtCurrentData);
+v_willingnessToInitiateThreshold = p_willingnessToInvestThreshold + p_willingnessToInitiateThreshold_deltaInv;
 f_setAssumptions();
 f_getFactorWeights();
 //f_setWeightsRegressionAnalysis();
@@ -4775,7 +4788,7 @@ if(detailedSimulation == true){
 	double avgWtPNonVolunteers = roundToDecimal(totalWtPNonVolunteers / nonVolunteers, 3);
 	
 	ds_avgUtility.add(averageWtP);
-	ds_willingnessToInitiateThreshold.add(p_willingnessToInitiateThreshold);
+	ds_willingnessToInitiateThreshold.add(v_willingnessToInitiateThreshold);
 	ds_willingnessToInvestThreshold.add(p_willingnessToInvestThreshold);
 	ds_avgPBC.add(averagePBC);
 	ds_avgAoC.add(averageAoC);
@@ -17619,16 +17632,6 @@ else {
 				<ExternalTableName><![CDATA["municipalities"]]></ExternalTableName>
 				<AutoImport>false</AutoImport>
 			</TableImportSettings>
-			<TableImportSettings>
-				<Id>1717511779959</Id>
-				<TableReference>
-					<PackageName><![CDATA[energy_community_potential_model]]></PackageName>
-					<ClassName><![CDATA[ec_annual_development]]></ClassName>
-				</TableReference>
-				<ConnectionIndex>1</ConnectionIndex>
-				<ExternalTableName><![CDATA["EC_annual_development"]]></ExternalTableName>
-				<AutoImport>false</AutoImport>
-			</TableImportSettings>
 		</ImportSettings>
 		<ExportSettings>
 		</ExportSettings>
@@ -17688,7 +17691,7 @@ f_setPlots();
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1723568901050</Id>
-					<Name><![CDATA[p_willingnessToInitiateThreshold]]></Name>
+					<Name><![CDATA[p_willingnessToInitiateThreshold_deltaInvest]]></Name>
 					<X>-400</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -17697,7 +17700,7 @@ f_setPlots();
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.7207]]></Code>
+							<Code><![CDATA[0.07207]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -18022,7 +18025,7 @@ double xText = 1435;
 double yText = 155 + iterator * 25;
 double z = 0;
 double rotationText = 0;
-String text = run + " WtIni Th:" + p_willingnessToInitiateThreshold + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_individualLearningRate + " network: " + v_networkType;
+String text = run + " WtIni Th:" + p_willingnessToInitiateThreshold_deltaInvest + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_individualLearningRate + " network: " + v_networkType;
 Font font = new Font("SansSerif", Font.PLAIN, 11);
 TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
 
@@ -18618,7 +18621,7 @@ for( int i=0; i<ds_ECs.size(); i++ ){
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold )]]></TextCode>
+					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold_deltaInvest )]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -18642,11 +18645,11 @@ for( int i=0; i<ds_ECs.size(); i++ ){
 						<TextColor>-12042869</TextColor>
 						<Enabled>true</Enabled>
 						<EnableExpression><![CDATA[getState() == IDLE]]></EnableExpression>
-						<ActionCode><![CDATA[p_willingnessToInitiateThreshold = Double.parseDouble( value );]]></ActionCode>
+						<ActionCode><![CDATA[p_willingnessToInitiateThreshold_deltaInvest = Double.parseDouble( value );]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="12" Style="0"/>
-						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInitiateThreshold )]]></DefaultValueCode>
+						<DefaultValueCode><![CDATA[String.valueOf( p_willingnessToInitiateThreshold_deltaInvest )]]></DefaultValueCode>
 						<LinkTo>false</LinkTo>
 					</ExtendedProperties>
 				</Control>
@@ -20303,9 +20306,9 @@ else if( networkStructure.equals("RANDOM_NETWORK")){
 					<ParameterName><![CDATA[p_PBCThreshold]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_willingnessToInitiateThreshold]]></ParameterName>
+					<ParameterName><![CDATA[p_willingnessToInitiateThreshold_deltaInv]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[p_willingnessToInitiateThreshold]]></Code>
+						<Code><![CDATA[p_willingnessToInitiateThreshold_deltaInvest]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -20462,13 +20465,13 @@ int endYearECData = 2024;
 int endYearMemberData = 2024;
 for(int i=0; i<tf_ECsHistoric.getLength(); i++){
 	int year = startYear + i;
-	if(year >= startYearECData && year < endYearECData){
+	if(year >= startYearECData && year <= endYearECData){
 		double valueECs = tf_ECsHistoric.get(year);
 		ds_ECsObserved.add(year, valueECs * shareOfHouseholdsInProvince);
 		double valueECProjects = tf_ECProjectsHistoric.get(year);
 		ds_ECProjectsObserved.add(year, valueECProjects * shareOfHouseholdsInProvince);
 	}
-	if(year >= startYearMemberData && year < endYearMemberData){
+	if(year >= startYearMemberData && year <= endYearMemberData){
 		double valueECMembers = tf_ECMembersHistoric.get(year);
 		ds_ECMembersObserved.add(year, valueECMembers * shareOfHouseholdsInProvince);
 	}
@@ -20508,11 +20511,11 @@ int endYearECData = 2024;
 int endYearMemberData = 2024;
 for(int i=0; i<ECs.size(); i++){
 	int year = startYear + i;
-	if(year >= startYearECData && year < endYearECData){
+	if(year >= startYearECData && year <= endYearECData){
 		ds_ECs.add(year, ECs.getY(i));
 		ds_ECProjects.add(year, ECProjects.getY(i));
 	}
-	if(year >= startYearMemberData && year < endYearMemberData){
+	if(year >= startYearMemberData && year <= endYearMemberData){
 		ds_ECMembers.add(year, ECMembers.getY(i));
 	}
 }
@@ -20656,7 +20659,7 @@ double xText = 1435;
 double yText = 205 + iteration * 25;
 double z = 0;
 double rotationText = 0;
-String text2 = iteration + " WtIni Th:" + p_willingnessToInitiateThreshold + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_learningRate;
+String text2 = iteration + " WtIni Th:" + p_willingnessToInitiateThreshold_deltaInv + " WtInv Th:" + p_willingnessToInvestThreshold + " col. lr:" + p_collectiveLearningRate + " indv. lr:" + p_learningRate;
 Font font = new Font("SansSerif", Font.PLAIN, 11);
 TextAlignment alignment = TextAlignment.ALIGNMENT_LEFT;
 
@@ -20682,6 +20685,7 @@ for(int i=0; i < ds_ECs.size(); i++){
 	difECProjects += abs(ds_ECProjects.getY(i) - ds_ECProjectsObserved.getY(i));
 }
 
+double NRMSE = f_getNRMSE( ds_ECs, ds_ECsObserved,  ds_ECProjects, ds_ECProjectsObserved  );
 
 int sheetIndex = 1;
 int rowIndex = getCurrentIteration() + 1;
@@ -20692,7 +20696,7 @@ for(int columnIndex = 1; columnIndex < 10; columnIndex++){
 		value = getCurrentIteration();
 	}
 	else if(columnIndex == 2){
-		value = p_willingnessToInitiateThreshold;
+		value = p_willingnessToInitiateThreshold_deltaInv;
 	}
 	else if(columnIndex == 3){
 		value = p_willingnessToInvestThreshold;
@@ -20719,6 +20723,100 @@ for(int columnIndex = 1; columnIndex < 10; columnIndex++){
 	ef_calibrationResults.setCellValue(value, sheetIndex, rowIndex, columnIndex);
 }
 ef_calibrationResults.writeFile();]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1758104090456</Id>
+					<Name><![CDATA[f_getNRMSE]]></Name>
+					<X>-340</X><Y>200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[ds1_data]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ds1_res]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ds2_data]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ds2_res]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Body><![CDATA[//Normalilzed relative mean squared error
+double sumsqD1 = 0;
+for(int i = 0; i < ds1_data.size(); i++){
+	//double x = ds1.getX(i);
+	double y1 = ds1_data.getY(i);
+	double y2 = ds1_res.getY(i);
+	
+	double dif = Math.abs(y1 - y2);
+	sumsqD1 += dif * dif; //dif^2
+}
+
+double mseD1 = sumsqD1 / ds1_data.size();
+
+double sumsqD2 = 0;
+for(int i = 0; i < ds2_data.size(); i++){
+	//double x = ds1.getX(i);
+	double y1 = ds2_data.getY(i);
+	double y2 = ds2_res.getY(i);
+	
+	double dif = Math.abs(y1 - y2);
+	sumsqD2 += dif * dif; //dif^2
+}
+
+double mseD2 = sumsqD2 / ds2_data.size();
+
+//From sqrt to normal
+double rmseD1 = Math.sqrt(mseD1);
+double rmseD2 = Math.sqrt(mseD2);
+
+//Mean of obs. data
+double meanDS1 = ds1_data.getYMean();
+double meanDS2 = ds2_data.getYMean();
+
+//Divide by mean to get normal value
+double nrmseD1 = rmseD1 / meanDS1;
+double nrmseD2 = rmseD2 / meanDS2;
+
+double objective = nrmseD1 + nrmseD2;
+return objective;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1758104273974</Id>
+					<Name><![CDATA[f_getMAE]]></Name>
+					<X>-340</X><Y>180</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[ds1]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[ds2]]></Name>
+						<Type><![CDATA[DataSet]]></Type>
+					</Parameter>
+					<Body><![CDATA[double sum = 0;
+for(int i = 0; i < ds1.size(); i++){
+	//double x = ds1.getX(i);
+	double y1 = ds1.getY(i);
+	double y2 = ds2.getY(i);
+	
+	sum += Math.abs(y1 - y2);
+}
+return sum;]]></Body>
 				</Function>
 			</Functions>
 			<TableFunctions>
@@ -22282,7 +22380,7 @@ ef_calibrationResults.writeFile();]]></Body>
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold )]]></TextCode>
+					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold_deltaInv )]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -22305,7 +22403,7 @@ ef_calibrationResults.writeFile();]]></Body>
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold )]]></TextCode>
+					<TextCode><![CDATA[format( p_willingnessToInitiateThreshold_deltaInv )]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -22888,7 +22986,7 @@ ef_calibrationResults.writeFile();]]></Body>
 						<ActionCode><![CDATA[String s = "";
 s += "modeFullNetherlands\t" + format( modeFullNetherlands ) + "\n";
 s += "startAtCurrentData\t" + format( startAtCurrentData ) + "\n";
-s += "p_willingnessToInitiateThreshold\t" + format( p_willingnessToInitiateThreshold ) + "\n";
+s += "p_willingnessToInitiateThreshold\t" + format( p_willingnessToInitiateThreshold_deltaInv ) + "\n";
 s += "p_learningRate\t" + format( p_learningRate ) + "\n";
 s += "p_willingnessToInvestThreshold\t" + format( p_willingnessToInvestThreshold ) + "\n";
 s += "detailedSimulation\t" + format( detailedSimulation ) + "\n";
@@ -23562,10 +23660,10 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1721987881314</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.65]]></Code>
+					<Code><![CDATA[0.1]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.75]]></Code>
+					<Code><![CDATA[0.25]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23660,10 +23758,10 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1722328632281</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.005]]></Code>
+					<Code><![CDATA[0.0001]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.015]]></Code>
+					<Code><![CDATA[0.1]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23678,10 +23776,10 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1722427979146</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.55]]></Code>
+					<Code><![CDATA[0.6]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.63]]></Code>
+					<Code><![CDATA[0.99]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23695,10 +23793,10 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1723559720220</Id>
 				<Type>CONTINUOUS</Type>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.001]]></Code>
+					<Code><![CDATA[0.0001]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.005]]></Code>
+					<Code><![CDATA[0.05]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23708,10 +23806,10 @@ copyToClipboard( s );]]></ActionCode>
 					<Code><![CDATA[0.75]]></Code>
 				</Value>
 				<Min Class="CodeValue">
-					<Code><![CDATA[0.7]]></Code>
+					<Code><![CDATA[0.6]]></Code>
 				</Min>
 				<Max Class="CodeValue">
-					<Code><![CDATA[0.9]]></Code>
+					<Code><![CDATA[0.99]]></Code>
 				</Max>
 			</Parameter>
 			<Parameter>	
@@ -23733,10 +23831,9 @@ copyToClipboard( s );]]></ActionCode>
 				<Id>1727957114754</Id>
 				<Type>FIXED</Type>
 			</Parameter>
-			<ObjectiveFunctionCode><![CDATA[difference( ds_ECs, ds_ECsObserved ) +
-(difference( ds_ECProjects, ds_ECProjectsObserved ))]]></ObjectiveFunctionCode>
+			<ObjectiveFunctionCode><![CDATA[f_getNRMSE( ds_ECsObserved, ds_ECs,ds_ECProjectsObserved, ds_ECProjects  )]]></ObjectiveFunctionCode>
 			<Objective>MINIMIZE</Objective>  
-			<OptimizationEngine>NATIVE</OptimizationEngine>
+			<OptimizationEngine>OPTQUEST</OptimizationEngine>
 			<AfterIterationCode><![CDATA[if (isBestSolutionFeasible()) {
 	datasetBestFeasibleObjective.update();
 }
@@ -23758,14 +23855,32 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<Requirement>
 				<Enabled>true</Enabled>
-				<Expression><![CDATA[observable_1.getYMax()]]></Expression>
+				<Expression><![CDATA[root.ds_ECs.getYMax()]]></Expression>
 				<Type>MORE_OR_EQUAL</Type>
 				<Bound>10.0</Bound>
+			</Requirement>
+			<Requirement>
+				<Enabled>true</Enabled>
+				<Expression><![CDATA[root.ds_ECs.getYMax()]]></Expression>
+				<Type>LESS_OR_EQUAL</Type>
+				<Bound>150.0</Bound>
+			</Requirement>
+			<Requirement>
+				<Enabled>true</Enabled>
+				<Expression><![CDATA[root.ds_ECProjects.getYMax()]]></Expression>
+				<Type>MORE_OR_EQUAL</Type>
+				<Bound>30.0</Bound>
+			</Requirement>
+			<Requirement>
+				<Enabled>true</Enabled>
+				<Expression><![CDATA[root.ds_ECProjects.getYMax()]]></Expression>
+				<Type>LESS_OR_EQUAL</Type>
+				<Bound>250.0</Bound>
 			</Requirement>
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
+				<ReplicationPerIteration>2</ReplicationPerIteration>
 				<MinimumReplication>5</MinimumReplication>
 				<MaximumReplication>30</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -23784,7 +23899,7 @@ traceln("-------Finished iteration " + getCurrentIteration() + "--------- in " +
 				<FinalDate><![CDATA[2556057600000]]></FinalDate>	
 				<FinalTime><![CDATA[39.02465753424657]]></FinalTime>	
 				<StopAfterIterationCount>true</StopAfterIterationCount>
-				<IterationCount>2000</IterationCount>
+				<IterationCount>5000</IterationCount>
 				<AutomaticStop>false</AutomaticStop>
 			</ModelTimeProperties>
 		</OptimizationExperiment>
@@ -23807,7 +23922,7 @@ ds_ECMembers.fillFrom(root.ds_ECMembers);
 ds_ECs.fillFrom(root.ds_ECs);
 ds_percMembers.fillFrom(root.ds_percMembers);
 f_setPlots();
-f_writeToExcel();
+//f_writeToExcel();
 
 traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
 /*
@@ -25963,9 +26078,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1721987881314</Id>
-				<Type>RANGE</Type>
+				<Type>FIXED</Type>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.720707 - 0.720707 * 0.1]]></Code>
+					<Code><![CDATA[0.792]]></Code>
 				</Expression>
 				<From Class="CodeValue">
 					<Code><![CDATA[0.648636012]]></Code>
@@ -26067,9 +26182,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722328632281</Id>
-				<Type>RANGE</Type>
+				<Type>FIXED</Type>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.014312 - 0.014312 * 0.1]]></Code>
+					<Code><![CDATA[0.015]]></Code>
 				</Expression>
 				<From Class="CodeValue">
 					<Code><![CDATA[0.012881028]]></Code>
@@ -26091,9 +26206,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1722427979146</Id>
-				<Type>RANGE</Type>
+				<Type>FIXED</Type>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.55718]]></Code>
+					<Code><![CDATA[0.68]]></Code>
 				</Expression>
 				<From Class="CodeValue">
 					<Code><![CDATA[0.557183455]]></Code>
@@ -26114,9 +26229,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723559720220</Id>
-				<Type>RANGE</Type>
+				<Type>FIXED</Type>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.003159]]></Code>
+					<Code><![CDATA[0.0038]]></Code>
 				</Expression>
 				<From Class="CodeValue">
 					<Code><![CDATA[0.003158562]]></Code>
@@ -26130,9 +26245,9 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1723561525403</Id>
-				<Type>RANGE</Type>
+				<Type>FIXED</Type>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.815705]]></Code>
+					<Code><![CDATA[0.89]]></Code>
 				</Expression>
 				<From Class="CodeValue">
 					<Code><![CDATA[0.734134088]]></Code>
@@ -26181,13 +26296,13 @@ else if( rb_scenarioSetting.getValue() == 3){
 			</PresentationProperties>
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
-				<FixedReplicationsNumber>true</FixedReplicationsNumber>
+				<FixedReplicationsNumber>false</FixedReplicationsNumber>
 				<ReplicationPerIteration>10</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
-				<MaximumReplication>10</MaximumReplication>
+				<MaximumReplication>500</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
-				<ErrorPercent>0.5</ErrorPercent>
-				<ExpressionForConfidenceComputation><![CDATA[0]]></ExpressionForConfidenceComputation>
+				<ErrorPercent>0.05</ErrorPercent>
+				<ExpressionForConfidenceComputation><![CDATA[ds_ECInstalledCap.getYMax()]]></ExpressionForConfidenceComputation>
 			</ReplicationsProperties>
 		</ParamVariationExperiment>
 		<!--   =========  Parameter Variation Experiment   ========  -->
@@ -28624,7 +28739,7 @@ else {
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_willingnessToInitiateThreshold]]></ParameterName>
+					<ParameterName><![CDATA[p_willingnessToInitiateThreshold_deltaInv]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[p_willingnessToInitiateThreshold]]></Code>
 					</ParameterValue>
@@ -28937,7 +29052,7 @@ public class J_Household {
 	
 	//6. See if household is willing to initiate
 	public void f_getWillingnessToInitiate(double willingnessToParticipate) {
-		if( willingnessToParticipate >= environment.p_willingnessToInitiateThreshold && willingToVolunteer == true) {
+		if( willingnessToParticipate >= environment.v_willingnessToInitiateThreshold && willingToVolunteer == true) {
 			willingnessToInitiate = true;
 			role = WILLING_TO_INITIATE;
 		}
