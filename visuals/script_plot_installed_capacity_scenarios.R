@@ -5,8 +5,10 @@ library(ggplot2)
 library(scales)
 library(gridExtra)
 
-# Set working directory and file paths
-setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
+# Set working directory and file paths 
+
+setwd("C:\\Users\\naudl\\Documents\\GitHub\\Energy-community-potential-model\\results")
+#setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
 file_path <- "_monte_carlo_results_final.xlsx"
 file_path_historic <- "_EC_summary.xlsx"
 
@@ -25,21 +27,23 @@ create_installed_capacity_plot <- function(){
   historical_data <- read_excel(file_path_historic, sheet = "calibration_statistics") %>%
     select(year, `Installed cap (MW)`) %>%
     rename(median = `Installed cap (MW)`) %>%
-    mutate(lower = NA, upper = NA, mean = median)
+    mutate(lower = NA, upper = NA, mean = median / 1000)
   
-  # Filter scenario data for years >= 2023
-  filter_years <- function(data) subset(data, year >= 2023)
+  # Filter scenario data for years >= 2024
+  filter_years <- function(data) subset(data, year >= 2024)
   data_scenario1_filtered <- filter_years(data_scenario1)
   data_scenario2_filtered <- filter_years(data_scenario2)
   data_scenario3_filtered <- filter_years(data_scenario3)
   data_scenario4_filtered <- filter_years(data_scenario4)
   
-  # Convert projects to MW (518 kW per project)
-  convert_to_mw <- function(df) df[, -1] * 518 / 1000
-  data_scenario1_mw <- convert_to_mw(data_scenario1_filtered)
-  data_scenario2_mw <- convert_to_mw(data_scenario2_filtered)
-  data_scenario3_mw <- convert_to_mw(data_scenario3_filtered)
-  data_scenario4_mw <- convert_to_mw(data_scenario4_filtered)
+  # Convert projects to MW (447 kW per project)
+  convert_to_gw <- function(df) df[, -1] * 447 / 1000000
+  convert_to_gw_historical <- function(df) df[, -1] / 1000000
+  #historical_data_gw <- convert_to_gw_historical(historical_data)
+  data_scenario1_gw <- convert_to_gw(data_scenario1_filtered)
+  data_scenario2_gw <- convert_to_gw(data_scenario2_filtered)
+  data_scenario3_gw <- convert_to_gw(data_scenario3_filtered)
+  data_scenario4_gw <- convert_to_gw(data_scenario4_filtered)
   
   # Compute mean and confidence intervals
   get_mean_and_ci <- function(df) {
@@ -51,14 +55,14 @@ create_installed_capacity_plot <- function(){
   }
   
   # Compute statistics
-  scenario1_stats <- get_mean_and_ci(data_scenario1_mw)
-  scenario2_stats <- get_mean_and_ci(data_scenario2_mw)
-  scenario3_stats <- get_mean_and_ci(data_scenario3_mw)
-  scenario4_stats <- get_mean_and_ci(data_scenario4_mw)
+  scenario1_stats <- get_mean_and_ci(data_scenario1_gw)
+  scenario2_stats <- get_mean_and_ci(data_scenario2_gw)
+  scenario3_stats <- get_mean_and_ci(data_scenario3_gw)
+  scenario4_stats <- get_mean_and_ci(data_scenario4_gw)
   
   # Add year and scenario labels
   years_filtered <- data_scenario1_filtered$year
-  scenarios <- c("Base line", "High social learning (SL)", "High professionalization (PC)", "Combined policies (SL + PC)")
+  scenarios <- c("Base line", "Social Learning", "Collective learning and Capacity Building", "Combined policies")
   scenario_list <- list(scenario1_stats, scenario2_stats, scenario3_stats, scenario4_stats)
   
   all_scenarios <- bind_rows(
@@ -91,7 +95,7 @@ create_installed_capacity_plot <- function(){
     scale_fill_manual(values = color_mapping) +
     labs(title = "Installed Capacity",
          x = "Year",
-         y = "Installed Capacity (MW)",
+         y = "Installed Capacity (GW)",
          color = "Scenario",
          fill = "Scenario") +
     theme_minimal() +

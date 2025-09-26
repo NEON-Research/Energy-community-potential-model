@@ -10,14 +10,18 @@ library(RColorBrewer)
 
 
 # Load the Excel files
-setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
-file_path <- "_sensetivity_calibrated_params.xlsx"
+setwd("C:\\Users\\naudl\\Documents\\GitHub\\Energy-community-potential-model\\results")
+#setwd("C:\\Users\\s124129\\Documents\\GitHub\\Energy-community-potential-model\\results")
+file_path <- "_sensitivity_calibrated_params.xlsx"
 
-data_ECs <- read_excel(file_path, sheet = "sensetivity_params_ECs")
-data_projects <- read_excel(file_path, sheet = "sensetivity_params_projects")
+data_ECs <- read_excel(file_path, sheet = "sensitivity_params_ECs")
+data_projects <- read_excel(file_path, sheet = "sensitivity_params_projects")
 
 # Define the start year
-start_year <- 2023
+start_year <- 2020
+
+currentSetting = "ECs"
+current_variable = 1
 
 #Function to prepare data and create plots
 create_plot <- function(current_variable, currentSetting) {
