@@ -93,13 +93,14 @@ create_installed_capacity_plot <- function(){
     scale_x_continuous(limits = c(start_year, NA)) +
     scale_color_manual(values = color_mapping) +
     scale_fill_manual(values = color_mapping) +
-    labs(title = "Installed Capacity",
+    labs(title = "Installed Capacity per scenario",
          x = "Year",
          y = "Installed Capacity (GW)",
          color = "Scenario",
          fill = "Scenario") +
     theme_minimal() +
     theme(
+      plot.title = element_text(hjust = 0.5),  # Center the title
       legend.position = "bottom",
       legend.direction = "horizontal",
       legend.box = "horizontal",
