@@ -100,7 +100,7 @@ create_plot <- function(current_variable, currentSetting) {
   # Filter columns where the value in row 57 == 1
   filtered_columns_ECs <- which(data_ECs[57, ] == current_variable)
   filtered_data_ECs <- data_ECs[, filtered_columns_ECs]
-  filtered_columns_projects <- which(data_projects[54, ] == current_variable)
+  filtered_columns_projects <- which(data_projects[57, ] == current_variable)
   filtered_data_projects <- data_projects[, filtered_columns_projects]
   
   filtered_data_ECs <- filtered_data_ECs[,-1]
@@ -131,7 +131,7 @@ create_plot <- function(current_variable, currentSetting) {
       filtered_data_step <- filtered_data_ECs[, filtered_columns_step]
       filtered_data_step <- head(filtered_data_step, 42)
     } else if( graph_title == "Projects"){
-      filtered_columns_step <- which(filtered_data_projects[53, ] == i)
+      filtered_columns_step <- which(filtered_data_projects[56, ] == i)
       filtered_data_step <- filtered_data_projects[, filtered_columns_step]
       filtered_data_step <- head(filtered_data_step, 42)
     }
@@ -246,7 +246,19 @@ grid.arrange(
   heights = c(6, 1)  # Adjust space between the plot grid and legend
 )
 
+combined <- grid.arrange(
+  arrangeGrob(
+    plot1EC, plot1Projects, 
+    plot2EC, plot2Projects, 
+    plot3EC, plot3Projects, 
+    plot4EC, plot4Projects, 
+    plot5EC, plot5Projects,  
+    nrow = 5, ncol = 2
+  )
+)
 
+# Save the figure with enough vertical space for the legend
+ggsave("plot_sensitivity_params.png", combined, width = 7, height = 10, dpi = 300)
 
 
 

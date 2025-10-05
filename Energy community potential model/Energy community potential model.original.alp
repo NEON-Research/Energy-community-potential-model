@@ -36153,23 +36153,14 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759175077384</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759175077395</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759234509257</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[8]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759236692619</Id>
@@ -36178,16 +36169,10 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759237668318</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[1]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759239645089</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified date]]></StopOption>
@@ -36238,14 +36223,14 @@ f_writeToExcel();
 traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
 
 
-if( iterator == 1 ) {
+if( iterator == 50 ) {
 	color = randomFrom(c_colorPalette);
 	v_scenarioIndex++;
 	v_networkType = SMALL_WORLD_GEOGRAPHICAL;
 	traceln("Next scenario after " + iterator + " runs with network type " + v_networkType);
 }
 
-if( iterator == 101 ) {
+if( iterator == 150 ) {
 	color = randomFrom(c_colorPalette);
 	v_scenarioIndex++;
 	v_networkType = RANDOM_NETWORK;
@@ -36640,21 +36625,17 @@ presentation.add(textShape);
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[int sheetIndexEC = 2;
 int sheetIndexProjects = 3;
-int sheetIndexInstalledCap = 4;
-int sheetIndexMembers = 5;
 
 //int sheetIndexEC = 2;
 //int sheetIndexProjects = 3;
 
 
-int columnIndex = iterator + 1;//(int) (iterator + 1 - (maximumReplications / 4 * rb_scenarioSetting.getValue()));
+int columnIndex = (int) iterator + 1;
 ef_sens_network_results.setCellValue("run" + iterator, sheetIndexEC, 1, columnIndex);
 ef_sens_network_results.setCellValue("run" + iterator, sheetIndexProjects, 1, columnIndex);
 for( int i=0; i<ds_ECs.size(); i++ ){
 	ef_sens_network_results.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
 	ef_sens_network_results.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
-	ef_sens_network_results.setCellValue(ds_ECInstalledCap.getY(i), sheetIndexInstalledCap, i + 2, columnIndex);
-	ef_sens_network_results.setCellValue(ds_percMembers.getY(i), sheetIndexMembers, i + 2, columnIndex);
 }
 
 int rowIndex = 48;
@@ -38586,23 +38567,14 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759175077384</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759175077395</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759234509257</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[8]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759236692619</Id>
@@ -38611,16 +38583,10 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759237668318</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[1]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759239645089</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified date]]></StopOption>
@@ -38638,7 +38604,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>200</ReplicationPerIteration>
+				<ReplicationPerIteration>150</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>500</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
@@ -38670,10 +38636,8 @@ f_setPlots();
 
 traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecimal((System.currentTimeMillis() - v_runTimer)/1000,3) + " seconds");
 
-int sheetIndexEC = 2;
-int sheetIndexProjects = 3;
-int sheetIndexInstalledCap = 4;
-int sheetIndexMembers = 5;
+int sheetIndexEC = v_scenarioIndex * 2 + 2;
+int sheetIndexProjects = v_scenarioIndex * 2 + 3;
 
 //int sheetIndexEC = 2;
 //int sheetIndexProjects = 3;
@@ -38685,8 +38649,6 @@ ef_sensitivityResults.setCellValue("run" + iterator, sheetIndexProjects, 1, colu
 for( int i=0; i<ds_ECs.size(); i++ ){
 	ef_sensitivityResults.setCellValue(ds_ECs.getY(i), sheetIndexEC, i + 2, columnIndex);
 	ef_sensitivityResults.setCellValue(ds_ECProjects.getY(i), sheetIndexProjects, i + 2, columnIndex);
-	ef_sensitivityResults.setCellValue(ds_ECInstalledCap.getY(i), sheetIndexInstalledCap, i + 2, columnIndex);
-	ef_sensitivityResults.setCellValue(ds_ECMembers.getY(i), sheetIndexMembers, i + 2, columnIndex);
 }
 
 int rowIndex = 48;
@@ -38780,6 +38742,9 @@ ef_sensitivityResults.writeFile();]]></AfterSimulationRunCode>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.154]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -38805,6 +38770,9 @@ ef_sensitivityResults.writeFile();]]></AfterSimulationRunCode>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.6466]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -38817,6 +38785,9 @@ ef_sensitivityResults.writeFile();]]></AfterSimulationRunCode>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.098]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -38829,6 +38800,9 @@ ef_sensitivityResults.writeFile();]]></AfterSimulationRunCode>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.00627]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -38841,6 +38815,9 @@ ef_sensitivityResults.writeFile();]]></AfterSimulationRunCode>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0.95]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -41202,23 +41179,14 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759175077384</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759175077395</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[2]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759234509257</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[8]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759236692619</Id>
@@ -41227,16 +41195,10 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<RangeVariationParamValue>	
 				<Id>1759237668318</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[1]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1759239645089</Id>
 				<Type>FIXED</Type>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[false]]></Code>
-				</Expression>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified date]]></StopOption>
@@ -41272,9 +41234,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 f_setColorPalette();
 color = randomFrom(c_colorPalette);
 //rb_scenarioSetting.setValue(0, true);
-ef_MCResults.readFile();
-
-iterator = 500;]]></InitialSetupCode>
+ef_MCResults.readFile();]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -41292,8 +41252,7 @@ traceln("-------Finished iteration " + iterator + "--------- in " + roundToDecim
 
 
 //traceln("Step = " + step + " current iteration = " + getCurrentIteration() + " iterator " + iterator);
-if( iterator == 1 ){
-	rb_scenarioSetting.setValue(3, true);
+if( iterator == 50 ){
 	policyMeasureIndLearning_rate = 8;
 	policyMeasureColLearning_rate = 2;
 	color = randomFrom(c_colorPalette);
@@ -41301,8 +41260,15 @@ if( iterator == 1 ){
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
 }
 
-else if( iterator == 101 ){
-	rb_scenarioSetting.setValue(3, true);
+else if( iterator == 100 ){
+	policyMeasureIndLearning_rate = 8;
+	policyMeasureColLearning_rate = 4;
+	color = randomFrom(c_colorPalette);
+	v_scenarioIndex++;
+	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
+}
+
+else if( iterator == 150 ){
 	policyMeasureIndLearning_rate = 2;
 	policyMeasureColLearning_rate = 8;
 	color = randomFrom(c_colorPalette);
@@ -41310,9 +41276,15 @@ else if( iterator == 101 ){
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
 }
 
+else if( iterator == 200 ){
+	policyMeasureIndLearning_rate = 4;
+	policyMeasureColLearning_rate = 8;
+	color = randomFrom(c_colorPalette);
+	v_scenarioIndex++;
+	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
+}
 
-else if( iterator == 201 ){
-	rb_scenarioSetting.setValue(3, true);	
+else if( iterator == 250 ){
 	policyMeasureIndLearning_rate = 8;
 	policyMeasureColLearning_rate = 8;
 	color = randomFrom(c_colorPalette);
@@ -41320,10 +41292,7 @@ else if( iterator == 201 ){
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );
 }
 
-if( iterator == 301){
-	rb_scenarioSetting.setValue(3, true);	
-	policyMeasureIndLearning_rate = 8;
-	policyMeasureColLearning_rate = 8;
+else if( iterator == 300){
 	maxProjectsPer5Years = 30;
 	v_projectSizeMultiplier = 3;
 	color = randomFrom(c_colorPalette);
@@ -41331,16 +41300,13 @@ if( iterator == 301){
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );	
 }
 
-else if( iterator == 401){
-rb_scenarioSetting.setValue(3, true);
+else if( iterator == 350){
 	v_scenario = "hybrid";
 	color = randomFrom(c_colorPalette);
 	v_scenarioIndex++;
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );	
 }
-/*
-else if( iterator == 40){
-rb_scenarioSetting.setValue(0, true);
+else if( iterator == 400){
 	v_scenario = "normal";
 	v_policyMeasureIndividualLearning = false;
 	v_policyMeasureCollectiveLearning = false;
@@ -41349,15 +41315,9 @@ rb_scenarioSetting.setValue(0, true);
 	color = randomFrom(c_colorPalette);
 	v_scenarioIndex++;
 	traceln("Next scenario after " + iterator + " runs with policy high contagion = " + v_policyMeasureIndividualLearning + " and high prof = " + v_policyMeasureCollectiveLearning  );	
-}*/
-else if( iterator == 501){
-	rb_scenarioSetting.setValue(0, true);
+}
+else if( iterator == 450){
 	v_scenario = "normal";
-	v_policyMeasureIndividualLearning = false;
-	v_policyMeasureCollectiveLearning = false;
-	policyMeasureIndLearning_rate = 2;
-	policyMeasureColLearning_rate = 4;
-	maxProjectsPer5Years = 8;
 	v_testUpdateNetwork = true;
 	color = randomFrom(c_colorPalette);
 	v_scenarioIndex++;
@@ -41885,8 +41845,6 @@ rowIndex++;
 ef_MCResults.setCellValue(projectSizeMultiplier, sheetIndexEC, rowIndex, columnIndex);
 rowIndex++;
 ef_MCResults.setCellValue(scenario, sheetIndexEC, rowIndex, columnIndex);
-rowIndex++;
-ef_MCResults.setCellValue(v_scenarioIndex, sheetIndexEC, rowIndex, columnIndex);
 
 
 ef_MCResults.writeFile();]]></Body>
@@ -44188,7 +44146,7 @@ else if( rb_scenarioSetting.getValue() == 3){
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>102</ReplicationPerIteration>
+				<ReplicationPerIteration>500</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>500</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
