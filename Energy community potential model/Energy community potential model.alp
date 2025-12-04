@@ -4,7 +4,7 @@
 	         AnyLogic Project File
 *************************************************
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.9.5.202506190548" AlpVersion="8.9.5">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.9.6.202509050524" AlpVersion="8.9.6">
 <Model>
 	<Id>1717511797816</Id>
 	<Name><![CDATA[Energy community potential model]]></Name>
@@ -5058,9 +5058,9 @@ if( detailedSimulation ){
 	double totalPVFieldPotential_MW = sum(pop_GZ_Municipalities, x->x.p_PVFieldPotential_MW);
 	double totalWindPotential_MW = sum(pop_GZ_Municipalities, x->x.p_windPotential_MW);
 	
-	traceln("totalPVRooftopPotential_MW = " + totalPVRooftopPotential_MW);
-	traceln("totalPVFieldPotential_MW = " + totalPVFieldPotential_MW);
-	traceln("totalWindPotential_MW = " + totalWindPotential_MW);
+	traceln("totalPVRooftopPotential_MW = " + totalPVRooftopPotential_MW + " remaining is " + sum(pop_GZ_Municipalities, x->x.v_remainingPVRooftopPotential_MW));
+	traceln("totalPVFieldPotential_MW = " + totalPVFieldPotential_MW + " remaining is " + sum(pop_GZ_Municipalities, x->x.v_remainingPVFieldPotential_MW));
+	traceln("totalWindPotential_MW = " + totalWindPotential_MW + " remaining is " + sum(pop_GZ_Municipalities, x->x.v_remainingWindPotential_MW));
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -6291,8 +6291,8 @@ double sd5 = sd_renewablesAttitude;
 
 double rho12 = 0.4;
 double rho13 = 0.23;	//conr
-double rho14 = 0.4;	//conr
-double rho15 = 0.4;	//conr
+double rho14 = 0.4;		//conr
+double rho15 = 0.4;		//conr
 double rho23 = 0.4;
 double rho24 = 0.4;
 double rho25 = 0.4;
@@ -8895,12 +8895,10 @@ for(GZ_District d : pop_GZ_Districts){
 					<BorderColor>-4144960</BorderColor>
 					<FillColor>-1</FillColor>
 					<ShowTiles>true</ShowTiles>
-					<TileURLProvider>ANYLOGIC</TileURLProvider>
 					<CustomTileURL>false</CustomTileURL>
 					<TileURL><![CDATA[https://a.tile.openstreetmap.org/[zoom]/[x]/[y].png]]></TileURL>				
 					<RouteProviderType>WEB_SERVICE</RouteProviderType>
 					<RouteNotFound>CREATE_STRAIGHT_LINE</RouteNotFound>
-					<OnlineRouteProvider>ANYLOGIC</OnlineRouteProvider>
 					<TransportType>CAR</TransportType>
 					<RoutingMethod>FASTEST</RoutingMethod>
 					<PathfindingAlgorithm>DIJKSTRABI</PathfindingAlgorithm>
@@ -18351,6 +18349,7 @@ else {
 	<FixedTimeStep>0.001</FixedTimeStep>
 	<RelativeAccuracy>1.0E-5</RelativeAccuracy>
 	<TimeAccuracy>1.0E-5</TimeAccuracy>
+	<InspectionWindowColorTheme>DEFAULT</InspectionWindowColorTheme>
 	<Frame>
 		<Id>1717511779992</Id>
 		<Width>1920</Width>
@@ -18891,6 +18890,9 @@ f_setPlots();
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["normal"]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -47013,5 +47015,7 @@ public class J_ECArea implements Serializable {
 	<Uuid>e6625695-25a2-43d0-9056-1e9a1a594b1e</Uuid>
 	<Uuid>91990287-4edf-4e38-aa6c-66d0e906807b</Uuid>
 	<Uuid>2216cdd0-177c-5678-9e88-dd8b95312234</Uuid>
+	<Uuid>1737c8c6-b526-4dd8-589e-ee4e205b06f4</Uuid>
+	<Uuid>6a43bef6-8b70-4253-a828-82c3ab399655</Uuid>
 </ConvertersApplied>
 </AnyLogicWorkspace>
